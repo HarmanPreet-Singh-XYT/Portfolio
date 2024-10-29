@@ -93,7 +93,7 @@ export default function Projects({projectRef}:{projectRef:any}) {
   );
 
   return (
-    <section ref={projectRef} id='project-section' className="py-32 relative bg-black">
+    <section id='project-section' className="py-32 relative bg-black">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(74,222,128,0.1),_transparent_50%)]"></div>
       
       <div className="container mx-auto px-6 relative">
@@ -104,7 +104,7 @@ export default function Projects({projectRef}:{projectRef:any}) {
         </h2>
         <p className="text-gray-400 text-center mb-12">Showcasing some of my best work in development and design</p>
 
-        <div className="flex justify-center gap-4 mb-12">
+        <div ref={projectRef} className="flex justify-center gap-4 mb-12">
           {['all', 'development', 'design'].map((filter) => (
             <button
               key={filter}
