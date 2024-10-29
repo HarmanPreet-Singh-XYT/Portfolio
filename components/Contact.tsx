@@ -1,9 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Mail, MessageSquare, Send } from 'lucide-react';
 import sendMail from '@/app/api/Nodemailer';
 
-export default function Contact() {
-  const formRef = useRef();
+export default function Contact({contactRef}:{contactRef:any}) {
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -34,7 +33,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="py-32 relative bg-black">
+    <section ref={contactRef} id='contact-section' className="py-32 relative bg-black">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(74,222,128,0.05),_transparent_50%)]"></div>
       
       <div className="container mx-auto px-6 relative">

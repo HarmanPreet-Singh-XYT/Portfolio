@@ -7,7 +7,7 @@ interface Particle {
   y:string;
   duration:string;
 }
-export default function Hero() {
+export default function Hero({aboutRef}:{aboutRef:any}) {
   const [particles, setParticles] = useState<Particle[]>([]);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function Hero() {
     );
   }, []);
   return (
-    <header className="min-h-screen relative overflow-hidden flex items-center bg-black">
+    <header ref={aboutRef} id='about-section' className="min-h-screen relative overflow-hidden flex items-center bg-black">
       {/* Animated background */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(74,222,128,0.15),_transparent_50%)]"></div>
@@ -41,7 +41,7 @@ export default function Hero() {
         ))}
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6 relative z-10 md:mt-0 mt-24">
         <div className="max-w-4xl mx-auto">
           <div className="glitch-container mb-6">
             <h1 className="text-7xl font-bold glitch-text" data-text="Harmanpreet Singh">
@@ -61,7 +61,7 @@ export default function Hero() {
             Crafting seamless solutions that blend FullStack expertise, DevOps, Mobile Development, and thoughtful UI/UX. Specialized in building responsive, high-performance applications and infrastructure that drive exceptional user experiences across platforms.
           </p>
 
-          <div className="flex gap-6 mb-16">
+          <div className="flex gap-6 mb-16 flex-nowrap overflow-x-auto">
             <a href="https://github.com/HarmanPreet-Singh-XYT" className="social-link">
               <Github size={24} />
               <span className="ml-2">GitHub</span>

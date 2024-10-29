@@ -85,7 +85,7 @@ const projects = [
   },
 ];
 
-export default function Projects() {
+export default function Projects({projectRef}:{projectRef:any}) {
   const [activeFilter, setActiveFilter] = React.useState('all');
 
   const filteredProjects = projects.filter(project => 
@@ -93,7 +93,7 @@ export default function Projects() {
   );
 
   return (
-    <section className="py-32 relative bg-black">
+    <section ref={projectRef} id='project-section' className="py-32 relative bg-black">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(74,222,128,0.1),_transparent_50%)]"></div>
       
       <div className="container mx-auto px-6 relative">
