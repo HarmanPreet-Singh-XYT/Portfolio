@@ -15,7 +15,7 @@ const experiences = [
 const about = {
   name: "Harmanpreet Singh",
   title: "Software Engineer",
-  description: "Crafting seamless solutions that blend FullStack expertise, DevOps, Mobile Development, and thoughtful UI/UX. Specialized in building responsive, high-performance applications and infrastructure that drive exceptional user experiences across platforms.",
+  description: "Creating seamless solutions that blend FullStack expertise, DevOps, Mobile Development, and thoughtful UI/UX. Specialized in building responsive, high-performance applications and infrastructure that drive exceptional user experiences across platforms.",
   links: {
     github: "https://github.com/HarmanPreet-Singh-XYT",
     linkedin: "https://www.linkedin.com/in/harman-developer/",
@@ -115,111 +115,81 @@ const projects = [
     }
   },
 ];
+
+
 const skillCategories = [
   {
-    icon: <Code2 />,
-    title: 'Frontend Development',
+    icon: <Code2 className="w-6 h-6" />,
+    title: "Frontend Development",
+    description: "Building responsive, performant, and accessible web applications",
     skills: [
-      { name: 'Next.js', level: 90 },
-      { name: 'React', level: 95 },
-      { name: 'React Native', level: 82 },
-      { name: 'Tailwind CSS', level: 98 },
-      { name: 'Flutter', level: 86 },
+      { name: "Next.js", level: "Advanced" },
+      { name: "React", level: "Expert" },
+      { name: "React Native", level: "Advanced" },
+      { name: "Tailwind CSS", level: "Expert" },
+      { name: "Flutter", level: "Advanced" }
     ]
   },
   {
-    icon: <Server />,
-    title: 'Backend Development',
+    icon: <Server className="w-6 h-6" />,
+    title: "Backend Development",
+    description: "Designing scalable and maintainable server-side applications",
     skills: [
-      { name: 'Node.js/Express', level: 94 },
-      { name: 'Python/Django', level: 88 },
-      { name: 'Git/Github', level: 98 },
-      { name: 'REST API', level: 90 },
-      { name: 'WebSockets', level: 87 },
+      { name: "Node.js/Express", level: "Expert" },
+      { name: "Python/Django", level: "Advanced" },
+      { name: "Microservices", level: "Expert" },
+      { name: "REST API", level: "Advanced" },
+      { name: "WebSockets", level: "Advanced" }
     ]
   },
   {
-    icon: <Database />,
-    title: 'Database & Cache',
+    icon: <Database className="w-6 h-6" />,
+    title: "Database & Cache",
+    description: "Managing and optimizing data storage solutions",
     skills: [
-      { name: 'PostgreSQL', level: 92 },
-      { name: 'MySQL', level: 90 },
-      { name: 'MongoDB', level: 82 },
-      { name: 'Firebase', level: 60 },
-      // { name: 'Cassandra', level: 82 },
+      { name: "PostgreSQL", level: "Expert" },
+      { name: "MySQL", level: "Advanced" },
+      { name: "MongoDB", level: "Advanced" },
+      { name: "Firebase", level: "Intermediate" },
+      { name: "Prometheus", level: "Intermediate" }
     ]
   },
   {
-    icon: <Cloud />,
-    title: 'Cloud & DevOps',
+    icon: <Cloud className="w-6 h-6" />,
+    title: "Cloud & DevOps",
+    description: "Implementing robust cloud infrastructure and CI/CD pipelines",
     skills: [
-      { name: 'Jenkins', level: 95 },
-      { name: 'Docker/K8s', level: 92 },
-      { name: 'Terraform', level: 88 },
-      { name: 'CI/CD', level: 90 },
-      { name: 'Monitoring', level: 87 },
+      { name: "Jenkins", level: "Expert" },
+      { name: "Docker/K8s", level: "Advanced" },
+      { name: "Terraform", level: "Advanced" },
+      { name: "CI/CD", level: "Expert" },
+      { name: "Monitoring", level: "Advanced" }
     ]
+  }
+];
+
+const additionalSkills = [
+  {
+    icon: <Cpu className="w-5 h-5" />,
+    title: "Operating Systems",
+    skills: ["Windows", "Linux"]
   },
   {
-    icon: <Cpu />,
-    title: 'Operating Systems',
-    skills: [
-      { name: 'Windows', level: 95 },
-      { name: 'Linux', level: 85 },
-      // { name: 'Arch Linux (Linux)', level: 88 },
-      // { name: 'MacOS', level: 0 },
-      // { name: 'Performance', level: 89 },
-    ]
+    icon: <Lock className="w-5 h-5" />,
+    title: "Security & Testing",
+    skills: ["JWT", "Encryption", "OAuth", "Selenium"]
   },
   {
-    icon: <Lock />,
-    title: 'Security & Testing',
-    skills: [
-      { name: 'JWT', level: 90 },
-      { name: 'Encryption', level: 85 },
-      { name: 'OAuth', level: 90 },
-      { name: 'Selenium', level: 82 },
-      // { name: 'Security Audits', level: 88 },
-      // { name: 'Penetration Testing', level: 82 },
-      // { name: 'OWASP', level: 87 },
-    ]
+    icon: <Palette className="w-5 h-5" />,
+    title: "Design & UI/UX",
+    skills: ["Figma", "Design Systems", "Prototyping", "Adobe XD"]
   },
   {
-    icon: <Palette />,
-    title: 'Design & UI/UX',
-    skills: [
-      { name: 'Figma', level: 88 },
-      { name: 'Design Systems', level: 90 },
-      { name: 'Prototyping', level: 85 },
-      { name: 'Adobe XD', level: 42 },
-      // { name: 'User Research', level: 86 },
-    ]
-  },
-  {
-    icon: <Brain />,
-    title: 'Programming Languages',
-    skills: [
-      { name: 'Javascript', level: 95 },
-      { name: 'Typescript', level: 92 },
-      { name: 'Python', level: 85 },
-      { name: 'Dart', level: 84 },
-      { name: 'C++', level: 82 },
-    ]
-  },
-  // {
-  //   icon: <Brain />,
-  //   title: 'AI & ML',
-  //   skills: [
-  //     { name: 'TensorFlow', level: 85 },
-  //     { name: 'NLP', level: 82 },
-  //     { name: 'Computer Vision', level: 80 },
-  //     { name: 'ML Ops', level: 84 },
-  //     { name: 'Data Analysis', level: 88 },
-  //   ]
-  // },
+    icon: <Brain className="w-5 h-5" />,
+    title: "Programming Languages",
+    skills: ["Javascript", "Typescript", "Python", "Dart", "C/C++","Bash/Shell","SQL"]
+  }
 ];
 
 
-
-
-export {experiences,about,projects,skillCategories};
+export {experiences,about,projects,skillCategories,additionalSkills};
