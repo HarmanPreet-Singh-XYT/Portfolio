@@ -7,6 +7,7 @@ import Contact from '../components/Contact';
 import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Navbar from './Navbar';
+import Experience from './Experience';
 function Home() {
     const [activeSection, setActiveSection] = useState("");
 
@@ -28,6 +29,13 @@ function Home() {
         threshold: 0.6,
         onChange: (inView) => {
         if (inView) setActiveSection("skill");
+        },
+    });
+    
+    const { ref: experienceRef, inView: isExperienceInView } = useInView({
+        threshold: 0.6,
+        onChange: (inView) => {
+        if (inView) setActiveSection("experience");
         },
     });
 
@@ -64,6 +72,7 @@ function Home() {
         <Navbar currentSection={activeSection}/>
         <Hero aboutRef={aboutRef}/>
         <Skills skillRef={skillRef}/>
+        <Experience experienceRef={experienceRef}/>
         <Projects projectRef={projectRef}/>
         <Contact contactRef={contactRef}/>
       </div>

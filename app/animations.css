@@ -186,3 +186,29 @@
     transform: translateY(0);
   }
 }
+
+.btn-primary {
+  @apply flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-emerald-500 to-blue-500 
+         text-black font-semibold hover:from-emerald-600 hover:to-blue-600 
+         transition-all duration-300;
+}
+
+.btn-secondary {
+  @apply flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-emerald-500/50 
+         text-emerald-400 font-semibold hover:bg-emerald-500/10 
+         transition-all duration-300;
+}
+
+.experience-card {
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: slide-in 0.5s ease forwards;
+  animation-delay: var(--delay);
+}
+
+@keyframes slide-in {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

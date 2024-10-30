@@ -16,15 +16,15 @@ export default function Navbar({currentSection}:{currentSection:string}) {
           </button>
         </li>
         <li>
+          <button onClick={() => scrollToSection('experience-section')} className={`hover:text-[#4ade80] transition ${currentSection === 'experience' ? 'text-emerald-400' : ''}`}>
+            Experience
+          </button>
+        </li>
+        <li>
           <button onClick={() => scrollToSection('project-section')} className={`hover:text-[#4ade80] transition ${currentSection === 'project' ? 'text-emerald-400' : ''}`}>
             Projects
           </button>
         </li>
-        {/* <li>
-          <button href="/contact" className="hover:text-gray-300 transition">
-            Experience
-          </button>
-        </li> */}
         <li>
           <button onClick={() => scrollToSection('contact-section')} className={`hover:text-[#4ade80] transition ${currentSection === 'contact' ? 'text-emerald-400' : ''}`}>
             Contact

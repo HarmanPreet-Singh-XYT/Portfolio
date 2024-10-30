@@ -1,7 +1,7 @@
 'use client'
 import React,{ useEffect, useState } from 'react';
-import { Github, Linkedin, Mail, Terminal, File } from 'lucide-react';
-
+import { Github, Linkedin, Mail, Terminal, ArrowRight,Download } from 'lucide-react';
+import { about } from '@/app/data';
 interface Particle {
   x:string;
   y:string;
@@ -20,6 +20,9 @@ export default function Hero({aboutRef}:{aboutRef:any}) {
       }))
     );
   }, []);
+  const scrollToSection = (section:string) => {
+    document.getElementById(section)!.scrollIntoView({ behavior: "smooth" });
+  };
   return (
     <header ref={aboutRef} id='about-section' className="min-h-screen relative overflow-hidden flex items-center bg-black">
       {/* Animated background */}
@@ -44,8 +47,8 @@ export default function Hero({aboutRef}:{aboutRef:any}) {
       <div className="container mx-auto px-6 relative z-10 md:mt-0 mt-24">
         <div className="max-w-4xl mx-auto">
           <div className="glitch-container mb-6">
-            <h1 className="text-7xl font-bold glitch-text" data-text="Harmanpreet Singh">
-              Harmanpreet Singh
+            <h1 className="sm:text-7xl text-6xl font-bold glitch-text" data-text={about.name}>
+              {about.name}
             </h1>
           </div>
           
@@ -53,46 +56,52 @@ export default function Hero({aboutRef}:{aboutRef:any}) {
             <Terminal className="inline-block mr-2 text-emerald-400" size={20} />
             <span className="text-emerald-400 font-mono">~/</span>
             <span className="typing-text text-xl text-gray-300">
-              Software Engineer
+              {about.title}
             </span>
           </div>
 
-          <p className="text-xl text-gray-400 mb-12 leading-relaxed max-w-3xl">
-            Crafting seamless solutions that blend FullStack expertise, DevOps, Mobile Development, and thoughtful UI/UX. Specialized in building responsive, high-performance applications and infrastructure that drive exceptional user experiences across platforms.
+          <p className="text-xl text-gray-400 mb-8 leading-relaxed max-w-3xl">
+            {about.description}
           </p>
 
-          <div className="flex gap-6 mb-16 flex-nowrap overflow-x-auto">
-            <a href="https://github.com/HarmanPreet-Singh-XYT" className="social-link">
+          <div className="flex justify-between sm:gap-6 sm:justify-normal mb-6 flex-nowrap">
+            <a href={about.links.github} className="social-link">
               <Github size={24} />
               <span className="ml-2">GitHub</span>
             </a>
-            <a href="https://www.linkedin.com/in/harman-developer/" className="social-link">
+            <a href={about.links.linkedin} className="social-link">
               <Linkedin size={24} />
               <span className="ml-2">LinkedIn</span>
             </a>
-            <a href="mailto:harmanpreetsingh@programmer.net" className="social-link">
+            <a href={`mailto:${about.email}`} className="social-link">
               <Mail size={24} />
               <span className="ml-2">Email</span>
             </a>
-            <a href="https://drive.google.com/file/d/1TYSGvauyGVUJO2fp3WflwWhGmAWS7R9z/view?usp=sharing" className="social-link">
-              <File size={24} />
-              <span className="ml-2">CV</span>
-            </a>
           </div>
-
+          <div className="flex flex-wrap gap-4 mb-8">
+              <button onClick={() => scrollToSection('contact-section')} className="btn-primary">
+                <Mail size={20} />
+                <span>Get in Touch</span>
+                <ArrowRight size={16} />
+              </button>
+              <a href={about.links.resume} className="btn-secondary">
+                <Download size={20} />
+                <span>Download CV</span>
+              </a>
+            </div>
           <div className="stats-grid grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="stat-card">
               <div className='flex justify-center'>
-                <div className="text-4xl font-bold text-emerald-400 mb-2 counter" data-target="10+">10</div>
-                <div className="text-4xl font-bold text-emerald-400 mb-2">+</div>
+                <div className="text-4xl font-bold text-emerald-400 mb-2 counter" data-target={`${about.project.number}`}>{about.project.number}</div>
+                {about.project.plus && <div className="text-4xl font-bold text-emerald-400 mb-2">+</div>}
               </div>
               <div className="text-gray-400">Projects Completed</div>
             </div>
             <div className="stat-card">
               <div className='flex'></div>
               <div className='flex justify-center'>
-                <div className="text-4xl font-bold text-emerald-400 mb-2 counter" data-target="1">1</div>
-                <div className="text-4xl font-bold text-emerald-400 mb-2">+</div>
+                <div className="text-4xl font-bold text-emerald-400 mb-2 counter" data-target={`${about.experience.number}`}>{about.experience.number}</div>
+                {about.experience.plus && <div className="text-4xl font-bold text-emerald-400 mb-2">+</div>}
               </div>
               <div className="text-gray-400">Years Experience</div>
             </div>
