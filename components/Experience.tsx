@@ -30,7 +30,7 @@ export default function Experience({experienceRef}:{experienceRef:any}) {
                   style={{ '--delay': `${idx * 0.2}s` } as React.CSSProperties}
                 >
                   {/* Timeline dot */}
-                  <div className="absolute left-7 top-0 w-3 h-3 bg-emerald-400 rounded-full transform -translate-x-1/2 
+                  <div className="absolute left-8 top-0 w-3 h-3 bg-emerald-400 rounded-full transform -translate-x-1/2 
                                 ring-4 ring-emerald-400/30"></div>
 
                   <div className="p-6 rounded-xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 

@@ -45,7 +45,7 @@ const projects = [
   },
   {
     type: 'development + design',
-    title: 'DataSync Pro',
+    title: 'PingRoute',
     description: "PingRoute is a powerful network diagnostic tool that helps users monitor network performance in real-time. Whether you're troubleshooting a connection issue or analyzing network traffic, PingRoute provides detailed insights into each hop on your network route.",
     tech: ['Dart', 'Flutter', 'Figma', 'Networking', 'C', 'Windows','Linux','Visualization', 'Microsoft Store'],
     image: 'pingroute.jpeg',
@@ -56,7 +56,7 @@ const projects = [
   },
   {
     type: 'development + design',
-    title: 'Business Site',
+    title: 'Raja Rumala Sahib (Business Site)',
     description: 'Developed & Designed site for local business according to their needs to increase their reach. Implemented SEO practices, and setup Domain from purchasing domain to Deployment.',
     tech: ['Figma', 'Next.js','React'],
     image: 'businesssite.jpeg',
