@@ -14,7 +14,7 @@ export default function Experience({experienceRef}:{experienceRef:any}) {
             Experience Journey
           </span>
         </h2>
-        <p className="text-gray-400 text-center mb-16">Blocks of development and </p>
+        <p className="text-gray-400 text-center mb-16">Blocks of development and in hand experience with learning</p>
 
         <div className="max-w-4xl mx-auto">
           <div className="relative">
