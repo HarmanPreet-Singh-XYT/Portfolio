@@ -19,7 +19,7 @@ const about = {
   links: {
     github: "https://github.com/HarmanPreet-Singh-XYT",
     linkedin: "https://www.linkedin.com/in/harman-developer/",
-    resume:'https://drive.google.com/file/d/1TYSGvauyGVUJO2fp3WflwWhGmAWS7R9z/view?usp=sharing',
+    resume:'https://drive.google.com/file/d/1Wqdlmzeb2Z_DE1MHLxTOPOEMzUuaafgr/view?usp=sharing',
   },
   email:'harmanpreetsingh@programmer.net',
   project: {
