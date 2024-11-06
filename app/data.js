@@ -151,7 +151,7 @@ const skillCategories = [
       { name: "MySQL", level: "Advanced" },
       { name: "MongoDB", level: "Advanced" },
       { name: "Firebase", level: "Intermediate" },
-      { name: "Prometheus", level: "Intermediate" }
+      // { name: "Prometheus", level: "Intermediate" }
     ]
   },
   {
@@ -163,7 +163,7 @@ const skillCategories = [
       { name: "Docker/K8s", level: "Advanced" },
       { name: "Terraform", level: "Advanced" },
       { name: "CI/CD", level: "Expert" },
-      { name: "Monitoring", level: "Advanced" }
+      { name: "Prometheus/Grafana/Loki", level: "Expert" }
     ]
   }
 ];
