@@ -159,8 +159,8 @@ const skillCategories = [
     title: "Cloud & DevOps",
     description: "Implementing robust cloud infrastructure and CI/CD pipelines",
     skills: [
-      { name: "Jenkins", level: "Expert" },
-      { name: "Docker/K8s", level: "Advanced" },
+      { name: "Jenkins/ArgoCD", level: "Expert" },
+      { name: "Docker/Kubernetes", level: "Advanced" },
       { name: "Terraform", level: "Advanced" },
       { name: "CI/CD", level: "Expert" },
       { name: "Prometheus/Grafana/Loki", level: "Expert" }
