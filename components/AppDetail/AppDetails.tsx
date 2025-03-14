@@ -42,6 +42,7 @@ export default function AppDetails() {
   const app = apps.find(a => a.id === id);
   const [activeModal, setActiveModal] = React.useState<ModalType>(null);
   const [activeScreenshot, setActiveScreenshot] = React.useState<number>(0);
+  const [isLoading,setIsLoading] = React.useState<true|false>(false);
   const formDataRef = useRef<FormData>({
     email: '',
     name: '',
@@ -65,19 +66,20 @@ export default function AppDetails() {
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     if(activeModal==='bug'){
-      const sendMail = formDataRef.current.comment && await sendMailBug(formDataRef.current.name,formDataRef.current.email,formDataRef.current.comment,app.name);
+      const sendMail = formDataRef.current.bugDescription && await sendMailBug(formDataRef.current.name,formDataRef.current.email,formDataRef.current.bugDescription,app.name);
       sendMail ? alert('Thank you for reporting a bug, I will get back to you soon') : alert('Something went wrong, please try again later');
     }else if(activeModal==='feedback'){
-      const sendMail = formDataRef.current.comment && await sendMailFeedback(formDataRef.current.name,formDataRef.current.email,formDataRef.current.comment,app.name);
+      const sendMail = formDataRef.current.experience && await sendMailFeedback(formDataRef.current.name,formDataRef.current.email,formDataRef.current.experience,app.name);
       sendMail ? alert('Thank you for your feedback, I will get back to you soon') : alert('Something went wrong, please try again later');
     }else if(activeModal==='review'){
       const sendMail = (formDataRef.current.comment && formDataRef.current.rating && formDataRef.current.source) && await sendMailRating(formDataRef.current.name,formDataRef.current.email,formDataRef.current.comment,formDataRef.current.rating,formDataRef.current.source,app.name);
       sendMail ? alert('Thank you for your review, I will get back to you soon (It may take some time to get approved)') : alert('Something went wrong, please try again later');
     }
     // Handle form submission based on modal type
-    console.log('Form submitted:', formDataRef.current);
     setActiveModal(null);
+    setIsLoading(false);
     // Reset form data
     formDataRef.current = { email: '', name: '', rating: 5 };
   };
@@ -708,9 +710,11 @@ export default function AppDetails() {
             </div>
             <button
               type="submit"
+              disabled={isLoading}
               className="w-full py-3 px-6 rounded-lg bg-emerald-500 text-white font-semibold
                        hover:bg-emerald-600 transition-colors"
             >
+              <Loading/>
               Submit Review
             </button>
           </form>
@@ -756,9 +760,11 @@ export default function AppDetails() {
             </div>
             <button
               type="submit"
+              disabled={isLoading}
               className="w-full py-3 px-6 rounded-lg bg-emerald-500 text-white font-semibold
                        hover:bg-emerald-600 transition-colors"
             >
+              <Loading/>
               Submit Feedback
             </button>
           </form>
@@ -805,9 +811,11 @@ export default function AppDetails() {
             </div>
             <button
               type="submit"
+              disabled={isLoading}
               className="w-full py-3 px-6 rounded-lg bg-emerald-500 text-white font-semibold
                        hover:bg-emerald-600 transition-colors"
             >
+              <Loading/>
               Submit Bug Report
             </button>
           </form>
@@ -815,4 +823,10 @@ export default function AppDetails() {
       )}
     </div>
   );
+}
+
+const Loading = () => {
+  return (
+    <div className="lds-ring pr-6"><div></div><div></div><div></div><div></div></div>
+  )
 }
