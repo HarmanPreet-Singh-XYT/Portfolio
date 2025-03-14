@@ -48,7 +48,7 @@ export default function AppDetails() {
     name: '',
     rating: 5,
   });
-
+  const [render,setRender] = React.useState<true|false>(false);
   if (!app) {
     return (
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
@@ -74,7 +74,7 @@ export default function AppDetails() {
       const sendMail = formDataRef.current.experience && await sendMailFeedback(formDataRef.current.name,formDataRef.current.email,formDataRef.current.experience,app.name);
       sendMail ? alert('Thank you for your feedback, I will get back to you soon') : alert('Something went wrong, please try again later');
     }else if(activeModal==='review'){
-      const sendMail = (formDataRef.current.comment && formDataRef.current.rating && formDataRef.current.source) && await sendMailRating(formDataRef.current.name,formDataRef.current.email,formDataRef.current.comment,formDataRef.current.rating,formDataRef.current.source,app.name);
+      const sendMail = (formDataRef.current.experience && formDataRef.current.rating && formDataRef.current.source) && await sendMailRating(formDataRef.current.name,formDataRef.current.email,formDataRef.current.experience,formDataRef.current.rating,formDataRef.current.source,app.name);
       sendMail ? alert('Thank you for your review, I will get back to you soon (It may take some time to get approved)') : alert('Something went wrong, please try again later');
     }
     // Handle form submission based on modal type
@@ -682,7 +682,7 @@ export default function AppDetails() {
                   <button
                     key={rating}
                     type="button"
-                    onClick={() => formDataRef.current.rating = rating}
+                    onClick={() => {formDataRef.current.rating = rating; setRender(!render);}}
                     className="p-2 hover:bg-gray-800 rounded-lg transition-colors"
                   >
                     <Star
