@@ -1,36 +1,52 @@
 'use client'
-import React from 'react';
+import React,{useRef} from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { 
-  Star,
-  Calendar,
-  Download,
+  Star, 
+  Calendar, 
+  Download, 
+  Globe, 
   Monitor,
   Smartphone,
   ChevronLeft,
   ExternalLink,
-  Heart,
+  X,
+  ChevronLeft as PrevIcon,
+  ChevronRight as NextIcon,
   Share2,
-  PlayCircle,
   MessageSquare,
-  AlertTriangle,
-  BugPlay,
-  Users,
-  History,
+  Bug,
+  Server,
+  PlayCircle,
   HelpCircle,
-  ShoppingCart,
-  Trophy,
-  Globe,
-  Server
+  ShoppingCart
 } from 'lucide-react';
 import { apps } from '@/app/appData';
+import { sendMailBug, sendMailFeedback, sendMailRating } from '@/app/api/Nodemailer';
+
+type ModalType = 'screenshot' | 'review' | 'feedback' | 'bug' | null;
+
+interface FormData {
+  email: string;
+  name: string;
+  source?: string;
+  rating?: number;
+  experience?: string;
+  comment?: string;
+  bugDescription?: string;
+}
 
 export default function AppDetails() {
   const { id } = useParams();
   const app = apps.find(a => a.id === id);
-  const [showRatingPrompt, setShowRatingPrompt] = React.useState(false);
-  const [isWishlisted, setIsWishlisted] = React.useState(false);
+  const [activeModal, setActiveModal] = React.useState<ModalType>(null);
+  const [activeScreenshot, setActiveScreenshot] = React.useState<number>(0);
+  const formDataRef = useRef<FormData>({
+    email: '',
+    name: '',
+    rating: 5,
+  });
 
   if (!app) {
     return (
@@ -45,7 +61,88 @@ export default function AppDetails() {
     );
   }
 
-  const averageRating = app.reviews.reduce((acc: any, review: { rating: any; }) => acc + review.rating, 0) / app.reviews.length;
+  const averageRating = app.reviews.reduce((acc, review) => acc + review.rating, 0) / app.reviews.length;
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if(activeModal==='bug'){
+      const sendMail = formDataRef.current.comment && await sendMailBug(formDataRef.current.name,formDataRef.current.email,formDataRef.current.comment,app.name);
+      sendMail ? alert('Thank you for reporting a bug, I will get back to you soon') : alert('Something went wrong, please try again later');
+    }else if(activeModal==='feedback'){
+      const sendMail = formDataRef.current.comment && await sendMailFeedback(formDataRef.current.name,formDataRef.current.email,formDataRef.current.comment,app.name);
+      sendMail ? alert('Thank you for your feedback, I will get back to you soon') : alert('Something went wrong, please try again later');
+    }else if(activeModal==='review'){
+      const sendMail = (formDataRef.current.comment && formDataRef.current.rating && formDataRef.current.source) && await sendMailRating(formDataRef.current.name,formDataRef.current.email,formDataRef.current.comment,formDataRef.current.rating,formDataRef.current.source,app.name);
+      sendMail ? alert('Thank you for your review, I will get back to you soon (It may take some time to get approved)') : alert('Something went wrong, please try again later');
+    }
+    // Handle form submission based on modal type
+    console.log('Form submitted:', formDataRef.current);
+    setActiveModal(null);
+    // Reset form data
+    formDataRef.current = { email: '', name: '', rating: 5 };
+  };
+
+  const Modal = ({ children, title }: { children: React.ReactNode; title: string }) => (
+    <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+      <div className="bg-gray-900 rounded-2xl w-full max-w-lg border border-gray-700">
+        <div className="flex items-center justify-between p-6 border-b border-gray-700">
+          <h3 className="text-xl font-bold">{title}</h3>
+          <button
+            onClick={() => setActiveModal(null)}
+            className="p-2 hover:bg-gray-800 rounded-lg transition-colors"
+          >
+            <X size={20} />
+          </button>
+        </div>
+        <div className="p-6">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+
+  const ScreenshotModal = () => (
+    <div className="fixed inset-0 bg-black/95 flex items-center justify-center z-50">
+      <button
+        onClick={() => setActiveModal(null)}
+        className="absolute top-4 right-4 p-2 hover:bg-gray-800 rounded-lg transition-colors"
+      >
+        <X size={24} className="text-white" />
+      </button>
+      
+      <button
+        onClick={() => setActiveScreenshot(prev => (prev > 0 ? prev - 1 : app.screenshots.length - 1))}
+        className="absolute left-4 p-2 hover:bg-gray-800 rounded-full transition-colors bg-gray-900/50"
+      >
+        <PrevIcon size={24} className="text-white" />
+      </button>
+      
+      <button
+        onClick={() => setActiveScreenshot(prev => (prev < app.screenshots.length - 1 ? prev + 1 : 0))}
+        className="absolute right-4 p-2 hover:bg-gray-800 rounded-full transition-colors bg-gray-900/50"
+      >
+        <NextIcon size={24} className="text-white" />
+      </button>
+
+      <img
+        src={app.screenshots[activeScreenshot]}
+        alt={`${app.name} screenshot ${activeScreenshot + 1}`}
+        className="max-h-[90vh] max-w-[90vw] object-contain"
+      />
+      
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+        {app.screenshots.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setActiveScreenshot(idx)}
+            className={`w-2 h-2 rounded-full transition-colors ${
+              idx === activeScreenshot ? 'bg-white' : 'bg-gray-600'
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
 
   const handleShare = async () => {
     if (navigator.share) {
@@ -121,7 +218,7 @@ export default function AppDetails() {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-6">
-              {app.buttons.wishlist && <button
+              {/* {app.buttons.wishlist && <button
                 onClick={() => setIsWishlisted(!isWishlisted)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
                   isWishlisted
@@ -131,7 +228,7 @@ export default function AppDetails() {
               >
                 <Heart className={isWishlisted ? 'fill-emerald-400' : ''} size={20} />
                 <span>{isWishlisted ? 'Wishlisted' : 'Add to Wishlist'}</span>
-              </button>}
+              </button>} */}
               {app.buttons.share && <button
                 onClick={handleShare}
                 className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800 text-gray-300 hover:text-white transition-colors"
@@ -181,12 +278,20 @@ export default function AppDetails() {
               <h2 className="text-2xl font-bold mb-6">Screenshots</h2>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {app.screenshots.map((screenshot, idx) => (
-                  <img
+                  <button
                     key={idx}
-                    src={screenshot}
-                    alt={`${app.name} screenshot ${idx + 1}`}
-                    className="rounded-xl hover:opacity-80 transition-opacity cursor-pointer"
-                  />
+                    onClick={() => {
+                      setActiveScreenshot(idx);
+                      setActiveModal('screenshot');
+                    }}
+                    className="rounded-xl overflow-hidden hover:opacity-80 transition-opacity cursor-pointer"
+                  >
+                    <img
+                      src={screenshot}
+                      alt={`${app.name} screenshot ${idx + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
                 ))}
               </div>
             </div>
@@ -297,11 +402,12 @@ export default function AppDetails() {
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-bold">Reviews</h2>
                 <button
-                  onClick={() => setShowRatingPrompt(true)}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/20 text-emerald-400"
+                  onClick={() => setActiveModal('review')}
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/10 text-emerald-400
+                           hover:bg-emerald-500/20 transition-colors"
                 >
-                  <Star size={20} />
-                  <span>Write a Review</span>
+                  <Share2 size={18} />
+                  <span>Share Review</span>
                 </button>
               </div>
               <div className="space-y-6">
@@ -423,34 +529,34 @@ export default function AppDetails() {
               ))}
             </div>
 
-            {/* Support Options */}
+            {/* Feedback & Support */}
             <div className="mb-8">
-              <h2 className="text-xl font-bold mb-4">Support</h2>
+              <h2 className="text-xl font-bold mb-4">Feedback & Support</h2>
               <div className="space-y-3">
-                <a
-                  href={`mailto:${app.support.email}`}
-                  className="flex items-center gap-3 p-4 rounded-lg bg-gray-800/50 border border-gray-700/50 
+                <button
+                  onClick={() => setActiveModal('feedback')}
+                  className="flex items-center justify-between w-full px-6 py-3 rounded-xl 
+                           bg-gray-800/50 backdrop-blur-sm border border-gray-700/50
                            hover:border-emerald-500/50 transition-all duration-300"
                 >
-                  <MessageSquare size={20} className="text-emerald-400" />
-                  <span>Contact Support</span>
-                </a>
-                <a
-                  href="#"
-                  className="flex items-center gap-3 p-4 rounded-lg bg-gray-800/50 border border-gray-700/50 
+                  <div className="flex items-center gap-3">
+                    <MessageSquare size={20} className="text-emerald-400" />
+                    <span>Submit Feedback</span>
+                  </div>
+                  <ExternalLink size={20} />
+                </button>
+                <button
+                  onClick={() => setActiveModal('bug')}
+                  className="flex items-center justify-between w-full px-6 py-3 rounded-xl 
+                           bg-gray-800/50 backdrop-blur-sm border border-gray-700/50
                            hover:border-emerald-500/50 transition-all duration-300"
                 >
-                  <AlertTriangle size={20} className="text-emerald-400" />
-                  <span>Submit Feedback</span>
-                </a>
-                <a
-                  href="#"
-                  className="flex items-center gap-3 p-4 rounded-lg bg-gray-800/50 border border-gray-700/50 
-                           hover:border-emerald-500/50 transition-all duration-300"
-                >
-                  <BugPlay size={20} className="text-emerald-400" />
-                  <span>Report a Bug</span>
-                </a>
+                  <div className="flex items-center gap-3">
+                    <Bug size={20} className="text-emerald-400" />
+                    <span>Report a Bug</span>
+                  </div>
+                  <ExternalLink size={20} />
+                </button>
               </div>
             </div>
 
@@ -470,6 +576,18 @@ export default function AppDetails() {
                   <span className="text-gray-400">Category</span>
                   <span>{app.additionalInfo.category}</span>
                 </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Support</span>
+                  <span>{app.support.email}</span>
+                </div>
+                {app.support.phone && <div className="flex justify-between">
+                  <span className="text-gray-400">Phone</span>
+                  <span>{app.support.phone}</span>
+                </div>}
+                {app.support.website && <div className="flex justify-between">
+                  <span className="text-gray-400">Website</span>
+                  <span>{app.support.website}</span>
+                </div>}
                 <div>
                   <span className="text-gray-400 block mb-2">Languages</span>
                   <div className="flex flex-wrap gap-2">
@@ -509,44 +627,191 @@ export default function AppDetails() {
           </div>
         </div>
       </div>
+      {/* Modals */}
+      {activeModal === 'screenshot' && <ScreenshotModal />}
 
-      {/* Rating Prompt Modal */}
-      {showRatingPrompt && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-gray-900 p-8 rounded-2xl max-w-lg w-full mx-4">
-            <h3 className="text-2xl font-bold mb-6">Rate {app.name}</h3>
-            <div className="flex justify-center gap-2 mb-6">
-              {[...Array(5)].map((_, i) => (
-                <button
-                  key={i}
-                  className="text-gray-400 hover:text-emerald-400 transition-colors"
-                >
-                  <Star size={32} />
-                </button>
-              ))}
+      {activeModal === 'review' && (
+        <Modal title="Share Your Review">
+          <form onSubmit={handleFormSubmit} className="space-y-4">
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Name</label>
+              <input
+                type="text"
+                id="name"
+                defaultValue={formDataRef.current.name}
+                onChange={(e) => formDataRef.current.name = e.target.value}
+                className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white"
+                required
+              />
             </div>
-            <textarea
-              placeholder="Share your experience..."
-              className="w-full p-4 rounded-lg bg-gray-800 border border-gray-700 text-white mb-6"
-              rows={4}
-            ></textarea>
-            <div className="flex justify-end gap-4">
-              <button
-                onClick={() => setShowRatingPrompt(false)}
-                className="px-6 py-2 rounde d-lg text-gray-400 hover:text-white transition-colors"
-              >
-                Cancel
-              </button>
-              <button
-                className="px-6 py-2 rounded-lg bg-gradient-to-r from-emerald-500 to-blue-500 
-                         text-black font-semibold hover:from-emerald-600 hover:to-blue-600 
-                         transition-all duration-300"
-              >
-                Submit Review
-              </button>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">Email</label>
+              <input
+                type="email"
+                id="email"
+                defaultValue={formDataRef.current.email}
+                onChange={(e) => formDataRef.current.email = e.target.value}
+                className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white"
+                required
+              />
             </div>
-          </div>
-        </div>
+            <div>
+              <label htmlFor="source" className="block text-sm font-medium text-gray-300 mb-2">
+                Where did you download the app?
+              </label>
+              <select
+                id="source"
+                defaultValue={formDataRef.current.source}
+                onChange={(e) => formDataRef.current.source = e.target.value}
+                className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white"
+                required
+              >
+                <option value="">Select source</option>
+                <option value="microsoft">Microsoft Store</option>
+                <option value="apple">App Store</option>
+                <option value="google">Google Play</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">Rating</label>
+              <div className="flex gap-2">
+                {[1, 2, 3, 4, 5].map((rating) => (
+                  <button
+                    key={rating}
+                    type="button"
+                    onClick={() => formDataRef.current.rating = rating}
+                    className="p-2 hover:bg-gray-800 rounded-lg transition-colors"
+                  >
+                    <Star
+                      className={`w-6 h-6 ${
+                        rating <= (formDataRef.current.rating || 0)
+                          ? 'fill-emerald-400 text-emerald-400'
+                          : 'text-gray-600'
+                      }`}
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div>
+              <label htmlFor="experience" className="block text-sm font-medium text-gray-300 mb-2">
+                Share your experience
+              </label>
+              <textarea
+                id="experience"
+                defaultValue={formDataRef.current.experience}
+                onChange={(e) => formDataRef.current.experience = e.target.value}
+                className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white h-32"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full py-3 px-6 rounded-lg bg-emerald-500 text-white font-semibold
+                       hover:bg-emerald-600 transition-colors"
+            >
+              Submit Review
+            </button>
+          </form>
+        </Modal>
+      )}
+
+{activeModal === 'feedback' && (
+        <Modal title="Submit Feedback">
+          <form onSubmit={handleFormSubmit} className="space-y-4">
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Name</label>
+              <input
+                type="text"
+                id="name"
+                defaultValue={formDataRef.current.name}
+                onChange={(e) => formDataRef.current.name = e.target.value}
+                className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">Email</label>
+              <input
+                type="email"
+                id="email"
+                defaultValue={formDataRef.current.email}
+                onChange={(e) => formDataRef.current.email = e.target.value}
+                className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="comment" className="block text-sm font-medium text-gray-300 mb-2">
+                Your Feedback
+              </label>
+              <textarea
+                id="comment"
+                defaultValue={formDataRef.current.comment}
+                onChange={(e) => formDataRef.current.comment = e.target.value}
+                className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white h-32"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full py-3 px-6 rounded-lg bg-emerald-500 text-white font-semibold
+                       hover:bg-emerald-600 transition-colors"
+            >
+              Submit Feedback
+            </button>
+          </form>
+        </Modal>
+      )}
+
+{activeModal === 'bug' && (
+        <Modal title="Report a Bug">
+          <form onSubmit={handleFormSubmit} className="space-y-4">
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Name</label>
+              <input
+                type="text"
+                id="name"
+                defaultValue={formDataRef.current.name}
+                onChange={(e) => formDataRef.current.name = e.target.value}
+                className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">Email</label>
+              <input
+                type="email"
+                id="email"
+                defaultValue={formDataRef.current.email}
+                onChange={(e) => formDataRef.current.email = e.target.value}
+                className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="bugDescription" className="block text-sm font-medium text-gray-300 mb-2">
+                Describe the Bug
+              </label>
+              <textarea
+                id="bugDescription"
+                defaultValue={formDataRef.current.bugDescription}
+                onChange={(e) => formDataRef.current.bugDescription = e.target.value}
+                className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white h-32"
+                required
+                placeholder="Please provide as much detail as possible about the bug you encountered..."
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full py-3 px-6 rounded-lg bg-emerald-500 text-white font-semibold
+                       hover:bg-emerald-600 transition-colors"
+            >
+              Submit Bug Report
+            </button>
+          </form>
+        </Modal>
       )}
     </div>
   );

@@ -1,21 +1,7 @@
 import React from 'react';
 import { GraduationCap, Calendar, MapPin, Award } from 'lucide-react';
+import { education } from '@/app/data';
 
-const education = [
-  {
-    degree: "Bachelor Degree in Computer Science",
-    school: "Lovely Professional University",
-    location: "Punjab, India",
-    period: "2023 - Present",
-    gpa: "8",
-    honors: [],
-    highlights: [
-      "Core Computer Science Concepts",
-      "Electives in Marketing & Sales",
-      "Under Distance Learning/Online Mode"
-    ]
-  }
-];
 
 export default function Education() {
   return (

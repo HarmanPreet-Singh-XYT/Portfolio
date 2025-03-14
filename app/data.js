@@ -31,6 +31,21 @@ const about = {
     plus:true
   }
 }
+const education = [
+  {
+    degree: "Bachelor's Degree, Computer Science",
+    school: "Lovely Professional University",
+    location: "Punjab, India",
+    period: "2024 - Present",
+    gpa: "8",
+    honors: [],
+    highlights: [
+      "Core Computer Science Concepts",
+      "Electives in Marketing & Sales",
+      "Under Distance Learning/Online Mode"
+    ]
+  }
+];
 const projects = [
   {
     id:'sysresource',
@@ -198,4 +213,4 @@ const additionalSkills = [
 ];
 
 
-export {experiences,about,projects,skillCategories,additionalSkills};
+export {experiences,about,projects,skillCategories,additionalSkills,education};
