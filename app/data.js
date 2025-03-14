@@ -33,6 +33,7 @@ const about = {
 }
 const projects = [
   {
+    id:'sysresource',
     type: 'development + design',
     title: 'SysResource',
     description: 'SysResource is a real-time server resource monitoring tool that tracks CPU usage, memory utilization, and system uptime. It provides detailed metrics on server configurations like hostname, CPU cores, platform, and architecture, with real-time line charts for CPU and memory usage.',
@@ -40,10 +41,11 @@ const projects = [
     image: 'sysresource.jpeg',
     links: {
       demo: 'https://sysresource.vercel.app/',
-      github: 'https://github.com/HarmanPreet-Singh-XYT/SysResource'
+      github: 'https://github.com/HarmanPreet-Singh-XYT/SysResource',
     }
   },
   {
+    id:'pingroute',
     type: 'development + design',
     title: 'PingRoute',
     description: "PingRoute is a powerful network diagnostic tool that helps users monitor network performance in real-time. Whether you're troubleshooting a connection issue or analyzing network traffic, PingRoute provides detailed insights into each hop on your network route.",
@@ -55,6 +57,7 @@ const projects = [
     }
   },
   {
+    id:'raja-rumala-sahib',
     type: 'development + design',
     title: 'Raja Rumala Sahib (Business Site)',
     description: 'Developed & Designed site for local business according to their needs to increase their reach. Implemented SEO practices, and setup Domain from purchasing domain to Deployment.',
@@ -65,6 +68,7 @@ const projects = [
     }
   },
   {
+    id:'ecommerce',
     type: 'development + design',
     title: 'Ecommerce Full Stack',
     description: 'This is a full stack eCommerce website built using the PERN stack (PostgreSQL, Express, React, Node.js). It features a modern and responsive design, secure payment gateways, dynamic product display algorithms, and comprehensive user functionalities such as wishlist, reviews, order tracking, and more.',
@@ -76,6 +80,7 @@ const projects = [
     }
   },
   {
+    id:'native-ecommerce',
     type: 'development + design',
     title: 'Ecommerce Mobile App',
     description: 'Developed mobile version of Ecommerce site, using React Native. Implemented payment gateways, dynamic product display algorithms, and comprehensive user functionalities such as wishlist, reviews, order tracking, and more.',
@@ -86,6 +91,7 @@ const projects = [
     }
   },
   {
+    id:'rust-game-store',
     type: 'development + design',
     title: 'Unicorn Rust Game Store',
     description: 'The custom designed website for Rust Custom Game Server, Specifically for purchasing InGame items',

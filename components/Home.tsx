@@ -8,6 +8,7 @@ import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Navbar from './Navbar';
 import Experience from './Experience';
+import Education from './Education';
 function Home() {
     const [activeSection, setActiveSection] = useState("");
 
@@ -74,6 +75,7 @@ function Home() {
         <Skills skillRef={skillRef}/>
         <Experience experienceRef={experienceRef}/>
         <Projects projectRef={projectRef}/>
+        <Education/>
         <Contact contactRef={contactRef}/>
       </div>
     );

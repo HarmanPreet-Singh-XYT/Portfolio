@@ -1,5 +1,5 @@
 import React from 'react';
-import { Code, Palette, ExternalLink, Github, ArrowRight } from 'lucide-react';
+import { Code, Palette, ExternalLink, Github, ArrowRight, MonitorSmartphone } from 'lucide-react';
 import { projects } from '../app/data';
 
 export default function Projects({projectRef}:{projectRef:any}) {
@@ -94,22 +94,33 @@ export default function Projects({projectRef}:{projectRef:any}) {
                   ))}
                 </div>
 
-                {(project.links.demo || project.links.github) && <div className="flex items-center gap-6">
-                  {project.links.demo && <a
-                    href={project.links.demo}
-                    className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors"
-                  >
-                    <ExternalLink size={18} />
-                    <span className="font-medium">View Project</span>
-                    <ArrowRight size={16} />
-                  </a>}
-                  {project.links.github && (
+                {(project.links.demo || project.links.github || project.id) && <div className="flex items-center justify-between gap-6">
+                  <div className='flex gap-5'>
+                    {(project.links.demo || project.id) && <a
+                      href={`details/${project.id}`}
+                      className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors"
+                    >
+                      <ExternalLink size={18} />
+                      <span className="font-medium">View Project</span>
+                      <ArrowRight size={16} />
+                    </a>}
+                    {project.links.github && (
+                      <a
+                        href={project.links.github}
+                        className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+                      >
+                        <Github size={18} />
+                        <span className="font-medium">Source Code</span>
+                      </a>
+                    )}
+                  </div>
+                  {project.links.demo && (
                     <a
-                      href={project.links.github}
+                      href={project.links.demo}
                       className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
                     >
-                      <Github size={18} />
-                      <span className="font-medium">Source Code</span>
+                      <MonitorSmartphone size={18} />
+                      <span className="font-medium">Demo</span>
                     </a>
                   )}
                 </div>}
