@@ -714,8 +714,7 @@ export default function AppDetails() {
               className="w-full py-3 px-6 rounded-lg bg-emerald-500 text-white font-semibold
                        hover:bg-emerald-600 transition-colors"
             >
-              <Loading/>
-              Submit Review
+              {isLoading ? <Loading/> : "Submit Review"}
             </button>
           </form>
         </Modal>
@@ -764,8 +763,7 @@ export default function AppDetails() {
               className="w-full py-3 px-6 rounded-lg bg-emerald-500 text-white font-semibold
                        hover:bg-emerald-600 transition-colors"
             >
-              <Loading/>
-              Submit Feedback
+              {isLoading ? <Loading/> : "Submit Feedback"}
             </button>
           </form>
         </Modal>
@@ -815,8 +813,7 @@ export default function AppDetails() {
               className="w-full py-3 px-6 rounded-lg bg-emerald-500 text-white font-semibold
                        hover:bg-emerald-600 transition-colors"
             >
-              <Loading/>
-              Submit Bug Report
+              {isLoading ? <Loading/> : "Submit Bug Report"}
             </button>
           </form>
         </Modal>
