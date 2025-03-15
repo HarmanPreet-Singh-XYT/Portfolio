@@ -20,7 +20,8 @@ import {
   Server,
   PlayCircle,
   HelpCircle,
-  ShoppingCart
+  ShoppingCart,
+  Terminal
 } from 'lucide-react';
 import { apps } from '@/app/appData';
 import { sendMailBug, sendMailFeedback, sendMailRating } from '@/app/api/Nodemailer';
@@ -239,9 +240,9 @@ export default function AppDetails() {
                 <span>Share</span>
               </button>}
               {app.trailerUrl && (
-                <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800 text-gray-300 hover:text-white transition-colors">
+                <button onClick={()=> window.open(app.trailerUrl, '_blank')} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800 text-gray-300 hover:text-white transition-colors">
                   <PlayCircle size={20} />
-                  <span>Watch Trailer</span>
+                  <span>Watch Demo</span>
                 </button>
               )}
             </div>
@@ -263,7 +264,10 @@ export default function AppDetails() {
             {/* Trailer */}
             {app.trailerUrl && (
               <div className="mb-12">
-                <h2 className="text-2xl font-bold mb-6">Trailer</h2>
+                <div className='flex justify-between items-center'>
+                  <h2 className="text-2xl font-bold mb-6">Demo</h2>
+                  <ExternalLink size={26} className='hover:text-emerald-400 cursor-pointer' onClick={()=> window.open(app.trailerUrl, '_blank')}/>
+                </div>
                 <div className="aspect-video rounded-xl overflow-hidden">
                   <iframe
                     src={app.trailerUrl}
@@ -465,9 +469,17 @@ export default function AppDetails() {
                 </div>
               </div>
             </div>}
+            {app.isPrivate && (
+              <div className="mb-8 p-4 rounded-lg bg-yellow-300/50 border border-gray-700/50">
+                <div className="flex items-center gap-3 text-gray-300">
+                  <Terminal size={20} className="text-emerald-400" />
+                  <span>Code is Private</span>
+                </div>
+              </div>
+            )}
 
             {/* Download Buttons */}
-            <div className="mb-8">
+            {app.storeLinks.length > 0 && <div className="mb-8">
               <h2 className="text-xl font-bold mb-4">Get the App</h2>
               <div className="space-y-3">
                 {app.storeLinks.map((store) => (
@@ -492,7 +504,7 @@ export default function AppDetails() {
                   </a>
                 ))}
               </div>
-            </div>
+            </div>}
 
             {/* In-App Purchases */}
             {app.hasInAppPurchases && (

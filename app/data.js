@@ -72,6 +72,16 @@ const projects = [
     }
   },
   {
+    id:'answer-ai',
+    type: 'development + design',
+    title: 'AnswerAI',
+    description: 'AnswerAI is collection of native app, web extension, backend and frontend that provides answer of the question from chatGPT by reading question from website.',
+    tech: ['Flutter','Dart','React.js','OpenAI ChatGPT','WebScraping','Node.js','Express.js'],
+    image: '/answer-ai/3.PNG',
+    links: {
+    }
+  },
+  {
     id:'raja-rumala-sahib',
     type: 'development + design',
     title: 'Raja Rumala Sahib (Business Site)',
@@ -106,6 +116,17 @@ const projects = [
     }
   },
   {
+    id:'percentage-value',
+    type: 'development + design',
+    title: 'PercentageValue Calculator',
+    description: 'Developed a calculating app for a specific requirement for a friend in trading.',
+    tech: ['Flutter', 'Figma', 'Dart'],
+    image: 'percentageValue.PNG',
+    links: {
+      github:'https://github.com/HarmanPreet-Singh-XYT/PercentageValue'
+    }
+  },
+  {
     id:'rust-game-store',
     type: 'development + design',
     title: 'Unicorn Rust Game Store',
@@ -115,6 +136,18 @@ const projects = [
     links: {
       demo: 'https://unicorn-rust.vercel.app/',
       github:'https://github.com/HarmanPreet-Singh-XYT/Rust-Store-CustomServer'
+    }
+  },
+  {
+    id:'note-todo',
+    type: 'development + design',
+    title: 'Note Todo App',
+    description: 'versatile task and note-taking web application, designed to help users organize their tasks, notes efficiently',
+    tech: ['React', 'Next.js', 'Node.js','Express', 'MongoDB','SASS','Typescript'],
+    image: 'notetodo.png',
+    links: {
+      demo: 'https://note-todo-app.vercel.app/',
+      github:'https://github.com/HarmanPreet-Singh-XYT/NoteTodo_MERN'
     }
   },
   {

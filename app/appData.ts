@@ -48,6 +48,7 @@ interface AppDetails {
   name: string;
   icon: string;
   buttons: Buttons;
+  isPrivate?:boolean;
   headerImage: string;
   trailerUrl?: string;
   screenshots: string[];
@@ -398,6 +399,112 @@ export const apps : AppDetails[] = [
     },
   },
   {
+    id: 'note-todo',
+    name: 'Note Todo App',
+    icon: '/note-todo/logo.png',
+    buttons:{
+      wishlist:false,
+      share:true,
+      demo:true
+    },
+    headerImage: '/note-todo/3.png',
+    // trailerUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    screenshots: [
+      '/note-todo/1.png',
+      '/note-todo/2.png',
+      '/note-todo/3.png',
+      '/note-todo/4.png',
+      '/note-todo/5.png',
+      '/note-todo/6.png',
+      '/note-todo/8.png',
+    ],
+    demoLink:"https://note-todo-app.vercel.app/",
+    description: "<h1>To-Do and Notes Joint App</h1<p>The To-Do and Notes Joint App is a versatile task and note-taking web application built with HTML, CSS, and React. It's designed to help users organize their tasks and notes efficiently while offering a collaborative messaging feature.</p<h2>Usage</h2<ol>    <li>Sign in or create an account.</li>    <li>Use the interactive calendar to schedule tasks and notes.</li>    <li>Organize your notes into categories for better management.</li>    <li>View, edit, and delete tasks and notes.</li>    <li>Visualize your data with graphs.</li>    <li>Communicate with the creator or support team via messaging.</li></ol><h2>Features</h2<ul>    <li><b>Interactive Calendar</b></li>    <li><b>User Authentication</b></li>    <li><b>Local Storage for Data</b></li>    <li><b>Note Categorization</b></li>    <li><b>Task and Note Management</b></li>    <li><b>Data Visualization with Graphs</b></li>    <li><b>User-to-Creator Messaging</b></li>    <li><b>Encrypted Backend with OTP Login</b></li>    <li><b>Authentication Required Backend</b></li>    <li><b>OTP Required for Registration to Prevent Database Flooding</b></li>    <li><b>Search Bar for Finding Lost Notes</b></li>  <li><b>Built-in Calendar</b></li</ul>",
+    shortDescription: 'versatile task and note-taking web application, designed to help users organize their tasks, notes efficiently.',
+    techStack: ['React', 'Next.js', 'Node.js','Express', 'MongoDB','SASS','HTML/CSS'],
+    storeLinks: [
+      {
+        platform: 'web',
+        url: 'https://github.com/HarmanPreet-Singh-XYT/NoteTodo_MERN'
+      },
+      {
+        platform: 'server',
+        url: 'https://github.com/HarmanPreet-Singh-XYT/NoteTodo_MERN'
+      },
+    ],
+    reviews: [
+    ],
+    systemRequirements: [
+      {
+        category: 'Browser App',
+        requirements: [
+          { name: 'Browser', value: 'Latest Chromium Based/Firefox' },
+        ]
+      },
+      {
+        category: 'Server Side',
+        requirements: [
+          { name: 'RAM', value: '1 GB' },
+          { name: 'CPU', value: 'Single Core CPU' },
+          { name: 'Network Access', value: 'Required' },
+        ]
+      },
+    ],
+    versionHistory: [
+      {
+        version: '1.1',
+        date: '2023-11-07',
+        changes: [
+          'Add Date & Time Selection/Todo & structure change',
+        ]
+      },
+      {
+        version: '1.0',
+        date: '2023-10-28',
+        changes: [
+          'Demo Release',
+          'Optimize Backend',
+        ]
+      }
+    ],
+    hasInAppPurchases: false,
+    permissions: [
+      "Uses all system resources",
+      "Access your Internet connection"
+    ],
+    faq: [
+      {
+        question: 'Is it a full stack application?',
+        answer: 'Yes, it is full stack application.'
+      },
+      {
+        question: 'How much time did it took to create?',
+        answer: 'It was my first full stack app, it took around a month or two.'
+      },
+      {
+        question: 'Does it support authentication and account configuration?',
+        answer: 'Yes, it does.'
+      },
+      {
+        question: 'Can you edit settings, todo, notes?',
+        answer: 'Yes, you can.'
+      },
+    ],
+    support: {
+      email: 'harmanpreetsingh@programmer.net',
+      // website: 'https://support.cloudscale.com',
+    },
+    additionalInfo: {
+      releaseDate: '2023-10-28',
+      category: 'Productivity Tools',
+      size: 'Browser/Server App',
+      supportedLanguages: ['English'],
+      developer: 'Harmanpreet Singh',
+      publisher: 'Harmanpreet Singh',
+      version: '1.1'
+    },
+  },
+  {
     id: 'native-ecommerce',
     name: 'Native Ecommerce App',
     icon: '/native-ecommerce/logo.png',
@@ -516,6 +623,182 @@ export const apps : AppDetails[] = [
       developer: 'Harmanpreet Singh',
       publisher: 'Harmanpreet Singh',
       version: '1.3'
+    },
+  },
+  {
+    id: 'percentage-value',
+    name: 'PercentageValue App',
+    icon: '/percentage-value/logo.png',
+    buttons:{
+      wishlist:false,
+      share:true,
+      demo:false
+    },
+    headerImage: '/percentageValue.PNG',
+    // trailerUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    screenshots: [
+      '/percentage-value/1.PNG',
+      '/percentage-value/2.PNG',
+      '/percentage-value/3.PNG'
+    ],
+    description: "Calculating app that gets the percentage value of a number, and do the reverse.",
+    shortDescription: 'Developed a calculating app for a specific requirement for a friend in trading.',
+    techStack: ["Flutter","Dart"],
+    storeLinks: [
+      {
+        platform: 'windows',
+        url: 'https://github.com/HarmanPreet-Singh-XYT/PercentageValue/releases'
+      },
+    ],
+    reviews: [
+    ],
+    systemRequirements: [
+      {
+        category: 'Desktop',
+        requirements: [
+          { name: 'OS', value: 'Windows/Linux/MacOS' },
+          { name: 'RAM', value: '2 GB' },
+          { name: 'CPU', value: 'Dual Core' },
+          { name: 'Storage', value: '512 MB' },
+        ]
+      },
+    ],
+    versionHistory: [
+      {
+        version: '1.1',
+        date: '2025-03-02',
+        changes: [
+          'add reverse mode',
+          'update UI',
+        ]
+      },
+      {
+        version: '1.0',
+        date: '2024-09-12',
+        changes: [
+          "stable release"
+        ]
+      },
+    ],
+    hasInAppPurchases: false,
+    permissions: [
+      "Uses all system resources",
+    ],
+    faq: [
+      {
+        question: 'What is the main purpose of this app?',
+        answer: 'To get percentage value of any value, or do it in reverse.'
+      },
+    ],
+    support: {
+      email: 'harmanpreetsingh@programmer.net',
+      // website: 'https://support.cloudscale.com',
+    },
+    additionalInfo: {
+      releaseDate: '2024-09-12',
+      category: 'Productivity Tools',
+      size: '9.67 MB',
+      supportedLanguages: ['English'],
+      developer: 'Harmanpreet Singh',
+      publisher: 'Harmanpreet Singh',
+      version: '1.1'
+    },
+  },
+  {
+    id: 'answer-ai',
+    name: 'Answer AI',
+    icon: '/answer-ai/logo.jpg',
+    isPrivate:true,
+    buttons:{
+      wishlist:false,
+      share:true,
+      demo:false
+    },
+    headerImage: '/answer-ai/2.PNG',
+    trailerUrl: 'https://www.youtube.com/watch?v=YKz6M5djf-M',
+    screenshots: [
+      '/answer-ai/1.PNG',
+      '/answer-ai/3.PNG',
+    ],
+    description: "<p>AnswerAI is collection of native app, web extension, backend and frontend that provides answer of the question from chatGPT by reading question from website.</p><ul><li>Web Extension - Reads questions and sends to backend - Javascript</li><li>Quiz website - A Dummy site  - Next.js/React</li><li>Software - Shows the latest data from backend as it polls every 5 second or custom - Flutter</li><li>ChatGPT API - Chat, Single Image, Multiple Images</li></ul>",
+    shortDescription: 'AnswerAI is collection of native app, web extension, backend and frontend that provides answer of the question from chatGPT by reading question from website.',
+    techStack: ['Flutter','Dart','React.js','OpenAI ChatGPT','WebScraping','Node.js','Express.js'],
+    storeLinks: [
+    ],
+    reviews: [
+    ],
+    systemRequirements: [
+      {
+        category: 'Mobile',
+        requirements: [
+          { name: 'OS', value: 'Android 7+' },
+          { name: 'RAM', value: '2 GB' },
+          { name: 'CPU', value: 'Dual Core' },
+          { name: 'Storage', value: '512 MB' },
+        ]
+      },
+      {
+        category: 'Desktop',
+        requirements: [
+          { name: 'OS', value: 'Windows, Linux, macOS' },
+          { name: 'RAM', value: '2 GB' },
+          { name: 'CPU', value: 'Dual Core' },
+          { name: 'Storage', value: '512 MB' },
+        ]
+      },
+      {
+        category: 'Server Side',
+        requirements: [
+          { name: 'RAM', value: '1 GB' },
+          { name: 'CPU', value: 'Single Core CPU' },
+          { name: 'Network Access', value: 'Required' },
+        ]
+      },
+    ],
+    versionHistory: [
+      {
+        version: '1.0',
+        date: '2025-01-04',
+        changes: [
+          'Stable Release',
+        ]
+      }
+    ],
+    hasInAppPurchases: false,
+    permissions: [
+      "Uses all system resources",
+      "Access your Internet connection"
+    ],
+    faq: [
+      {
+        question: 'Does it have any demo?',
+        answer: 'Yes, the video is available above.'
+      },
+      {
+        question: 'Why code is not available?',
+        answer: 'The product was developed for a specific reason and revealing the code may cause issues.'
+      },
+      {
+        question: 'Whats the architectural flow?',
+        answer: 'The browser extension picks the question automatically and sends it to the backend, then the backend requests ChatGPT for answer and then stores the answer in the memory which is then displayed on the app which keeps checking every 5 second for new content.'
+      },
+      {
+        question: 'What was the main purpose of it?',
+        answer: 'To solve quizes, tests easily using AI.'
+      },
+    ],
+    support: {
+      email: 'harmanpreetsingh@programmer.net',
+      // website: 'https://support.cloudscale.com',
+    },
+    additionalInfo: {
+      releaseDate: '2024-08-15',
+      category: 'Artificial Intelligence',
+      size: 'N/A',
+      supportedLanguages: ['English'],
+      developer: 'Harmanpreet Singh',
+      publisher: 'Harmanpreet Singh',
+      version: '1.0'
     },
   },
   {
