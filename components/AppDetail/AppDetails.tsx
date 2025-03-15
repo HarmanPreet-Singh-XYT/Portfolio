@@ -46,7 +46,7 @@ export default function AppDetails() {
   const formDataRef = useRef<FormData>({
     email: '',
     name: '',
-    rating: 5,
+    rating:5
   });
   const [render,setRender] = React.useState<true|false>(false);
   if (!app) {
@@ -71,7 +71,7 @@ export default function AppDetails() {
       const sendMail = formDataRef.current.bugDescription && await sendMailBug(formDataRef.current.name,formDataRef.current.email,formDataRef.current.bugDescription,app.name);
       sendMail ? alert('Thank you for reporting a bug, I will get back to you soon') : alert('Something went wrong, please try again later');
     }else if(activeModal==='feedback'){
-      const sendMail = formDataRef.current.experience && await sendMailFeedback(formDataRef.current.name,formDataRef.current.email,formDataRef.current.experience,app.name);
+      const sendMail = formDataRef.current.comment && await sendMailFeedback(formDataRef.current.name,formDataRef.current.email,formDataRef.current.comment,app.name);
       sendMail ? alert('Thank you for your feedback, I will get back to you soon') : alert('Something went wrong, please try again later');
     }else if(activeModal==='review'){
       const sendMail = (formDataRef.current.experience && formDataRef.current.rating && formDataRef.current.source) && await sendMailRating(formDataRef.current.name,formDataRef.current.email,formDataRef.current.experience,formDataRef.current.rating,formDataRef.current.source,app.name);
@@ -81,7 +81,7 @@ export default function AppDetails() {
     setActiveModal(null);
     setIsLoading(false);
     // Reset form data
-    formDataRef.current = { email: '', name: '', rating: 5 };
+    formDataRef.current = { email: '', name: '',rating:5 };
   };
 
   const Modal = ({ children, title }: { children: React.ReactNode; title: string }) => (
