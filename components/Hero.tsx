@@ -2,6 +2,7 @@
 import React,{ useEffect, useState } from 'react';
 import { Github, Linkedin, Mail, Terminal, ArrowRight,Download } from 'lucide-react';
 import { about } from '@/app/data';
+import SponsorButton from './SponsorButton';
 interface Particle {
   x:string;
   y:string;
@@ -88,6 +89,7 @@ export default function Hero({aboutRef}:{aboutRef:any}) {
                 <Download size={20} />
                 <span>Download CV</span>
               </a>
+              <SponsorButton/>
             </div>
           <div className="stats-grid grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="stat-card">
