@@ -1,61 +1,10 @@
 import React from 'react';
-import { Code2, Cloud, Database, Layout, Cpu, Users, Lightbulb, Rocket } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import CalendlyButton from './CalendlyDynamic';
+import { calendlyLink,services } from '@/app/data';
 
-const services = [
-  {
-    icon: <Cloud className="w-6 h-6" />,
-    title: "Cloud Architecture & DevOps",
-    description: "Modern cloud solutions and DevOps practices to optimize your development workflow",
-    features: [
-      "Cloud infrastructure",
-      "CI/CD pipeline setup",
-      "Container orchestration",
-      "Performance optimization"
-    ],
-    price: "Starting at $5,000",
-    popular: false
-  },
-  {
-    icon: <Code2 className="w-6 h-6" />,
-    title: "Full Stack Development",
-    description: "End-to-end development of scalable software solutions tailored to your business needs",
-    features: [
-      "Full-stack web applications",
-      "Responsive sites",
-      "API development & integration",
-      "Legacy system modernization"
-    ],
-    price: "Custom Quote",
-    popular: true
-  },
-  {
-    icon: <Database className="w-6 h-6" />,
-    title: "Database Design & Optimization",
-    description: "Expert database architecture and performance tuning services",
-    features: [
-      "Schema design & optimization",
-      "Query performance tuning",
-      "Data migration services",
-      "High availability setup"
-    ],
-    price: "Starting at $3,000",
-    popular: false
-  },
-  {
-    icon: <Layout className="w-6 h-6" />,
-    title: "Native App Development",
-    description: "End to end development of scalable native app development tailored to business needs.",
-    features: [
-      "Cross-platform solutions",
-      "App Store deployment",
-      "Performance optimization",
-      "Mobile/Desktop development"
-    ],
-    price: "Starting at $2,500",
-    popular: false
-  }
-];
+
+
 
 // const additionalServices = [
 //   {
@@ -181,13 +130,16 @@ export default function Services() {
           >
             Schedule Consultation
           </a> */}
-          <CalendlyButton
-            props={{
-              label: "Schedule Consulation",
-              className: "inline-flex items-center gap-2 px-8 py-3 rounded-lg bg-gradient-to-r from-emerald-500 to-blue-500 text-black font-semibold hover:from-emerald-600 hover:to-blue-600 transition-all duration-300",
-              buttonLink: 'https://calendly.com/preetsinghharman27',
-          }}
-/>
+          <div className='flex gap-2 items-center justify-center'>
+            <CalendlyButton
+              props={{
+                label: "Schedule Consulation",
+                className: "inline-flex items-center gap-2 px-8 py-3 rounded-lg bg-gradient-to-r from-emerald-500 to-blue-500 text-black font-semibold hover:from-emerald-600 hover:to-blue-600 transition-all duration-300",
+                buttonLink: calendlyLink,
+              }}
+            />
+            <ExternalLink size={20}  onClick={()=> window.open(calendlyLink, '_blank')} className='hover:cursor-pointer hover:text-emerald-500'/>
+          </div>
         </div>
       </div>
     </section>

@@ -1,4 +1,4 @@
-import { Code2, Server, Database, Cpu, Palette, Lock, Brain, Cloud } from 'lucide-react';
+import { Code2, Server, Database, Cpu, Palette, Lock, Brain, Cloud,Layout } from 'lucide-react';
 const experiences = [
   {
     title: "Software Developer",
@@ -244,6 +244,60 @@ const additionalSkills = [
     skills: ["Javascript", "Typescript", "Python", "Dart", "C/C++","Bash/Shell","SQL"]
   }
 ];
+const calendlyLink="https://calendly.com/preetsinghharman27"
+const services = [
+  {
+    icon: <Cloud className="w-6 h-6" />,
+    title: "Cloud Architecture & DevOps",
+    description: "Modern cloud solutions and DevOps practices to optimize your development workflow",
+    features: [
+      "Cloud infrastructure",
+      "CI/CD pipeline setup",
+      "Container orchestration",
+      "Performance optimization"
+    ],
+    price: "Starting at $5,000",
+    popular: false
+  },
+  {
+    icon: <Code2 className="w-6 h-6" />,
+    title: "Full Stack Development",
+    description: "End-to-end development of scalable software solutions tailored to your business needs",
+    features: [
+      "Full-stack web applications",
+      "Responsive sites",
+      "API development & integration",
+      "Legacy system modernization"
+    ],
+    price: "Custom Quote",
+    popular: true
+  },
+  {
+    icon: <Database className="w-6 h-6" />,
+    title: "Database Design & Optimization",
+    description: "Expert database architecture and performance tuning services",
+    features: [
+      "Schema design & optimization",
+      "Query performance tuning",
+      "Data migration services",
+      "High availability setup"
+    ],
+    price: "Starting at $3,000",
+    popular: false
+  },
+  {
+    icon: <Layout className="w-6 h-6" />,
+    title: "Native App Development",
+    description: "End to end development of scalable native app development tailored to business needs.",
+    features: [
+      "Cross-platform solutions",
+      "App Store deployment",
+      "Performance optimization",
+      "Mobile/Desktop development"
+    ],
+    price: "Starting at $2,500",
+    popular: false
+  }
+];
 
-
-export {experiences,about,projects,skillCategories,additionalSkills,education};
+export {experiences,about,projects,skillCategories,additionalSkills,education,calendlyLink,services};
