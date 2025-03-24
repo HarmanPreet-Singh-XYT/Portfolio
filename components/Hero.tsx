@@ -89,7 +89,7 @@ export default function Hero({aboutRef}:{aboutRef:any}) {
                 <Download size={20} />
                 <span>Download CV</span>
               </a>
-              <SponsorButton/>
+              {/* <SponsorButton/> */}
             </div>
           <div className="stats-grid grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="stat-card">

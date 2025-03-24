@@ -29,6 +29,11 @@ const about = {
   experience:{
     number:1,
     plus:true
+  },
+  address:{
+    address1:'370, Mohalla guru ka khuh',
+    address2:'Tarn Taran 143401, Punjab, India',
+    number:'+91 1852-796-916'
   }
 }
 const education = [

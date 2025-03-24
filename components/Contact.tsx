@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Mail, MessageSquare, Send } from 'lucide-react';
 import sendMail from '@/app/api/Nodemailer';
+import { about } from '@/app/data';
 
-export default function Contact({contactRef}:{contactRef:any}) {
+export default function Contact({contactRef,showAddress=false}:{contactRef?:any,showAddress?:boolean}) {
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -69,14 +70,14 @@ export default function Contact({contactRef}:{contactRef:any}) {
                 </div>
               </div>
 
-              {/* <div className="p-6 rounded-xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50">
-                <h3 className="text-xl font-semibold text-white mb-4">Office Hours</h3>
+              {showAddress && <div className="p-6 rounded-xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50">
+                <h3 className="text-xl font-semibold text-white mb-4">Details</h3>
                 <div className="space-y-2 text-gray-400">
-                  <p>Monday - Friday: 9:00 AM - 6:00 PM EST</p>
-                  <p>Saturday: 10:00 AM - 2:00 PM EST</p>
-                  <p>Sunday: Closed</p>
+                  <p>{about.address.address1}</p>
+                  <p>{about.address.address2}</p>
+                  <p>{about.address.number}</p>
                 </div>
-              </div> */}
+              </div>}
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
