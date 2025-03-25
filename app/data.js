@@ -53,6 +53,18 @@ const education = [
 ];
 const projects = [
   {
+    id:'screentime',
+    type: 'development + design',
+    title: 'TimeMark - Track Screen Time & App Usage',
+    description: "Monitor your screen time, analyze app usage trends, and set limits to boost productivity. Your data stays private on your device.",
+    tech: ['Dart', 'Flutter', 'Figma', 'C++', 'Windows','Visualization', 'Microsoft Store'],
+    image: 'screentime/1.png',
+    links: {
+      // demo: 'https://apps.microsoft.com/detail/9mvqgxvmc883?rtc=1&hl=en-in&gl=IN',
+      github: 'https://github.com/HarmanPreet-Singh-XYT/TimeMark-ScreenTimeApp'
+    }
+  },
+  {
     id:'sysresource',
     type: 'development + design',
     title: 'SysResource',

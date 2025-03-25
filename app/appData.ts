@@ -90,6 +90,128 @@ interface AppDetails {
 
 export const apps : AppDetails[] = [
   {
+    id: 'screentime',
+    name: 'TimeMark - Track Screen Usage & App Usage',
+    icon: '/screentime/logo.png',
+    buttons:{
+      wishlist:false,
+      share:true,
+      demo:false
+    },
+    headerImage: '/screentime/screentime.png',
+    // trailerUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    screenshots: [
+      '/screentime/1.PNG',
+      '/screentime/2.PNG',
+      '/screentime/3.PNG',
+      '/screentime/4.PNG',
+      '/screentime/5.PNG',
+      '/screentime/6.PNG'
+    ],
+    description: "<h1>TimeMark - Track Screen Usage & App Usage</h1>        <p>Stay in control of your digital habits with <strong>TimeMark</strong>, a powerful screen time tracking and app usage monitoring tool. Get detailed insights, set app limits, and optimize your productivity—all while keeping your data private.</p>                <h2>Key Features:</h2>        <ul>            <li><strong>Comprehensive Screen Time Tracking:</strong> Monitor your total screen time and individual app usage.</li>            <li><strong>App Insights & Trends:</strong> View usage analytics, most used apps, category breakdowns, and daily trends.</li>            <li><strong>Focus Sessions & Pomodoro Timer:</strong> Improve productivity with a built-in focus mode, customizable timers, and session tracking.</li>            <li><strong>App & Screen Time Limits:</strong> Set daily usage limits for specific apps or overall screen time to maintain a healthy balance.</li>            <li><strong>Detailed Reports & Graphs:</strong> Analyze weekly and daily usage with intuitive graphs and charts.</li>            <li><strong>Privacy First:</strong> Your data is stored 100% locally on your device. No tracking, no data collection, no cloud storage.</li>            <li><strong>Customizable Settings:</strong> Adjust themes, notifications, and tracking preferences to suit your needs.</li>        </ul>        <h2>Why Choose TimeMark?</h2>        <p>Unlike other tracking apps, TimeMark ensures complete privacy while providing powerful insights to help you manage your screen time effectively.</p>        <p>Take control of your screen time today with <strong>TimeMark</strong>!</p>",
+    shortDescription: 'Monitor your screen time, analyze app usage trends, and set limits to boost productivity. Your data stays private on your device.',
+    techStack: ['Flutter', 'C++', 'WinAPI',"Dart"],
+    storeLinks: [
+      {
+        platform: 'windows',
+        url: 'https://github.com/HarmanPreet-Singh-XYT/TimeMark-ScreenTimeApp/releases'
+      },
+    ],
+    reviews: [
+      // {
+      //   id: '1xf2',
+      //   userName: 'Manmeet Singh',
+      //   rating: 5,
+      //   title: '',
+      //   description: '',
+      //   date: '2024-09-10'
+      // },
+    ],
+    systemRequirements: [
+      {
+        category: 'Desktop App',
+        requirements: [
+          { name: 'OS', value: 'Windows 10/11, Ubuntu/Debian' },
+          { name: 'Processor', value: 'Dual Core CPU' },
+          { name: 'Memory', value: '1 GB RAM' },
+          { name: 'Storage', value: '100 MB available space' }
+        ]
+      },
+    ],
+    // downloadStats: {
+    //   total: "100+",
+    //   lastMonth: "22"
+    // },
+    versionHistory: [
+      {
+        version: '1.0',
+        date: '2024-03-26',
+        changes: [
+          'Stable Release',
+        ]
+      }
+    ],
+    hasInAppPurchases: false,
+    permissions: [
+      "Uses all system resources",
+      "App Tracking"
+    ],
+    faq: [
+      {
+        question: 'Who can use TimeMark?',
+        answer: 'Anyone who wants to track and manage their screen time, analyze app usage, and improve productivity can use TimeMark.'
+      },
+      {
+        question: 'Does TimeMark collect or store my data online?',
+        answer: 'No, all data is stored locally on your device. TimeMark does not send any data to servers or third parties.'
+      },
+      {
+        question: 'Can I set screen time limits for specific apps?',
+        answer: 'Yes, you can set daily usage limits for individual apps to manage your screen time effectively.'
+      },
+      {
+        question: 'Does TimeMark provide usage insights and analytics?',
+        answer: 'Yes, TimeMark offers detailed reports, graphs, and trends on your screen time, app usage, and focus sessions.'
+      },
+      {
+        question: 'Is there a focus mode or Pomodoro timer?',
+        answer: 'Yes, TimeMark includes a focus mode with a customizable Pomodoro timer to help you stay productive.'
+      },
+      {
+        question: 'Can I enable or disable tracking for specific apps?',
+        answer: 'Yes, you can choose which apps to track and hide or unhide them from reports.'
+      },
+      {
+        question: 'Does TimeMark work offline?',
+        answer: 'Yes, TimeMark works completely offline since all data is stored locally on your device.'
+      },
+      {
+        question: 'Is TimeMark free to use?',
+        answer: 'Yes, TimeMark is free to use with all core features available without any subscriptions or hidden costs.'
+      },
+      {
+        question: 'Can I reset or clear my data?',
+        answer: 'Yes, there is an option to reset settings or clear all stored data whenever you choose.'
+      },
+    ],
+    support: {
+      email: 'harmanpreetsingh@programmer.net',
+    },
+    additionalInfo: {
+      releaseDate: '2024-03-26',
+      category: 'Productivity Tools',
+      size: '10.3 MB',
+      supportedLanguages: ['English'],
+      developer: 'Harmanpreet Singh',
+      publisher: 'Harmanpreet Singh',
+      version: '1.0'
+    },
+    legalLinks: {
+      privacyPolicy: '/timemark/privacy-policy',
+      // termsOfService: '/'
+    }
+  },
+  {
     id: 'pingroute',
     name: 'PingRoute',
     icon: '/pingroute/logo.png',
