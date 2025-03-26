@@ -96,17 +96,18 @@ export const apps : AppDetails[] = [
     buttons:{
       wishlist:false,
       share:true,
-      demo:false
+      demo:true
     },
+    demoLink:'https://apps.microsoft.com/store/detail/9PHBZXNPVHSQ?cid=DevShareMCLPCS',
     headerImage: '/screentime/screentime.png',
     // trailerUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     screenshots: [
-      '/screentime/1.PNG',
-      '/screentime/2.PNG',
-      '/screentime/3.PNG',
-      '/screentime/4.PNG',
-      '/screentime/5.PNG',
-      '/screentime/6.PNG'
+      '/screentime/1.png',
+      '/screentime/2.png',
+      '/screentime/3.png',
+      '/screentime/4.png',
+      '/screentime/5.png',
+      '/screentime/6.png'
     ],
     description: "<h1>TimeMark - Track Screen Usage & App Usage</h1>        <p>Stay in control of your digital habits with <strong>TimeMark</strong>, a powerful screen time tracking and app usage monitoring tool. Get detailed insights, set app limits, and optimize your productivity—all while keeping your data private.</p>                <h2>Key Features:</h2>        <ul>            <li><strong>Comprehensive Screen Time Tracking:</strong> Monitor your total screen time and individual app usage.</li>            <li><strong>App Insights & Trends:</strong> View usage analytics, most used apps, category breakdowns, and daily trends.</li>            <li><strong>Focus Sessions & Pomodoro Timer:</strong> Improve productivity with a built-in focus mode, customizable timers, and session tracking.</li>            <li><strong>App & Screen Time Limits:</strong> Set daily usage limits for specific apps or overall screen time to maintain a healthy balance.</li>            <li><strong>Detailed Reports & Graphs:</strong> Analyze weekly and daily usage with intuitive graphs and charts.</li>            <li><strong>Privacy First:</strong> Your data is stored 100% locally on your device. No tracking, no data collection, no cloud storage.</li>            <li><strong>Customizable Settings:</strong> Adjust themes, notifications, and tracking preferences to suit your needs.</li>        </ul>        <h2>Why Choose TimeMark?</h2>        <p>Unlike other tracking apps, TimeMark ensures complete privacy while providing powerful insights to help you manage your screen time effectively.</p>        <p>Take control of your screen time today with <strong>TimeMark</strong>!</p>",
     shortDescription: 'Monitor your screen time, analyze app usage trends, and set limits to boost productivity. Your data stays private on your device.',
