@@ -5,7 +5,7 @@ import { about } from '@/app/data';
 
 // Form validation - extracted for reuse and testing
 const validateForm = (form) => {
-  const errors = {};
+  const errors:any = {};
   if (!form.name.trim()) errors.name = "Name is required";
   if (!form.email.trim()) errors.email = "Email is required";
   else if (!/^\S+@\S+\.\S+$/.test(form.email)) errors.email = "Email is invalid";
@@ -19,7 +19,7 @@ export default function Contact({
   showAddress = false,
   id = 'contact',
   className = ''
-}) {
+}:{contactRef?:any,showAddress?:boolean,id?:string,className?:string}) {
   // Form state management
   const [form, setForm] = useState({
     name: "",

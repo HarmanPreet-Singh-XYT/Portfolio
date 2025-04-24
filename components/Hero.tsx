@@ -7,7 +7,7 @@ import { AnimatedCounter } from './Hero/AnimatedCounter';
 
 // Types
 interface HeroProps {
-  aboutRef: React.RefObject<HTMLElement>;
+  aboutRef: any;
   sections?: string[];
 }
 
