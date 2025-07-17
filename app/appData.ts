@@ -42,10 +42,18 @@ interface Buttons{
   share:boolean,
   demo:boolean
 }
+interface Card{
+  image: string;
+  type: string;
+  title: string;
+  description: string;
+  tech: string[];
+}
 
 interface AppDetails {
   id: string;
   name: string;
+  cardDetails:Card;
   icon: string;
   buttons: Buttons;
   isPrivate?:boolean;
@@ -91,6 +99,13 @@ interface AppDetails {
 export const apps : AppDetails[] = [
   {
     id: 'screentime',
+    cardDetails:{
+      type: 'development + design',
+      title: 'TimeMark - Track Screen Time & App Usage',
+      description: "Monitor your screen time, analyze app usage trends, and set limits to boost productivity. Your data stays private on your device.",
+      tech: ['Dart', 'Flutter', 'Figma', 'C++', 'Windows','Visualization', 'Microsoft Store'],
+      image: '/screentime/1.png',
+    },
     name: 'TimeMark - Track Screen Usage & App Usage',
     icon: '/screentime/logo.png',
     buttons:{
@@ -216,6 +231,13 @@ export const apps : AppDetails[] = [
     id: 'pingroute',
     name: 'PingRoute',
     icon: '/pingroute/logo.png',
+    cardDetails:{
+      type: 'development + design',
+    title: 'PingRoute',
+    description: "PingRoute is a powerful network diagnostic tool that helps users monitor network performance in real-time. Whether you're troubleshooting a connection issue or analyzing network traffic, PingRoute provides detailed insights into each hop on your network route.",
+    tech: ['Dart', 'Flutter', 'Figma', 'Networking', 'C', 'Windows','Linux','Visualization', 'Microsoft Store'],
+    image: '/pingroute.jpeg',
+    },
     buttons:{
       wishlist:false,
       share:true,
@@ -327,6 +349,13 @@ export const apps : AppDetails[] = [
     id: 'sysresource',
     name: 'SysResource',
     icon: '/sysresource/logo.jpg',
+    cardDetails:{
+      type: 'development + design',
+      title: 'SysResource',
+      description: 'SysResource is a real-time server resource monitoring tool that tracks CPU usage, memory utilization, and system uptime. It provides detailed metrics on server configurations like hostname, CPU cores, platform, and architecture, with real-time line charts for CPU and memory usage.',
+      tech: ['React', 'Next.js', 'WebSockets', 'Server Administration', 'Node js','NPM Module'],
+      image: '/sysresource.jpeg',
+    },
     buttons:{
       wishlist:false,
       share:true,
@@ -419,6 +448,13 @@ export const apps : AppDetails[] = [
     id: 'ecommerce',
     name: 'Ecommerce Full Stack',
     icon: '/ecommerce/logo.png',
+    cardDetails:{
+      type: 'development + design',
+    title: 'Ecommerce Full Stack',
+    description: 'This is a full stack eCommerce website built using the PERN stack (PostgreSQL, Express, React, Node.js). It features a modern and responsive design, secure payment gateways, dynamic product display algorithms, and comprehensive user functionalities such as wishlist, reviews, order tracking, and more.',
+    tech: ['Docker', 'Next.js', 'Node.js','Express', 'PostgreSQL', 'React', 'Tailwind CSS','Stripe','Responsive','Typescript'],
+    image: '/ecommerce.jpeg',
+    },
     buttons:{
       wishlist:false,
       share:true,
@@ -525,6 +561,13 @@ export const apps : AppDetails[] = [
     id: 'note-todo',
     name: 'Note Todo App',
     icon: '/note-todo/logo.png',
+    cardDetails:{
+      type: 'development + design',
+    title: 'Note Todo App',
+    description: 'versatile task and note-taking web application, designed to help users organize their tasks, notes efficiently',
+    tech: ['React', 'Next.js', 'Node.js','Express', 'MongoDB','SASS','Typescript'],
+    image: '/notetodo.png',
+    },
     buttons:{
       wishlist:false,
       share:true,
@@ -635,6 +678,13 @@ export const apps : AppDetails[] = [
       wishlist:false,
       share:true,
       demo:false
+    },
+    cardDetails:{
+      type: 'development + design',
+    title: 'Ecommerce Mobile App',
+    description: 'Developed mobile version of Ecommerce site, using React Native. Implemented payment gateways, dynamic product display algorithms, and comprehensive user functionalities such as wishlist, reviews, order tracking, and more.',
+    tech: ['Stripe', 'React Native', 'Figma', 'React', 'Typescript','Node.js/Express','PostgreSQL'],
+    image: '/ecommercereactnative.jpeg',
     },
     headerImage: '/ecommercemobile.jpeg',
     // trailerUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
@@ -757,6 +807,13 @@ export const apps : AppDetails[] = [
       share:true,
       demo:false
     },
+    cardDetails:{
+      type: 'development + design',
+    title: 'PercentageValue Calculator',
+    description: 'Developed a calculating app for a specific requirement for a friend in trading.',
+    tech: ['Flutter', 'Figma', 'Dart'],
+    image: '/percentageValue.PNG',
+    },
     headerImage: '/percentageValue.PNG',
     // trailerUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     screenshots: [
@@ -832,6 +889,13 @@ export const apps : AppDetails[] = [
     name: 'Answer AI',
     icon: '/answer-ai/logo.jpg',
     isPrivate:true,
+    cardDetails:{
+      type: 'development + design',
+    title: 'AnswerAI',
+    description: 'AnswerAI is collection of native app, web extension, backend and frontend that provides answer of the question from chatGPT by reading question from website.',
+    tech: ['Flutter','Dart','React.js','OpenAI ChatGPT','WebScraping','Node.js','Express.js'],
+    image: '/answer-ai/3.PNG',
+    },
     buttons:{
       wishlist:false,
       share:true,
@@ -933,6 +997,13 @@ export const apps : AppDetails[] = [
       share:true,
       demo:true
     },
+    cardDetails:{
+      type: 'development + design',
+    title: 'Raja Rumala Sahib (Business Site)',
+    description: 'Developed & Designed site for local business according to their needs to increase their reach. Implemented SEO practices, and setup Domain from purchasing domain to Deployment.',
+    tech: ['Figma', 'Next.js','React'],
+    image: '/businesssite.jpeg',
+    },
     headerImage: '/businesssite.jpeg',
     // trailerUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     screenshots: [
@@ -1009,6 +1080,13 @@ export const apps : AppDetails[] = [
       wishlist:false,
       share:true,
       demo:true
+    },
+    cardDetails:{
+      type: 'development + design',
+    title: 'Unicorn Rust Game Store',
+    description: 'The custom designed website for Rust Custom Game Server, Specifically for purchasing InGame items',
+    tech: ['Figma', 'Next.js', 'Node.js','Express', 'PostgreSQL', 'React', 'Tailwind CSS','Responsive','Typescript'],
+    image: '/gamestore.jpeg',
     },
     headerImage: '/gamestore.jpeg',
     // trailerUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
