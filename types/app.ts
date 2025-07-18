@@ -8,7 +8,7 @@ export interface Review {
 }
 
 export interface StoreLink {
-  platform: 'windows' | 'android' | 'ios' | 'web' | 'linux' | 'macos' | 'server';
+  platform: 'windows' | 'android' | 'ios' | 'web' | 'linux' | 'macos' | 'server' | 'github';
   url: string;
 }
 

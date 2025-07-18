@@ -2,7 +2,7 @@
 -- +goose StatementBegin
 
 -- Create custom type for platform
-CREATE TYPE platform_type AS ENUM ('windows', 'android', 'ios', 'web', 'linux', 'macos', 'server');
+CREATE TYPE platform_type AS ENUM ('windows', 'android', 'ios', 'web', 'linux', 'macos', 'server', 'github');
 
 -- Main application details table
 CREATE TABLE app_details (

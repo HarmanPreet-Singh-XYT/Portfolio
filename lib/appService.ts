@@ -168,32 +168,115 @@ export class AppService {
   }
 
   static async getAllApps(): Promise<AppDetails[]> {
-  try {
-    // First, get all app IDs (or you can get ids + minimal data to display quicker loading states)
-    const { data: apps, error } = await supabase
-      .from('app_details')
-      .select('id')
-      .eq('is_private', false)
+    try {
+      // First, get all app IDs (or you can get ids + minimal data to display quicker loading states)
+      const { data: apps, error } = await supabase
+        .from('app_details')
+        .select('id')
+        .eq('is_private', false)
 
-    if (error) throw error
+      if (error) throw error
 
-    if (!apps || apps.length === 0) return []
+      if (!apps || apps.length === 0) return []
 
-    // Now fetch full details for each app in parallel
-    const detailedApps = await Promise.all(
-      apps.map(async app => {
-        const details = await this.getApp(app.id)
-        return details
-      })
-    )
+      // Now fetch full details for each app in parallel
+      const detailedApps = await Promise.all(
+        apps.map(async app => {
+          const details = await this.getApp(app.id)
+          return details
+        })
+      )
 
-    // Filter out nulls (if some failed to load)
-    return detailedApps.filter((app): app is AppDetails => app !== null)
-  } catch (error) {
-    console.error('Error fetching all apps:', error)
-    return []
+      // Filter out nulls (if some failed to load)
+      return detailedApps.filter((app): app is AppDetails => app !== null)
+    } catch (error) {
+      console.error('Error fetching all apps:', error)
+      return []
+    }
   }
-}
+
+  static async getAppCard(appId: string): Promise<{
+    id: string
+    demoLink: string | null
+    storeLinks: { platform: StoreLink['platform']; url: string }[]
+    cardDetails: AppDetails['cardDetails']
+  } | null> {
+    try {
+      const [
+        { data: appData, error: appError },
+        { data: cardData, error: cardError },
+        { data: cardTechData },
+        { data: storeLinksData }
+      ] = await Promise.all([
+        supabase.from('app_details').select('id, demo_link').eq('id', appId).single(),
+        supabase.from('card_details').select('*').eq('app_id', appId).single(),
+        supabase.from('card_tech').select('tech').eq('app_id', appId),
+        supabase.from('store_links').select('platform, url').eq('app_id', appId)
+      ])
+
+      if (appError || cardError || !appData) {
+        throw new Error('App or card details not found')
+      }
+
+      return {
+        id: appData.id,
+        demoLink: appData.demo_link,
+        storeLinks: storeLinksData?.map(s => ({
+          platform: s.platform as StoreLink['platform'],
+          url: s.url
+        })) || [],
+        cardDetails: {
+          image: cardData?.image || '',
+          type: cardData?.type || '',
+          title: cardData?.title || '',
+          description: cardData?.description || '',
+          tech: cardTechData?.map(t => t.tech) || []
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching app card details:', error)
+      return null
+    }
+  }
+
+  static async getAllAppCards(): Promise<{
+    id: string
+    demoLink: string | null
+    storeLinks: { platform: StoreLink['platform']; url: string }[]
+    cardDetails: AppDetails['cardDetails']
+  }[]> {
+    try {
+      // Step 1: Get all public app IDs
+      const { data: apps, error } = await supabase
+        .from('app_details')
+        .select('id')
+        .eq('is_private', false)
+
+      if (error) throw error
+      if (!apps || apps.length === 0) return []
+
+      // Step 2: Fetch app card data for each app in parallel using getAppCard()
+      const results = await Promise.all(
+        apps.map(async app => {
+          const card = await this.getAppCard(app.id)
+          return card
+        })
+      )
+
+      // Step 3: Filter out null results
+      return results.filter(
+        (card): card is {
+          id: string
+          demoLink: string | null
+          storeLinks: { platform: StoreLink['platform']; url: string }[]
+          cardDetails: AppDetails['cardDetails']
+        } => card !== null
+      )
+    } catch (error) {
+      console.error('Error fetching app cards:', error)
+      return []
+    }
+  }
 
 
   // Create new app

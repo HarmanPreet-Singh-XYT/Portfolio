@@ -13,41 +13,7 @@ import { Separator } from '@/components/ui/separator';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Plus, X, Save, Loader2 } from 'lucide-react';
 import { EnhancedCyberpunkEditor } from '@/components/Lexical';
-
-// Mock hook for demonstration
-const useCreateApp = () => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [createdAppId, setCreatedAppId] = useState(null);
-  
-  const createApp = useCallback(async (appData) => {
-    setLoading(true);
-    setError(null);
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    // Simulate success/failure
-    if (Math.random() > 0.2) {
-      const newId = 'app_' + Date.now();
-      setCreatedAppId(newId);
-      setLoading(false);
-      return newId;
-    } else {
-      setError('Failed to create app');
-      setLoading(false);
-      return null;
-    }
-  }, []);
-  
-  const reset = useCallback(() => {
-    setCreatedAppId(null);
-    setError(null);
-  }, []);
-  
-  return { createApp, loading, error, createdAppId, reset };
-};
-
+import { useCreateApp } from '@/hooks/useApp';
 export default function AppCreator() {
   const { createApp, loading, error, createdAppId, reset } = useCreateApp();
   
@@ -81,17 +47,17 @@ export default function AppCreator() {
     permissions: [],
     faq: [],
     support: {
-      email: '',
-      website: '',
+      email: 'harmanpreetsingh@programmer.net',
+      website: 'https://harman.vercel.app/',
       phone: ''
     },
     additionalInfo: {
       releaseDate: '',
       category: '',
       size: '',
-      supportedLanguages: [],
-      developer: '',
-      publisher: '',
+      supportedLanguages: ["English"],
+      developer: 'Harmanpreet Singh',
+      publisher: 'Harmanita',
       version: ''
     },
     legalLinks: {
@@ -106,7 +72,94 @@ export default function AppCreator() {
   const [newLanguage, setNewLanguage] = useState('');
   const [newStoreLink, setNewStoreLink] = useState({ platform: '', url: '' });
   const [newFAQ, setNewFAQ] = useState({ question: '', answer: '' });
+  const categoryOptions = [
+  // Core Functional Categories
+  'Productivity',
+  'Utilities',
+  'Tools',
+  'Business',
+  'Finance',
+  'Health',
+  'Fitness',
+  'Education',
+  'Lifestyle',
+  'Social',
+  'Communication',
+  'Shopping',
+  'Food & Drink',
+  'Travel',
+  'Transportation',
+  'News',
+  'Weather',
 
+  // Creative & Media
+  'Photography',
+  'Video',
+  'Music',
+  'Entertainment',
+  'Art & Design',
+  'Design Tools',
+  'Video Editing',
+  'Streaming',
+
+  // Development & Technical
+  'Development',
+  'Developer Tools',
+  'DevOps',
+  'APIs',
+  'Code Editors',
+  'Testing',
+  'Design + Development',
+
+  // Gaming
+  'Games',
+  'Action Games',
+  'Adventure Games',
+  'Puzzle Games',
+  'Strategy Games',
+  'Simulation Games',
+  'Casual Games',
+  'Educational Games',
+
+  // Niche & Special Use
+  'Finance Tools',
+  'Crypto & Blockchain',
+  'AR/VR',
+  'AI & ML',
+  'Security',
+  'Privacy',
+  'Automation',
+  'Remote Work',
+  'IoT',
+  'Data & Analytics',
+
+  // Community & Experience
+  'Events',
+  'Dating',
+  'Forum / Community',
+  'Blogs',
+  'Spirituality',
+  'Parenting',
+  'Pet Care',
+
+  // Platforms / Environment-specific
+  'Mobile-Only',
+  'Desktop-Only',
+  'Cross-Platform',
+  'Web App',
+  'Server-side',
+  'Browser Extensions',
+
+  // Government / Nonprofit
+  'Nonprofits',
+  'Government',
+  'Civic Tech',
+
+  // Internal Use
+  'Internal Tools',
+  'Beta Tools',
+  'Experimental',
+]
   const updateField = (path, value) => {
     setFormData(prev => {
       const keys = path.split('.');
@@ -481,13 +534,22 @@ return (
                       </div>
                       <div>
                         <Label htmlFor="cardType" className="text-emerald-400">Card Type</Label>
-                        <Input
-                          id="cardType"
+                        <Select
                           value={formData.cardDetails.type}
-                          onChange={(e) => updateField('cardDetails.type', e.target.value)}
-                          placeholder="featured, standard, etc."
-                          className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-emerald-500 focus:ring-emerald-500"
-                        />
+                          onValueChange={(value) => updateField('cardDetails.type', value)}
+                        >
+                          <SelectTrigger
+                            id="cardType"
+                            className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-emerald-500 focus:ring-emerald-500"
+                          >
+                            <SelectValue placeholder="Select type" />
+                          </SelectTrigger>
+                          <SelectContent className="bg-gray-800 text-white border-gray-700">
+                            <SelectItem value="development">Development</SelectItem>
+                            <SelectItem value="design">Design</SelectItem>
+                            <SelectItem value="development + design">Development + Design</SelectItem>
+                          </SelectContent>
+                        </Select>
                       </div>
                     </div>
                     
@@ -572,13 +634,24 @@ return (
                     </div>
                     <div>
                       <Label htmlFor="category" className="text-emerald-400">Category</Label>
-                      <Input
-                        id="category"
+                      <Select
                         value={formData.additionalInfo.category}
-                        onChange={(e) => updateField('additionalInfo.category', e.target.value)}
-                        placeholder="Productivity, Games, etc."
-                        className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-emerald-500 focus:ring-emerald-500"
-                      />
+                        onValueChange={(value) => updateField('additionalInfo.category', value)}
+                      >
+                        <SelectTrigger
+                          id="category"
+                          className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-emerald-500 focus:ring-emerald-500"
+                        >
+                          <SelectValue placeholder="Select category" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-gray-800 text-white border-gray-700 max-h-64 overflow-y-auto">
+                          {categoryOptions.map((category) => (
+                            <SelectItem key={category} value={category}>
+                              {category}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                     </div>
                     <div>
                       <Label htmlFor="size" className="text-emerald-400">App Size</Label>
@@ -664,6 +737,7 @@ return (
                           <SelectItem value="linux" className="text-white hover:bg-gray-700 focus:bg-emerald-600">Linux</SelectItem>
                           <SelectItem value="macos" className="text-white hover:bg-gray-700 focus:bg-emerald-600">macOS</SelectItem>
                           <SelectItem value="server" className="text-white hover:bg-gray-700 focus:bg-emerald-600">Server</SelectItem>
+                          <SelectItem value="github" className="text-white hover:bg-gray-700 focus:bg-emerald-600">Github</SelectItem>
                         </SelectContent>
                       </Select>
                       <Input

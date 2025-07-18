@@ -1,7 +1,35 @@
 import { useState, useEffect, useCallback } from 'react'
 import { AppService } from '../lib/appService'
 import { AppDetails, Review, VersionHistory } from '../types/app'
+type AppCardPreview = {
+  id: string
+  cardDetails: AppDetails['cardDetails']
+}
+export const useAppCards = () => {
+  const [apps, setApps] = useState<AppCardPreview[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
+  const fetchAppCards = useCallback(async () => {
+    try {
+      setLoading(true)
+      setError(null)
+      const appCards = await AppService.getAllAppCards()
+      setApps(appCards)
+    } catch (err) {
+      setError('Failed to fetch app cards')
+      console.error('Error in useAppCards:', err)
+    } finally {
+      setLoading(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchAppCards()
+  }, [fetchAppCards])
+
+  return { apps, loading, error, refetch: fetchAppCards }
+}
 // Hook for fetching all apps
 export const useApps = () => {
   const [apps, setApps] = useState<Partial<AppDetails>[]>([])
