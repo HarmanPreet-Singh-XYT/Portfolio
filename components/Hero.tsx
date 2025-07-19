@@ -25,6 +25,11 @@ export default function Hero({ aboutRef, sections = ['about', 'skills', 'experie
   // Optimize with useMemo for stats data
   const statsData = useMemo(() => [
     {
+      value: 1000,
+      label: "Active App Users",
+      plus: about.experience.plus
+    },
+    {
       value: about.project.number,
       label: "Projects Completed",
       plus: about.project.plus
@@ -33,7 +38,19 @@ export default function Hero({ aboutRef, sections = ['about', 'skills', 'experie
       value: about.experience.number,
       label: "Years Experience",
       plus: about.experience.plus
-    }
+    },
+    {
+      value: 5,
+      label: "Hackathons",
+      plus: about.experience.plus
+    },
+    {
+      value: 5,
+      label: "Certifications",
+      plus: about.experience.plus
+    },
+
+
   ], []);
 
   // Generate particles on mount (from original code)

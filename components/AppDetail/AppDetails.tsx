@@ -1,5 +1,5 @@
 'use client'
-import React,{useRef} from 'react';
+import React, { useRef } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { 
@@ -21,11 +21,12 @@ import {
   PlayCircle,
   HelpCircle,
   ShoppingCart,
-  Terminal
+  Terminal,
+  Loader2
 } from 'lucide-react';
-import { apps } from '@/app/appData';
 import { sendMailBug, sendMailFeedback, sendMailRating } from '@/app/api/Nodemailer';
-
+import { useApp } from '@/hooks/useApp'; // Import your custom hook
+import ReactMarkdown from 'react-markdown';
 type ModalType = 'screenshot' | 'review' | 'feedback' | 'bug' | null;
 
 interface FormData {
@@ -40,21 +41,67 @@ interface FormData {
 
 export default function AppDetails() {
   const { id } = useParams();
-  const app = apps.find(a => a.id === id);
+  const appId = Array.isArray(id) ? id[0] : id;
+  
+  // Use the custom hook
+  const { app, loading, error, refetch } = useApp(appId);
+  
   const [activeModal, setActiveModal] = React.useState<ModalType>(null);
   const [activeScreenshot, setActiveScreenshot] = React.useState<number>(0);
-  const [isLoading,setIsLoading] = React.useState<true|false>(false);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const formDataRef = useRef<FormData>({
     email: '',
     name: '',
-    rating:5
+    rating: 5
   });
-  const [render,setRender] = React.useState<true|false>(false);
+  const [render, setRender] = React.useState<boolean>(false);
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="w-12 h-12 animate-spin text-emerald-400 mx-auto mb-4" />
+          <h1 className="text-2xl font-bold mb-2">Loading App Details...</h1>
+          <p className="text-gray-400">Please wait while we fetch the information</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold mb-4 text-red-400">Error Loading App</h1>
+          <p className="text-gray-400 mb-6">{error}</p>
+          <div className="flex gap-4 justify-center">
+            <button
+              onClick={refetch}
+              className="px-6 py-3 rounded-lg bg-emerald-500 text-white font-semibold hover:bg-emerald-600 transition-colors"
+            >
+              Try Again
+            </button>
+            <Link 
+              href="/" 
+              className="px-6 py-3 rounded-lg bg-gray-800 text-white font-semibold hover:bg-gray-700 transition-colors"
+            >
+              Return Home
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // App not found
   if (!app) {
     return (
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">App Not Found</h1>
+          <p className="text-gray-400 mb-6">The app you're looking for doesn't exist or has been removed.</p>
           <Link href="/" className="text-emerald-400 hover:text-emerald-300">
             Return Home
           </Link>
@@ -63,26 +110,42 @@ export default function AppDetails() {
     );
   }
 
-  const averageRating = app.reviews.reduce((acc, review) => acc + review.rating, 0) / app.reviews.length;
+  const averageRating = app.reviews.length > 0 
+    ? app.reviews.reduce((acc, review) => acc + review.rating, 0) / app.reviews.length 
+    : 0;
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    if(activeModal==='bug'){
-      const sendMail = formDataRef.current.bugDescription && await sendMailBug(formDataRef.current.name,formDataRef.current.email,formDataRef.current.bugDescription,app.name);
-      sendMail ? alert('Thank you for reporting a bug, I will get back to you soon') : alert('Something went wrong, please try again later');
-    }else if(activeModal==='feedback'){
-      const sendMail = formDataRef.current.comment && await sendMailFeedback(formDataRef.current.name,formDataRef.current.email,formDataRef.current.comment,app.name);
-      sendMail ? alert('Thank you for your feedback, I will get back to you soon') : alert('Something went wrong, please try again later');
-    }else if(activeModal==='review'){
-      const sendMail = (formDataRef.current.experience && formDataRef.current.rating && formDataRef.current.source) && await sendMailRating(formDataRef.current.name,formDataRef.current.email,formDataRef.current.experience,formDataRef.current.rating,formDataRef.current.source,app.name);
-      sendMail ? alert('Thank you for your review, I will get back to you soon (It may take some time to get approved)') : alert('Something went wrong, please try again later');
+    
+    try {
+      let sendMail = false;
+      
+      if (activeModal === 'bug') {
+        sendMail = formDataRef.current.bugDescription 
+          ? await sendMailBug(formDataRef.current.name, formDataRef.current.email, formDataRef.current.bugDescription, app.name)
+          : false;
+        alert(sendMail ? 'Thank you for reporting a bug, I will get back to you soon' : 'Something went wrong, please try again later');
+      } else if (activeModal === 'feedback') {
+        sendMail = formDataRef.current.comment 
+          ? await sendMailFeedback(formDataRef.current.name, formDataRef.current.email, formDataRef.current.comment, app.name)
+          : false;
+        alert(sendMail ? 'Thank you for your feedback, I will get back to you soon' : 'Something went wrong, please try again later');
+      } else if (activeModal === 'review') {
+        sendMail = (formDataRef.current.experience && formDataRef.current.rating && formDataRef.current.source) 
+          ? await sendMailRating(formDataRef.current.name, formDataRef.current.email, formDataRef.current.experience, formDataRef.current.rating, formDataRef.current.source, app.name)
+          : false;
+        alert(sendMail ? 'Thank you for your review, I will get back to you soon (It may take some time to get approved)' : 'Something went wrong, please try again later');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Something went wrong, please try again later');
+    } finally {
+      setActiveModal(null);
+      setIsLoading(false);
+      // Reset form data
+      formDataRef.current = { email: '', name: '', rating: 5 };
     }
-    // Handle form submission based on modal type
-    setActiveModal(null);
-    setIsLoading(false);
-    // Reset form data
-    formDataRef.current = { email: '', name: '',rating:5 };
   };
 
   const Modal = ({ children, title }: { children: React.ReactNode; title: string }) => (
@@ -202,7 +265,7 @@ export default function AppDetails() {
                       />
                     ))}
                   </div>
-                  <span className="text-lg font-semibold">{app.reviews.length!==0 && averageRating.toFixed(1)}</span>
+                  <span className="text-lg font-semibold">{app.reviews.length !== 0 && averageRating.toFixed(1)}</span>
                   <span className="text-gray-400">({app.reviews.length} reviews)</span>
                 </div>
                 <span className="text-gray-400">•</span>
@@ -221,17 +284,6 @@ export default function AppDetails() {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-6">
-              {/* {app.buttons.wishlist && <button
-                onClick={() => setIsWishlisted(!isWishlisted)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
-                  isWishlisted
-                    ? 'bg-emerald-500/20 text-emerald-400'
-                    : 'bg-gray-800 text-gray-300 hover:text-white'
-                }`}
-              >
-                <Heart className={isWishlisted ? 'fill-emerald-400' : ''} size={20} />
-                <span>{isWishlisted ? 'Wishlisted' : 'Add to Wishlist'}</span>
-              </button>} */}
               {app.buttons.share && <button
                 onClick={handleShare}
                 className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800 text-gray-300 hover:text-white transition-colors"
@@ -240,7 +292,7 @@ export default function AppDetails() {
                 <span>Share</span>
               </button>}
               {app.trailerUrl && (
-                <button onClick={()=> window.open(app.trailerUrl, '_blank')} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800 text-gray-300 hover:text-white transition-colors">
+                <button onClick={() => window.open(app.trailerUrl, '_blank')} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800 text-gray-300 hover:text-white transition-colors">
                   <PlayCircle size={20} />
                   <span>Watch Demo</span>
                 </button>
@@ -266,7 +318,7 @@ export default function AppDetails() {
               <div className="mb-12">
                 <div className='flex justify-between items-center'>
                   <h2 className="text-2xl font-bold mb-6">Demo</h2>
-                  <ExternalLink size={26} className='hover:text-emerald-400 cursor-pointer' onClick={()=> window.open(app.trailerUrl, '_blank')}/>
+                  <ExternalLink size={26} className='hover:text-emerald-400 cursor-pointer' onClick={() => window.open(app.trailerUrl, '_blank')}/>
                 </div>
                 <div className="aspect-video rounded-xl overflow-hidden">
                   <iframe
@@ -305,7 +357,7 @@ export default function AppDetails() {
             {/* Description */}
             <div className="mb-12">
               <h2 className="text-2xl font-bold mb-4">About</h2>
-              <span className="text-gray-300 leading-relaxed"  dangerouslySetInnerHTML={{ __html: app.description }}></span>
+              <span className="text-gray-300 leading-relaxed"><ReactMarkdown>{app.description}</ReactMarkdown></span>
             </div>
 
             {/* Tech Stack */}
@@ -324,7 +376,7 @@ export default function AppDetails() {
             </div>
 
             {/* Development Team */}
-            {app.developers && <div className="mb-12">
+            {app.developers && app.developers.length > 0 && <div className="mb-12">
               <h2 className="text-2xl font-bold mb-6">Development Team</h2>
               <div className="grid sm:grid-cols-2 gap-6">
                 {app.developers.map((dev, idx) => (
@@ -350,7 +402,7 @@ export default function AppDetails() {
             </div>}
 
             {/* Version History */}
-            <div className="mb-12">
+            {app.versionHistory && app.versionHistory.length > 0 && <div className="mb-12">
               <h2 className="text-2xl font-bold mb-6">Version History</h2>
               <div className="space-y-6">
                 {app.versionHistory.map((version, idx) => (
@@ -380,10 +432,10 @@ export default function AppDetails() {
                   </div>
                 ))}
               </div>
-            </div>
+            </div>}
 
             {/* FAQ & Troubleshooting */}
-            <div className="mb-12">
+            {app.faq && app.faq.length > 0 && <div className="mb-12">
               <h2 className="text-2xl font-bold mb-6">FAQ & Troubleshooting</h2>
               <div className="space-y-4">
                 {app.faq.map((item, idx) => (
@@ -401,7 +453,7 @@ export default function AppDetails() {
                   </details>
                 ))}
               </div>
-            </div>
+            </div>}
 
             {/* Reviews */}
             <div>
@@ -457,18 +509,19 @@ export default function AppDetails() {
               <div className="space-y-4">
                 <div className="p-4 rounded-lg bg-gray-800/50 border border-gray-700/50">
                   <div className="text-2xl font-bold text-emerald-400">
-                    {app.downloadStats.total.toLocaleString()}
+                    {typeof app.downloadStats.total === 'number' ? app.downloadStats.total.toLocaleString() : app.downloadStats.total}
                   </div>
                   <div className="text-gray-400">Total Downloads</div>
                 </div>
-                <div className="p-4 rounded-lg bg-gray-800/50 border border-gray-700/50">
+                {app.downloadStats.lastMonth && <div className="p-4 rounded-lg bg-gray-800/50 border border-gray-700/50">
                   <div className="text-2xl font-bold text-emerald-400">
-                    {app.downloadStats.lastMonth.toLocaleString()}
+                    {typeof app.downloadStats.lastMonth === 'number' ? app.downloadStats.lastMonth.toLocaleString() : app.downloadStats.lastMonth}
                   </div>
                   <div className="text-gray-400">Downloads Last Month</div>
-                </div>
+                </div>}
               </div>
             </div>}
+            
             {app.isPrivate && (
               <div className="mb-8 p-4 rounded-lg bg-yellow-300/50 border border-gray-700/50">
                 <div className="flex items-center gap-3 text-gray-300">
@@ -482,9 +535,9 @@ export default function AppDetails() {
             {app.storeLinks.length > 0 && <div className="mb-8">
               <h2 className="text-xl font-bold mb-4">Get the App</h2>
               <div className="space-y-3">
-                {app.storeLinks.map((store) => (
+                {app.storeLinks.map((store, idx) => (
                   <a
-                    key={store.platform}
+                    key={idx}
                     href={store.url}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -498,6 +551,9 @@ export default function AppDetails() {
                       {store.platform === 'web' && <Globe size={20} className="text-emerald-400" />}
                       {store.platform === 'android' && <Smartphone size={20} className="text-emerald-400" />}
                       {store.platform === 'ios' && <Smartphone size={20} className="text-emerald-400" />}
+                      {store.platform === 'linux' && <Terminal size={20} className="text-emerald-400" />}
+                      {store.platform === 'macos' && <Monitor size={20} className="text-emerald-400" />}
+                      {store.platform === 'github' && <ExternalLink size={20} className="text-emerald-400" />}
                       <span>Download for {store.platform.charAt(0).toUpperCase() + store.platform.slice(1)}</span>
                     </div>
                     <Download size={20} />
@@ -515,25 +571,29 @@ export default function AppDetails() {
                 </div>
               </div>
             )}
-            {app.permissions.length>0 && (
+
+            {/* Permissions */}
+            {app.permissions && app.permissions.length > 0 && (
               <div className="mb-8 px-4 py-6 flex flex-col gap-4 rounded-lg bg-gray-800/50 border border-gray-700/50">
-                {app.permissions.map((permission,index) => 
-                <div key={index} className="flex items-center gap-3 text-gray-300">
-                  <Globe size={16} className="text-emerald-400" />
-                  <span className='text-sm'>{permission}</span>
-                </div>)}
+                <h3 className="text-lg font-semibold text-emerald-400">Permissions</h3>
+                {app.permissions.map((permission, index) => 
+                  <div key={index} className="flex items-center gap-3 text-gray-300">
+                    <Globe size={16} className="text-emerald-400" />
+                    <span className='text-sm'>{permission}</span>
+                  </div>
+                )}
               </div>
             )}
 
             {/* System Requirements */}
-            <div className="mb-8">
+            {app.systemRequirements && app.systemRequirements.length > 0 && <div className="mb-8">
               <h2 className="text-xl font-bold mb-4">System Requirements</h2>
-              {app.systemRequirements.map((category) => (
-                <div key={category.category} className="mb-6">
+              {app.systemRequirements.map((category, idx) => (
+                <div key={idx} className="mb-6">
                   <h3 className="font-semibold text-lg mb-3">{category.category}</h3>
                   <div className="space-y-2">
-                    {category.requirements.map((req) => (
-                      <div key={req.name} className="flex justify-between">
+                    {category.requirements.map((req, reqIdx) => (
+                      <div key={reqIdx} className="flex justify-between">
                         <span className="text-gray-400">{req.name}</span>
                         <span>{req.value}</span>
                       </div>
@@ -541,7 +601,7 @@ export default function AppDetails() {
                   </div>
                 </div>
               ))}
-            </div>
+            </div>}
 
             {/* Feedback & Support */}
             <div className="mb-8">
@@ -589,6 +649,14 @@ export default function AppDetails() {
                 <div className="flex justify-between">
                   <span className="text-gray-400">Category</span>
                   <span>{app.additionalInfo.category}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Developer</span>
+                  <span>{app.additionalInfo.developer}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Publisher</span>
+                  <span>{app.additionalInfo.publisher}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-400">Support</span>

@@ -1,12 +1,8 @@
 import { useState, useEffect, useCallback } from 'react'
-import { AppService } from '../lib/appService'
-import { AppDetails, Review, VersionHistory } from '../types/app'
-type AppCardPreview = {
-  id: string
-  cardDetails: AppDetails['cardDetails']
-}
+import { addReview as serviceAddReview,updateDownloadStats as serviceUpdateDownloadStats, addVersion as serviceAddVersion,updateApp as serviceUpdateApp,createApp as serviceCreateApp,getApp as serviceGetApp,getAllAppCards as serviceGetAllAppCards,getAllApps as serviceGetAllApps,deleteApp as serviceDeleteApp } from '../lib/appService'
+import { AppDetails, ProjectCardData, Review, VersionHistory } from '../types/app'
 export const useAppCards = () => {
-  const [apps, setApps] = useState<AppCardPreview[]>([])
+  const [apps, setApps] = useState<ProjectCardData[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -14,7 +10,7 @@ export const useAppCards = () => {
     try {
       setLoading(true)
       setError(null)
-      const appCards = await AppService.getAllAppCards()
+      const appCards = await serviceGetAllAppCards()
       setApps(appCards)
     } catch (err) {
       setError('Failed to fetch app cards')
@@ -40,7 +36,7 @@ export const useApps = () => {
     try {
       setLoading(true)
       setError(null)
-      const appsData = await AppService.getAllApps()
+      const appsData = await serviceGetAllApps()
       setApps(appsData)
     } catch (err) {
       setError('Failed to fetch apps')
@@ -72,7 +68,7 @@ export const useApp = (appId: string | undefined) => {
     try {
       setLoading(true)
       setError(null)
-      const appData = await AppService.getApp(appId)
+      const appData = await serviceGetApp(appId)
       setApp(appData)
     } catch (err) {
       setError('Failed to fetch app details')
@@ -99,7 +95,7 @@ export const useCreateApp = () => {
     try {
       setLoading(true)
       setError(null)
-      const appId = await AppService.createApp(appData)
+      const appId = await serviceCreateApp(appData)
       if (appId) {
         setCreatedAppId(appId)
         return appId
@@ -134,7 +130,7 @@ export const useUpdateApp = () => {
       setLoading(true)
       setError(null)
       setSuccess(false)
-      const result = await AppService.updateApp(appId, updates)
+      const result = await serviceUpdateApp(appId, updates)
       if (result) {
         setSuccess(true)
         return true
@@ -169,7 +165,7 @@ export const useDeleteApp = () => {
       setLoading(true)
       setError(null)
       setSuccess(false)
-      const result = await AppService.deleteApp(appId)
+      const result = await serviceDeleteApp(appId)
       if (result) {
         setSuccess(true)
         return true
@@ -204,7 +200,7 @@ export const useAddReview = () => {
       setLoading(true)
       setError(null)
       setSuccess(false)
-      const result = await AppService.addReview(appId, review)
+      const result = await serviceAddReview(appId, review)
       if (result) {
         setSuccess(true)
         return true
@@ -239,7 +235,7 @@ export const useAddVersion = () => {
       setLoading(true)
       setError(null)
       setSuccess(false)
-      const result = await AppService.addVersion(appId, version)
+      const result = await serviceAddVersion(appId, version)
       if (result) {
         setSuccess(true)
         return true
@@ -277,7 +273,7 @@ export const useUpdateDownloadStats = () => {
       setLoading(true)
       setError(null)
       setSuccess(false)
-      const result = await AppService.updateDownloadStats(appId, stats)
+      const result = await serviceUpdateDownloadStats(appId, stats)
       if (result) {
         setSuccess(true)
         return true

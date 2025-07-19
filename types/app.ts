@@ -97,3 +97,35 @@ export interface AppDetails {
     termsOfService?: string;
   };
 }
+export interface ProjectCardData {
+  id: string;
+  cardDetails: {
+    type: string;
+    image: string;
+    title: string;
+    description: string;
+    tech: string[];
+  };
+  isPrivate?: boolean;
+  trailerUrl?: string;
+  reviews: {
+    rating: number;
+  }[];
+  storeLinks: {
+    platform: string;
+  }[];
+  additionalInfo: {
+    category?: string;
+    version?: string;
+    size?: string;
+    releaseDate: string;
+  };
+  downloadStats?: {
+    total: number | string;
+  };
+  screenshots: string[];
+  developers?: {
+    name: string;
+  }[];
+  demoLink?: string;
+}

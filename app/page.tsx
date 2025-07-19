@@ -1,7 +1,17 @@
+'use client'
 import Home from '@/components/Home'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { setCookies } from './api/set-tokens/route'
 
 const page = () => {
+  useEffect(() => {
+    const hash = window.location.hash.substring(1) // remove '#'
+    const params = new URLSearchParams(hash)
+    const access_token = params.get('access_token');
+    const refresh_token = params.get('refresh_token');
+    (access_token && refresh_token) && (access_token.length > 5 && refresh_token.length > 5) && setCookies(access_token,refresh_token);
+  }, [])
+  
   return (
     <>
     <Home/>
