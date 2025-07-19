@@ -1,6 +1,6 @@
 'use server'
 
-import { setCookies } from '@/app/api/set-tokens/route'
+import { setCookies } from '@/app/api/set-tokens/cookies'
 import { supabase } from './supabase'
 import { User } from '@supabase/supabase-js'
 

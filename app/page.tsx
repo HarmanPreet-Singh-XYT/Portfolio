@@ -1,7 +1,7 @@
 'use client'
 import Home from '@/components/Home'
 import React, { useEffect } from 'react'
-import { setCookies } from './api/set-tokens/route'
+import { setCookies } from './api/set-tokens/cookies'
 
 const page = () => {
   useEffect(() => {

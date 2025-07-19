@@ -20,4 +20,5 @@ export async function setCookies(access_token:string,refresh_token:string, acces
     maxAge: 60 * 60 * 24 * 30, // 30 days
   });
   redirect('/');
+  return true;
 }

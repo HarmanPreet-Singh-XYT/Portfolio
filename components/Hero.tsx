@@ -86,7 +86,7 @@ export default function Hero({ aboutRef, sections = ['about', 'skills', 'experie
     <header 
       ref={aboutRef} 
       id="about" 
-      className="min-h-screen relative overflow-hidden flex items-center bg-black"
+      className="min-h-[1500px] md:min-h-[1000px] relative overflow-hidden flex items-center bg-black"
       aria-labelledby="hero-heading"
     >
       {/* SEO improvements - structured metadata */}
