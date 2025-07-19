@@ -174,7 +174,7 @@ export async function getAllApps(): Promise<AppDetails[]> {
     const { data: apps, error } = await supabaseServer
       .from('app_details')
       .select('id')
-      .eq('is_private', false)
+      
 
     if (error) throw error
     if (!apps || apps.length === 0) return []
@@ -262,12 +262,10 @@ export async function getAppCard(appId: string): Promise<ProjectCardData | null>
 }
 
 export async function getAllAppCards(): Promise<ProjectCardData[]> {
-  
   try {
     const { data: apps, error } = await supabaseServer
       .from('app_details')
       .select('id')
-      .eq('is_private', false)
 
     if (error) throw error
     if (!apps || apps.length === 0) return []
@@ -276,12 +274,20 @@ export async function getAllAppCards(): Promise<ProjectCardData[]> {
       apps.map(app => getAppCard(app.id))
     )
 
-    return results.filter((card): card is ProjectCardData => card !== null)
+    const validCards = results.filter((card): card is ProjectCardData => card !== null)
+
+    // Sort by release date (newest first)
+    return validCards.sort((a, b) => {
+      const dateA = new Date(a.additionalInfo.releaseDate || '').getTime()
+      const dateB = new Date(b.additionalInfo.releaseDate || '').getTime()
+      return dateB - dateA // Descending
+    })
   } catch (error) {
     console.error('Error fetching all project cards:', error)
     return []
   }
 }
+
 
 // Create new app
 export async function createApp(appData: Partial<AppDetails>): Promise<string | null> {

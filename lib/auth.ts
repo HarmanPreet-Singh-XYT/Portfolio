@@ -1,9 +1,9 @@
 'use server'
 
 import { setCookies } from '@/app/api/set-tokens/cookies'
-import { supabase } from './supabase'
+import { createClient } from './supabase/server'
 import { User } from '@supabase/supabase-js'
-
+const supabase = await createClient();
 export async function signInWithOTP(email: string) {
   const { data, error } = await supabase.auth.signInWithOtp({
     email,

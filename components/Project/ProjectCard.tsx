@@ -161,7 +161,7 @@ export default function ProjectCard({ project }: { project: ProjectCardData }) {
         aria-hidden="true"
       ></div>
       
-      <div onClick={()=>router.push(`/details/${project.id}`)} className="relative hover:cursor-pointer p-5 md:p-6 flex flex-col h-full">
+      <div onClick={()=>{project.cardDetails.type!=='design' && router.push(`/details/${project.id}`)}} className="relative hover:cursor-pointer p-5 md:p-6 flex flex-col h-full">
         {/* Project Type Badge with type-specific info */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
@@ -321,7 +321,7 @@ export default function ProjectCard({ project }: { project: ProjectCardData }) {
         {/* Action Links - Type specific */}
         <div className="flex flex-wrap items-center justify-between gap-4 mt-auto">
           <div className="flex flex-wrap gap-4">
-            {project.id && (
+            {(project.id && project.cardDetails.type !== "design") && (
               <Link 
                 href={`/details/${project.id}`}
                 className={`flex items-center gap-2 font-medium transition-colors

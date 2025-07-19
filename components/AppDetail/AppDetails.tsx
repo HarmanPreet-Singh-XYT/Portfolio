@@ -27,6 +27,7 @@ import {
 import { sendMailBug, sendMailFeedback, sendMailRating } from '@/app/api/Nodemailer';
 import { useApp } from '@/hooks/useApp'; // Import your custom hook
 import ReactMarkdown from 'react-markdown';
+import MarkdownRenderer from './MarkdownRenderer';
 type ModalType = 'screenshot' | 'review' | 'feedback' | 'bug' | null;
 
 interface FormData {
@@ -357,7 +358,7 @@ export default function AppDetails() {
             {/* Description */}
             <div className="mb-12">
               <h2 className="text-2xl font-bold mb-4">About</h2>
-              <span className="text-gray-300 leading-relaxed"><ReactMarkdown>{app.description}</ReactMarkdown></span>
+              <span className="text-gray-300 leading-relaxed"><MarkdownRenderer content={app.description} /></span>
             </div>
 
             {/* Tech Stack */}

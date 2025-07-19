@@ -34,12 +34,15 @@ export async function updateSession(request: NextRequest) {
   // issues with users being randomly logged out.
 
   // IMPORTANT: DO NOT REMOVE auth.getUser()
-  const cookieStore = await cookies();
-  const accessToken = cookieStore.get('sb_access_token')?.value
+  // const cookieStore = await cookies();
+  // const accessToken = cookieStore.get('sb_access_token')?.value
 
+  // const {
+  //   data: { user },
+  // } = (accessToken && accessToken !== "") ? await supabase.auth.getUser(accessToken) : await supabase.auth.getUser();
   const {
     data: { user },
-  } = (accessToken && accessToken !== "") ? await supabase.auth.getUser(accessToken) : await supabase.auth.getUser();
+  } = await supabase.auth.getUser()
   const pathname = request.nextUrl.pathname
   // Protect /admin route
   if (pathname.startsWith('/admin')) {

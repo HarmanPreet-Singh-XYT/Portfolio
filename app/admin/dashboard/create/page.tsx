@@ -14,6 +14,8 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Plus, X, Save, Loader2 } from 'lucide-react';
 import { EnhancedCyberpunkEditor } from '@/components/Lexical';
 import { useCreateApp } from '@/hooks/useApp';
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+
 export default function AppCreator() {
   const { createApp, loading, error, createdAppId, reset } = useCreateApp();
   
@@ -72,6 +74,7 @@ export default function AppCreator() {
   const [newLanguage, setNewLanguage] = useState('');
   const [newStoreLink, setNewStoreLink] = useState({ platform: '', url: '' });
   const [newFAQ, setNewFAQ] = useState({ question: '', answer: '' });
+  const [descriptionMode, setDescriptionMode] = useState('raw');
   const categoryOptions = [
   // Core Functional Categories
   'Productivity',
@@ -384,16 +387,47 @@ return (
                 </div>
 
                 <div>
-                  <Label htmlFor="description" className="text-emerald-400">Full Description</Label>
-                  {/* <Textarea
-                    id="description"
-                    value={formData.description}
-                    onChange={(e) => updateField('description', e.target.value)}
-                    placeholder="Detailed description of your app's features and benefits"
-                    rows={4}
-                    className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-emerald-500 focus:ring-emerald-500"
-                  /> */}
-                <EnhancedCyberpunkEditor value={formData.description} onChange={(content) => {updateField('description', content)}} placeholder="Detailed description of your app's features and benefits" className={""}/>
+                  <div className="flex items-center justify-between mb-3">
+                    <Label htmlFor="description" className="text-emerald-400">Full Description</Label>
+                    
+                    <RadioGroup 
+                      value={descriptionMode} 
+                      onValueChange={setDescriptionMode}
+                      className="flex items-center gap-4"
+                    >
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="raw" id="raw" className="border-gray-600 text-emerald-500" />
+                        <Label htmlFor="raw" className="text-sm text-gray-300 cursor-pointer">
+                          Raw Markdown
+                        </Label>
+                      </div>
+                      
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="formatted" id="formatted" className="border-gray-600 text-emerald-500" />
+                        <Label htmlFor="formatted" className="text-sm text-gray-300 cursor-pointer">
+                          Formatted Markdown
+                        </Label>
+                      </div>
+                    </RadioGroup>
+                  </div>
+
+                  {descriptionMode === 'raw' ? (
+                    <Textarea
+                      id="description"
+                      value={formData.description}
+                      onChange={(e) => updateField('description', e.target.value)}
+                      placeholder="Detailed description of your app's features and benefits"
+                      rows={4}
+                      className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-emerald-500 focus:ring-emerald-500"
+                    />
+                  ) : (
+                    <EnhancedCyberpunkEditor 
+                      value={formData.description} 
+                      onChange={(content) => updateField('description', content)} 
+                      placeholder="Detailed description of your app's features and benefits" 
+                      className=""
+                    />
+                  )}
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
