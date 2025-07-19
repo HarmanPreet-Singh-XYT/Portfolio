@@ -555,7 +555,7 @@ export default function AppDetails() {
                       {store.platform === 'linux' && <Terminal size={20} className="text-emerald-400" />}
                       {store.platform === 'macos' && <Monitor size={20} className="text-emerald-400" />}
                       {store.platform === 'github' && <ExternalLink size={20} className="text-emerald-400" />}
-                      <span>Download for {store.platform.charAt(0).toUpperCase() + store.platform.slice(1)}</span>
+                      <span>{(store.platform !== 'github' && store.platform !== 'web') ? `Download for ${store.platform.charAt(0).toUpperCase() + store.platform.slice(1)}` : `${store.platform.charAt(0).toUpperCase() + store.platform.slice(1)}`}</span>
                     </div>
                     <Download size={20} />
                   </a>
