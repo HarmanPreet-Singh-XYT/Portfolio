@@ -58,7 +58,7 @@ const projects = [
     title: 'TimeMark - Track Screen Time & App Usage',
     description: "Monitor your screen time, analyze app usage trends, and set limits to boost productivity. Your data stays private on your device.",
     tech: ['Dart', 'Flutter', 'Figma', 'C++', 'Windows','Visualization', 'Microsoft Store'],
-    image: 'screentime/1.png',
+    image: '/screentime/1.png',
     links: {
       // demo: 'https://apps.microsoft.com/detail/9mvqgxvmc883?rtc=1&hl=en-in&gl=IN',
       github: 'https://github.com/HarmanPreet-Singh-XYT/TimeMark-ScreenTimeApp'
@@ -70,7 +70,7 @@ const projects = [
     title: 'SysResource',
     description: 'SysResource is a real-time server resource monitoring tool that tracks CPU usage, memory utilization, and system uptime. It provides detailed metrics on server configurations like hostname, CPU cores, platform, and architecture, with real-time line charts for CPU and memory usage.',
     tech: ['React', 'Next.js', 'WebSockets', 'Server Administration', 'Node js','NPM Module'],
-    image: 'sysresource.jpeg',
+    image: '/sysresource.jpeg',
     links: {
       demo: 'https://sysresource.vercel.app/',
       github: 'https://github.com/HarmanPreet-Singh-XYT/SysResource',
@@ -82,7 +82,7 @@ const projects = [
     title: 'PingRoute',
     description: "PingRoute is a powerful network diagnostic tool that helps users monitor network performance in real-time. Whether you're troubleshooting a connection issue or analyzing network traffic, PingRoute provides detailed insights into each hop on your network route.",
     tech: ['Dart', 'Flutter', 'Figma', 'Networking', 'C', 'Windows','Linux','Visualization', 'Microsoft Store'],
-    image: 'pingroute.jpeg',
+    image: '/pingroute.jpeg',
     links: {
       demo: 'https://apps.microsoft.com/detail/9mvqgxvmc883?rtc=1&hl=en-in&gl=IN',
       github: 'https://github.com/HarmanPreet-Singh-XYT/PingRoute'
@@ -104,7 +104,7 @@ const projects = [
     title: 'Raja Rumala Sahib (Business Site)',
     description: 'Developed & Designed site for local business according to their needs to increase their reach. Implemented SEO practices, and setup Domain from purchasing domain to Deployment.',
     tech: ['Figma', 'Next.js','React'],
-    image: 'businesssite.jpeg',
+    image: '/businesssite.jpeg',
     links: {
       demo: 'https://raja.rumala-sahib.com/'
     }
@@ -115,7 +115,7 @@ const projects = [
     title: 'Ecommerce Full Stack',
     description: 'This is a full stack eCommerce website built using the PERN stack (PostgreSQL, Express, React, Node.js). It features a modern and responsive design, secure payment gateways, dynamic product display algorithms, and comprehensive user functionalities such as wishlist, reviews, order tracking, and more.',
     tech: ['Docker', 'Next.js', 'Node.js','Express', 'PostgreSQL', 'React', 'Tailwind CSS','Stripe','Responsive','Typescript'],
-    image: 'ecommerce.jpeg',
+    image: '/ecommerce.jpeg',
     links: {
       demo: 'https://harman-ecommerce.vercel.app/',
       github: 'https://github.com/HarmanPreet-Singh-XYT/E-Commerce'
@@ -127,7 +127,7 @@ const projects = [
     title: 'Ecommerce Mobile App',
     description: 'Developed mobile version of Ecommerce site, using React Native. Implemented payment gateways, dynamic product display algorithms, and comprehensive user functionalities such as wishlist, reviews, order tracking, and more.',
     tech: ['Stripe', 'React Native', 'Figma', 'React', 'Typescript','Node.js/Express','PostgreSQL'],
-    image: 'ecommercereactnative.jpeg',
+    image: '/ecommercereactnative.jpeg',
     links: {
       github:'https://github.com/HarmanPreet-Singh-XYT/ECommerce-React-Native'
     }
@@ -138,7 +138,7 @@ const projects = [
     title: 'PercentageValue Calculator',
     description: 'Developed a calculating app for a specific requirement for a friend in trading.',
     tech: ['Flutter', 'Figma', 'Dart'],
-    image: 'percentageValue.PNG',
+    image: '/percentageValue.PNG',
     links: {
       github:'https://github.com/HarmanPreet-Singh-XYT/PercentageValue'
     }
@@ -149,7 +149,7 @@ const projects = [
     title: 'Unicorn Rust Game Store',
     description: 'The custom designed website for Rust Custom Game Server, Specifically for purchasing InGame items',
     tech: ['Figma', 'Next.js', 'Node.js','Express', 'PostgreSQL', 'React', 'Tailwind CSS','Responsive','Typescript'],
-    image: 'gamestore.jpeg',
+    image: '/gamestore.jpeg',
     links: {
       demo: 'https://unicorn-rust.vercel.app/',
       github:'https://github.com/HarmanPreet-Singh-XYT/Rust-Store-CustomServer'
@@ -161,7 +161,7 @@ const projects = [
     title: 'Note Todo App',
     description: 'versatile task and note-taking web application, designed to help users organize their tasks, notes efficiently',
     tech: ['React', 'Next.js', 'Node.js','Express', 'MongoDB','SASS','Typescript'],
-    image: 'notetodo.png',
+    image: '/notetodo.png',
     links: {
       demo: 'https://note-todo-app.vercel.app/',
       github:'https://github.com/HarmanPreet-Singh-XYT/NoteTodo_MERN'
@@ -172,7 +172,7 @@ const projects = [
     title: 'DasCam App',
     description: 'This innovative project aims to bridge the gap between mobile devices and PCs by turning an Android mobile camera into a functional webcam for a Windows PC. Leveraging the power of React Native, the application establishes a seamless connection between the mobile device and the PC, enabling high-quality real-time video streaming.',
     tech: ['Figma', 'Protopie', 'Framer','React Native','Mobile','Desktop'],
-    image: 'dascam.jpeg',
+    image: '/dascam.jpeg',
     links: {
     }
   },
@@ -181,7 +181,7 @@ const projects = [
     title: 'Email App',
     description: 'Modern Email site design featuring full platform of email with options such as reply, emails, email replies and more.',
     tech: ['Figma', 'Protopie', 'Framer','Desktop'],
-    image: 'email.jpg',
+    image: '/email.jpg',
     links: {
     }
   },
@@ -221,7 +221,8 @@ const skillCategories = [
       { name: "PostgreSQL", level: "Expert" },
       { name: "MySQL", level: "Advanced" },
       { name: "MongoDB", level: "Advanced" },
-      { name: "Firebase", level: "Intermediate" },
+      { name: "Redis", level: "Advanced" },
+      { name: "DiceDB", level: "Advanced" },
       // { name: "Prometheus", level: "Intermediate" }
     ]
   },
