@@ -1,32 +1,65 @@
+import { useRouter } from "next/navigation";
+
+
+
+// export default function Navbar({currentSection}:{currentSection:string}) {
+//     const scrollToSection = (section:string) => {
+//         document.getElementById(section)!.scrollIntoView({ behavior: "smooth" });
+//       };
+//   return (
+//     <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 px-6 py-3 bg-gray-800/40 backdrop-blur-md rounded-full shadow-lg border border-gray-700 z-50">
+//       <ul className="flex space-x-6 text-white text-sm font-semibold">
+//         <li>
+//           <button onClick={() => scrollToSection('about')} className={`hover:text-[#4ade80] transition ${currentSection === 'about' ? 'text-emerald-400' : ''}`}>
+//             About
+//           </button>
+//         </li>
+//         <li>
+//           <button onClick={() => scrollToSection('skills')} className={`hover:text-[#4ade80] transition ${currentSection === 'skill' ? 'text-emerald-400' : ''}`}>
+//             Skills
+//           </button>
+//         </li>
+//         <li>
+//           <button onClick={() => scrollToSection('experience')} className={`hover:text-[#4ade80] transition ${currentSection === 'experience' ? 'text-emerald-400' : ''}`}>
+//             Experience
+//           </button>
+//         </li>
+//         <li>
+//           <button onClick={() => scrollToSection('projects')} className={`hover:text-[#4ade80] transition ${currentSection === 'project' ? 'text-emerald-400' : ''}`}>
+//             Projects
+//           </button>
+//         </li>
+//         <li>
+//           <button onClick={() => scrollToSection('contact')} className={`hover:text-[#4ade80] transition ${currentSection === 'contact' ? 'text-emerald-400' : ''}`}>
+//             Contact
+//           </button>
+//         </li>
+//       </ul>
+//     </nav>
+//   );
+// }
 export default function Navbar({currentSection}:{currentSection:string}) {
-    const scrollToSection = (section:string) => {
-        document.getElementById(section)!.scrollIntoView({ behavior: "smooth" });
-      };
+  const router = useRouter();
   return (
     <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 px-6 py-3 bg-gray-800/40 backdrop-blur-md rounded-full shadow-lg border border-gray-700 z-50">
       <ul className="flex space-x-6 text-white text-sm font-semibold">
         <li>
-          <button onClick={() => scrollToSection('about')} className={`hover:text-[#4ade80] transition ${currentSection === 'about' ? 'text-emerald-400' : ''}`}>
-            About
+          <button onClick={()=>router.push('/')} className={`hover:text-[#4ade80] transition ${currentSection === 'home' ? 'text-emerald-400' : ''}`}>
+            Home
           </button>
         </li>
         <li>
-          <button onClick={() => scrollToSection('skills')} className={`hover:text-[#4ade80] transition ${currentSection === 'skill' ? 'text-emerald-400' : ''}`}>
-            Skills
+          <button onClick={()=>router.push('https://blog.harmanita.com')} className={`hover:text-[#4ade80] transition ${currentSection === 'blog' ? 'text-emerald-400' : ''}`}>
+            Blog
           </button>
         </li>
         <li>
-          <button onClick={() => scrollToSection('experience')} className={`hover:text-[#4ade80] transition ${currentSection === 'experience' ? 'text-emerald-400' : ''}`}>
-            Experience
+          <button onClick={()=>router.push('/services')} className={`hover:text-[#4ade80] transition ${currentSection === 'services' ? 'text-emerald-400' : ''}`}>
+            Services
           </button>
         </li>
         <li>
-          <button onClick={() => scrollToSection('projects')} className={`hover:text-[#4ade80] transition ${currentSection === 'project' ? 'text-emerald-400' : ''}`}>
-            Projects
-          </button>
-        </li>
-        <li>
-          <button onClick={() => scrollToSection('contact')} className={`hover:text-[#4ade80] transition ${currentSection === 'contact' ? 'text-emerald-400' : ''}`}>
+          <button onClick={()=>router.push('/contact-us')} className={`hover:text-[#4ade80] transition ${currentSection === 'contact' ? 'text-emerald-400' : ''}`}>
             Contact
           </button>
         </li>

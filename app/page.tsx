@@ -1,6 +1,6 @@
 'use client'
 import Home from '@/components/Home'
-import React, { useEffect } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import { setCookies } from './api/set-tokens/cookies'
 
 const page = () => {
@@ -13,7 +13,7 @@ const page = () => {
   // }, [])
   
   return (
-    <>
+    <Suspense fallback={<div>Loading...</div>}>
     <Home/>
       {/* <footer className="w-full bg-black text-gray-400 text-sm">
         <div className="border-t border-gray-600 py-4 flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-6 text-center">
@@ -24,7 +24,7 @@ const page = () => {
           <a href="/contact-us" className="hover:text-white">Contact Us</a>
         </div>
       </footer> */}
-    </>
+    </Suspense>
   )
 }
 

@@ -135,7 +135,7 @@ export default function Contact({
                 </div>
               </div>
 
-              {showAddress && (
+              {/* {showAddress && (
                 <div className="p-6 rounded-xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50">
                   <h3 className="text-xl font-semibold text-white mb-4">Details</h3>
                   <address className="not-italic space-y-2 text-gray-400">
@@ -144,7 +144,7 @@ export default function Contact({
                     <p>{about.address.number}</p>
                   </address>
                 </div>
-              )}
+              )} */}
             </div>
 
             {/* Contact form */}

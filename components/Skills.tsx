@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 export default function Skills({ skillRef }) {
   const [activeTab, setActiveTab] = useState('all');
   const [filteredCategories, setFilteredCategories] = useState(skillCategories);
-  const [showAllAdditional, setShowAllAdditional] = useState(false);
   
   // Filter skills based on active tab
   useEffect(() => {
@@ -138,49 +137,17 @@ export default function Skills({ skillRef }) {
                   </div>
                 </div>
 
-                <div className="space-y-4">
+                {/* Skills as tags/badges without levels */}
+                <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill, i) => (
-                    <div 
+                    <span 
                       key={skill.name} 
-                      className="flex items-center justify-between gap-4 group/skill"
+                      className="px-3 py-2 rounded-full bg-gray-900/70 text-gray-300 border border-gray-700/50
+                               hover:bg-emerald-500/10 hover:border-emerald-500/50 hover:text-emerald-300
+                               transition-all duration-300 text-sm font-medium cursor-default"
                     >
-                      <div className="flex items-center gap-2">
-                        <span className="text-gray-300 group-hover/skill:text-white transition-colors duration-200">
-                          {skill.name}
-                        </span>
-                        {/* {skill.certification && (
-                          <span className="text-xs bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded-full">
-                            Certified
-                          </span>
-                        )} */}
-                      </div>
-                      <div className="flex items-center gap-2">
-                        {/* Visual skill level indicator */}
-                        <div className="hidden md:flex items-center gap-1">
-                          {[...Array(5)].map((_, dotIdx) => (
-                            <div 
-                              key={dotIdx}
-                              className={`h-1.5 w-1.5 rounded-full transition-all duration-300
-                                ${skill.level === 'Expert' && dotIdx < 5 ? 'bg-emerald-400' :
-                                  skill.level === 'Advanced' && dotIdx < 4 ? 'bg-blue-400' :
-                                  skill.level === 'Intermediate' && dotIdx < 3 ? 'bg-yellow-400' :
-                                  skill.level === 'Basic' && dotIdx < 2 ? 'bg-gray-400' :
-                                  'bg-gray-700'}`}
-                            />
-                          ))}
-                        </div>
-                        <span className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-300
-                          ${skill.level === 'Expert' 
-                            ? 'bg-emerald-500/20 text-emerald-400 group-hover/skill:bg-emerald-500/30' :
-                            skill.level === 'Advanced' 
-                            ? 'bg-blue-500/20 text-blue-400 group-hover/skill:bg-blue-500/30' :
-                            skill.level === 'Intermediate'
-                            ? 'bg-yellow-500/20 text-yellow-400 group-hover/skill:bg-yellow-500/30' :
-                            'bg-gray-700/50 text-gray-400 group-hover/skill:bg-gray-700/70'}`}>
-                          {skill.level}
-                        </span>
-                      </div>
-                    </div>
+                      {skill.name}
+                    </span>
                   ))}
                 </div>
               </div>
@@ -227,8 +194,8 @@ export default function Skills({ skillRef }) {
                       <span 
                         key={skill}
                         className="px-3 py-1.5 rounded-full text-sm bg-gray-800/80 text-gray-300 
-                               border border-gray-700/50 hover:border-blue-400/50 hover:bg-gray-700/70
-                               transition-all duration-300 hover:text-white"
+                               border border-gray-700/50 hover:border-blue-400/50 hover:bg-blue-500/10
+                               hover:text-blue-300 transition-all duration-300"
                       >
                         {skill}
                       </span>
@@ -279,7 +246,7 @@ export default function Skills({ skillRef }) {
           </div>
         </div>
         
-        {/* Experience metrics - NEW SECTION */}
+        {/* Experience metrics - Enhanced version */}
         <div className="mt-20 mb-12 py-12 px-6 rounded-2xl bg-gray-900/50 border border-gray-800/50">
           <motion.h3 
             className="text-2xl font-bold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-400"
@@ -288,15 +255,15 @@ export default function Skills({ skillRef }) {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            Technical Experience Metrics
+            Highlights
           </motion.h3>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
               { value: "1+", label: "Years of Experience", icon: "⏱️" },
-              { value: "10+", label: "Projects Completed", icon: "🚀" },
-              { value: "15+", label: "Technologies Mastered", icon: "⚙️" },
-              { value: "100K+", label: "Lines of Code", icon: "💻" }
+              { value: "10+", label: "Projects", icon: "🚀" },
+              { value: "15+", label: "Technologies Used", icon: "⚙️" },
+              { value: "∞", label: "Passion for Learning", icon: "💡" }
             ].map((metric, idx) => (
               <motion.div 
                 key={idx}
@@ -308,36 +275,25 @@ export default function Skills({ skillRef }) {
               >
                 <div className="text-2xl mb-3">{metric.icon}</div>
                 <div className="text-4xl font-bold text-white mb-2">{metric.value}</div>
-                <div className="text-gray-400">{metric.label}</div>
+                <div className="text-gray-400 text-sm">{metric.label}</div>
               </motion.div>
             ))}
           </div>
-        </div>
-        
-        {/* Call to action */}
-        {/* <div className="mt-16 text-center">
-          <motion.div
+          
+          {/* Optional: Add a brief professional statement */}
+          <motion.div 
+            className="mt-8 text-center max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
             viewport={{ once: true }}
-            className="inline-block"
           >
-            <a 
-              href="#experience" 
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-emerald-500 to-blue-500 text-white font-medium text-lg
-                     hover:from-emerald-600 hover:to-blue-600 transition-all duration-300
-                     focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-black
-                     shadow-lg shadow-emerald-500/20"
-              aria-label="See my professional experience"
-            >
-              View Professional Experience
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-            </a>
+            <p className="text-gray-400 italic">
+              "Quality over quantity - focused on delivering robust, scalable solutions 
+              with clean, maintainable code."
+            </p>
           </motion.div>
-        </div> */}
+        </div>
       </div>
       
       {/* Schema markup for SEO */}
