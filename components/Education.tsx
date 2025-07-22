@@ -137,7 +137,7 @@ const EducationCard = ({ education: edu, index, isVisible, total }) => {
   );
 };
 
-export default function Education() {
+export default function Education({educationRef}) {
   // For page section navigation and SEO
   const sectionRef = useRef(null);
   
@@ -187,7 +187,7 @@ export default function Education() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,_rgba(74,222,128,0.08),_transparent_60%)]"></div>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,_rgba(59,130,246,0.05),_transparent_50%)]"></div>
       
-      <div className="container mx-auto px-4 sm:px-6 relative">
+      <div ref={educationRef} className="container mx-auto px-4 sm:px-6 relative">
         <div className="text-center mb-16">
           <h2 
             id="education-heading"

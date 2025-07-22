@@ -9,10 +9,11 @@ import { useInView } from 'react-intersection-observer';
 import Navbar from './Navbar';
 import Experience from './Experience';
 import Education from './Education';
-import Services from './Services';
+import { SectionNavigation } from './SectionNavigation';
+import { useSearchParams } from 'next/navigation';
 function Home() {
     const [activeSection, setActiveSection] = useState("");
-
+    const searchParams = useSearchParams();
     const { ref: aboutRef, inView: isAboutInView } = useInView({
         threshold: 0.6,
         onChange: (inView) => {
@@ -38,6 +39,13 @@ function Home() {
         threshold: 0.6,
         onChange: (inView) => {
         if (inView) setActiveSection("experience");
+        },
+    });
+
+    const { ref: educationeRef, inView: isEducationInView } = useInView({
+        threshold: 0.6,
+        onChange: (inView) => {
+        if (inView) setActiveSection("education");
         },
     });
 
@@ -68,16 +76,53 @@ function Home() {
   
         updateCounter();
       });
+      const projects = searchParams.get('projects');
+      if (projects !== null){
+        scrollToSection("projects");
+      }
     }, []);
+    const sections = [
+      {
+        name:"about",
+        value:"about"
+      },
+      {
+        name:"skills",
+        value:"skill"
+      },
+      {
+        name:"experience",
+        value:"experience"
+      },
+      {
+        name:"projects",
+        value:"project"
+      },
+      {
+        name:"education",
+        value:"education"
+      },
+      {
+        name:"contact",
+        value:"contact"
+      }
+    ]
+    const scrollToSection = (sectionId: string) => {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    };
     return (
       <div className="min-h-screen bg-black text-white">
-        <Navbar currentSection={activeSection}/>
+        <Navbar currentSection={'home'}/>
+        <SectionNavigation sections={sections} activeSection={activeSection}/>
         <Hero aboutRef={aboutRef}/>
         <Skills skillRef={skillRef}/>
         <Experience experienceRef={experienceRef}/>
         <Projects projectRef={projectRef}/>
-        <Education/>
-        <Services/>
+        <Education educationRef={educationeRef}/>
+        {/* <Services/> */}
         <Contact contactRef={contactRef}/>
       </div>
     );

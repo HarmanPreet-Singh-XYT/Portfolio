@@ -153,11 +153,9 @@ export default function ProjectCard({ project }: { project: ProjectCardData }) {
     >
       {/* Hover glow effect */}
       <div 
-        className={`absolute inset-0.5 bg-gradient-to-br opacity-0 
+        className="absolute inset-0.5 bg-gradient-to-br opacity-0 
                    group-hover:opacity-100 transition-opacity duration-500
-                   ${isDevelopment 
-                     ? 'from-emerald-500/10 to-blue-500/10' 
-                     : 'from-purple-500/10 to-pink-500/10'}`}
+                   from-emerald-500/10 to-blue-500/10"
         aria-hidden="true"
       ></div>
       
@@ -165,10 +163,10 @@ export default function ProjectCard({ project }: { project: ProjectCardData }) {
         {/* Project Type Badge with type-specific info */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
-            <div className={`p-2 rounded-lg ${isDevelopment ? 'bg-emerald-500/10' : 'bg-purple-500/10'}`}>
-              <TypeIcon className={isDevelopment ? 'text-emerald-400' : 'text-purple-400'} size={20} aria-hidden="true" />
+            <div className="p-2 rounded-lg bg-emerald-500/10">
+              <TypeIcon className="text-emerald-400" size={20} aria-hidden="true" />
             </div>
-            <span className={`text-sm font-medium uppercase tracking-wider ${isDevelopment ? 'text-emerald-400' : 'text-purple-400'}`}>
+            <span className="text-sm font-medium uppercase tracking-wider text-emerald-400">
               {project.cardDetails.type}
             </span>
           </div>
@@ -194,7 +192,7 @@ export default function ProjectCard({ project }: { project: ProjectCardData }) {
             )}
             {/* Design specific - show if it's a client project */}
             {!isDevelopment && project.additionalInfo?.category && (
-              <span className="px-2 py-1 text-xs bg-purple-900/30 text-purple-400 rounded-full">
+              <span className="px-2 py-1 text-xs bg-emerald-900/30 text-emerald-400 rounded-full">
                 {project.additionalInfo.category}
               </span>
             )}
@@ -224,8 +222,8 @@ export default function ProjectCard({ project }: { project: ProjectCardData }) {
         </div>
 
         {/* Project Info */}
-        <h3 className={`text-xl md:text-2xl font-bold text-white mb-2 transition-colors
-                      ${isDevelopment ? 'group-hover:text-emerald-400' : 'group-hover:text-purple-400'}`}>
+        <h3 className="text-xl md:text-2xl font-bold text-white mb-2 transition-colors
+                      group-hover:text-emerald-400">
           {project.cardDetails.title}
         </h3>
         
@@ -257,7 +255,7 @@ export default function ProjectCard({ project }: { project: ProjectCardData }) {
               <span
                 key={tool}
                 className="px-3 py-1 rounded-full text-xs md:text-sm bg-gray-800 text-gray-300
-                         border border-gray-700 group-hover:border-purple-500/30 transition-colors
+                         border border-gray-700 group-hover:border-emerald-500/30 transition-colors
                          flex items-center gap-1"
               >
                 <Brush size={12} />
@@ -324,10 +322,8 @@ export default function ProjectCard({ project }: { project: ProjectCardData }) {
             {(project.id && project.cardDetails.type !== "design") && (
               <Link 
                 href={`/details/${project.id}`}
-                className={`flex items-center gap-2 font-medium transition-colors
-                          ${isDevelopment 
-                            ? 'text-emerald-400 hover:text-emerald-300' 
-                            : 'text-purple-400 hover:text-purple-300'}`}
+                className="flex items-center gap-2 font-medium transition-colors
+                          text-emerald-400 hover:text-emerald-300"
                 aria-label={`View details of ${project.cardDetails.title} project`}
               >
                 <ExternalLink size={18} aria-hidden="true" />

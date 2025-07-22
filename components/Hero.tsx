@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { Github, Linkedin, Mail, Terminal, ArrowRight, Download, ChevronDown } from 'lucide-react';
 import { about } from '@/app/data';
-import { SectionNavigation } from './Hero/SectionNavigation';
+import { SectionNavigation } from './SectionNavigation';
 import { AnimatedCounter } from './Hero/AnimatedCounter';
 
 // Types
@@ -225,7 +225,7 @@ export default function Hero({ aboutRef, sections = ['about', 'skills', 'experie
           </div>
         </div>
       </div>
-      <SectionNavigation sections={sections}/>
+      {/* <SectionNavigation sections={sections}/> */}
       {/* Scroll indicator */}
       <button 
         onClick={() => scrollToSection('skills')}
