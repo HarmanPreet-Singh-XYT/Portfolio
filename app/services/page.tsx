@@ -106,22 +106,22 @@ const packages = [
 
 const testimonials = [
   {
-    name: "Sarah Johnson",
-    company: "TechStart Inc.",
+    name: "Prashant",
+    company: "Local Business",
     rating: 5,
-    text: "Exceptional work! The team delivered our web application ahead of schedule and exceeded all expectations."
+    text: "Great work, delivered application ahead of schedule and exceeded all expectations."
   },
   {
-    name: "Michael Chen",
-    company: "Global Solutions",
+    name: "Manmeet",
+    company: "CS Trader",
     rating: 5,
-    text: "Professional, reliable, and innovative. They transformed our outdated system into a modern, efficient platform."
+    text: "Understands non-technical stuff and turns the idea into real software."
   },
   {
-    name: "Emily Rodriguez",
-    company: "Creative Agency",
+    name: "xDaggerx",
+    company: "Content Creator & Gamer",
     rating: 5,
-    text: "Outstanding attention to detail and excellent communication throughout the entire project lifecycle."
+    text: "Great attention to detail and enthusiastic toward server management and its setup."
   }
 ];
 
