@@ -38,6 +38,17 @@ const about = {
 }
 const education = [
   {
+    degree: "Diploma in Interactive Media Design - Web",
+    school: "Durham College of Applied Arts & Technology",
+    location: "Ontario, Canada",
+    period: "2025 - Present",
+    gpa: "-",
+    honors: [],
+    highlights: [
+      "Core Design Concepts in Web",
+      "Elective in Global Leadership"
+    ]
+  },{
     degree: "Bachelor's Degree, Computer Science",
     school: "Lovely Professional University",
     location: "Punjab, India",
@@ -46,7 +57,7 @@ const education = [
     honors: [],
     highlights: [
       "Core Computer Science Concepts",
-      "Electives in Marketing & Sales",
+      "Electives in Network & Security with Business Courses",
       "Under Distance Learning/Online Mode"
     ]
   }
