@@ -2,13 +2,14 @@ import { Code2, Server, Database, Cpu, Palette, Lock, Brain, Cloud,Layout } from
 const experiences = [
   {
     title: "Software Developer",
-    company: "Personal Projects",
-    location: "Worldwide",
-    period: "2023 - Present",
+    company: "Harry Trading",
+    location: "Remote",
+    period: "Jun 2025 - Aug 2025",
     description: [
-      "Developed and Deployed multiple web, mobile, and desktop applications using technologies such as Next.js, React Native, Flutter, etc.",
-      "Developed Full Stack Applications from Scratch to End Product & Deployed/Published them",
-      "Explored Multiple Technologies and Frameworks & Solved numerous problems during development",
+      "Built a trading automation system for a client, integrating real-time price tracking, profit detection, inventory management, and trade offer automation via the Steam API.",
+      "Reduced manual trading effort by 70% and increased profitability through faster decision-making.",
+      "Implemented profit opportunity detection algorithms to identify arbitrage gaps across platforms",
+"Created an inventory management dashboard to track acquisition costs, current valuations, and profit/loss."
     ]
   },
 ];
