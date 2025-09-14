@@ -221,7 +221,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-white mb-1">Location</h3>
-                      <p className="text-gray-400">Punjab, India</p>
+                      <p className="text-gray-400">Ontario, Canada</p>
                       <p className="text-sm text-gray-500 mt-1">Available for remote work worldwide</p>
                     </div>
                   </div>
