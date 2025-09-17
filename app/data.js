@@ -222,7 +222,8 @@ const skillCategories = [
       { name: "Python/Django", level: "Advanced" },
       { name: "Microservices", level: "Expert" },
       { name: "REST API", level: "Advanced" },
-      { name: "WebSockets", level: "Advanced" }
+      { name: "WebSockets", level: "Advanced" },
+      { name: "Gin", level: "Advanced" }
     ]
   },
   {
@@ -271,7 +272,7 @@ const additionalSkills = [
   {
     icon: <Brain className="w-5 h-5" />,
     title: "Programming Languages",
-    skills: ["Javascript", "Typescript", "Python", "Dart", "C/C++","Bash/Shell","SQL"]
+    skills: ["Javascript", "Typescript", "Python", "Dart", "C/C++","Bash/Shell","SQL","Go","Java"]
   }
 ];
 const calendlyLink="https://calendly.com/preetsinghharman27"
