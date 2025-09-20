@@ -57,7 +57,7 @@ const services = [
 const packages = [
   {
     name: "Starter",
-    price: "$2,999",
+    price: "$999",
     duration: "2-3 weeks",
     description: "Perfect for small businesses and startups",
     features: [
@@ -71,7 +71,7 @@ const packages = [
   },
   {
     name: "Professional",
-    price: "$7,999",
+    price: "$2499",
     duration: "4-6 weeks",
     description: "Comprehensive solution for growing businesses",
     features: [
