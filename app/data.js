@@ -22,7 +22,7 @@ const about = {
     linkedin: "https://www.linkedin.com/in/harman-developer/",
     resume:'https://drive.google.com/file/d/1jX4W21p3_j8Vtft8YrXpEliM9pKTVOen/view?usp=sharing',
   },
-  email:'harmanpreetsingh@programmer.net',
+  email:'harman@harmanita.com',
   project: {
     number:10,
     plus:true
