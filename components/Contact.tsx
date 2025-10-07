@@ -117,10 +117,10 @@ export default function Contact({
                 <div>
                   <h3 className="text-xl font-semibold text-white mb-2">Email Me</h3>
                   <a 
-                    href="mailto:harmanpreetsingh@programmer.net" 
+                    href="mailto:harman@harmanita.com" 
                     className="text-gray-400 hover:text-emerald-400 transition-colors"
                   >
-                    harmanpreetsingh@programmer.net
+                    harman@harmanita.com
                   </a>
                 </div>
               </div>
