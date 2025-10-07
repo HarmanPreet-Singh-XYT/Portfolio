@@ -32,9 +32,9 @@ const about = {
     plus:true
   },
   address:{
-    address1:'370, Mohalla guru ka khuh',
-    address2:'Tarn Taran 143401, Punjab, India',
-    number:'+91 1852-796-916'
+    address1:'',
+    address2:'Punjab, India',
+    number:''
   }
 }
 const education = [
