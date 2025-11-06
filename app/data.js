@@ -95,7 +95,7 @@ const education = [
     school: "Lovely Professional University (LPU)",
     location: "Punjab, India",
     period: "Jan 2024 - Dec 2026",
-    gpa: "8",
+    gpa: "3.2",
     honors: [],
     highlights: [
       "Core studies in computer science, software engineering, and data structures.",
