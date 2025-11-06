@@ -1,6 +1,29 @@
 import { Code2, Server, Database, Cpu, Palette, Lock, Brain, Cloud,Layout } from 'lucide-react';
 const experiences = [
   {
+    title: "Participant – AI² (AI Squared) Hackathon",
+    company: "University of Toronto",
+    location: "Toronto, ON",
+    period: "Oct 2025 - Nov 2025",
+    description: [
+      "Built and optimized reinforcement learning agents with 3 teammates for a custom game environment.",
+      "Implemented Q-learning, DQN, and PPO algorithms with tuning and policy optimization.",
+      "Enhanced understanding of RL reward functions, state-action policies, and collaborative AI development."
+    ]
+  },
+  {
+    title: "Hackathon Winner – MUES Hackathon",
+    company: "Toronto Metropolitan University",
+    location: "Toronto, ON",
+    period: "Oct 2025",
+    description: [
+      "Built a real-time collaborative web app 'Magic Space Paint' within 7 hours using Next.js, React, and WebSockets.",
+      "Implemented multi-user drawing tools, undo/redo, PNG export, and a character interaction mode.",
+      "Collaborated with 2 teammates met on-site; won a 180Hz curved gaming monitor as one of the top prizes.",
+      "Project: https://lnkd.in/gMQF4Ubd"
+    ]
+  },
+  {
     title: "Software Developer",
     company: "Harry Trading",
     location: "Remote",
@@ -8,15 +31,28 @@ const experiences = [
     description: [
       "Built a trading automation system for a client, integrating real-time price tracking, profit detection, inventory management, and trade offer automation via the Steam API.",
       "Reduced manual trading effort by 70% and increased profitability through faster decision-making.",
-      "Implemented profit opportunity detection algorithms to identify arbitrage gaps across platforms",
-"Created an inventory management dashboard to track acquisition costs, current valuations, and profit/loss."
+      "Implemented profit opportunity detection algorithms to identify arbitrage gaps across platforms.",
+      "Created an inventory management dashboard to track acquisition costs, current valuations, and profit/loss."
     ]
   },
+  {
+    title: "Frontend Developer – Outlier AI",
+    company: "Outlier AI (Hackathon Project)",
+    location: "Remote",
+    period: "Apr 2025",
+    description: [
+      "Developed a manga-anime news platform with Next.js, React, TypeScript, Tailwind CSS, and Framer Motion.",
+      "Implemented 7 dynamic sections including news feeds, featured articles, and series catalog.",
+      "Designed immersive Japanese manga-inspired UI with custom animations and responsive layouts.",
+      "Project: https://manga-news-beta.vercel.app"
+    ]
+  }
 ];
+
 const about = {
   name: "Harmanpreet Singh",
   title: "Software Engineer",
-  description: "Creating seamless solutions that blend FullStack expertise, DevOps, Mobile Development, and thoughtful UI/UX. Specialized in building responsive, high-performance applications and infrastructure that drive exceptional user experiences across platforms.",
+  description: "Building scalable and responsive applications across web and mobile platforms with Full Stack expertise. Focused on delivering high-performance, reliable solutions, with a growing interest in integrating AI/ML to enhance functionality and user experience.",
   links: {
     github: "https://github.com/HarmanPreet-Singh-XYT",
     linkedin: "https://www.linkedin.com/in/harman-developer/",
@@ -42,27 +78,37 @@ const education = [
     degree: "Diploma in Interactive Media Design - Web",
     school: "Durham College of Applied Arts & Technology",
     location: "Ontario, Canada",
-    period: "2025 - Present",
+    period: "Sep 2025 - Apr 2027",
     gpa: "-",
     honors: [],
     highlights: [
-      "Core Design Concepts in Web",
-      "Elective in Global Leadership"
+      "Focused on front-end development and interactive media design.",
+      "Learned web design principles, prototyping, and user experience optimization.",
+      "Hands-on training with Adobe Illustrator, Photoshop, and Figma for visual design.",
+      "Developed responsive web applications using HTML, CSS, JavaScript, PHP, and React/Node.js.",
+      "Experience with CMS development, version control (Git), and collaborative workflows.",
+      "Emphasis on accessibility, design thinking, and mobile-first design."
     ]
-  },{
-    degree: "Bachelor's Degree, Computer Science",
-    school: "Lovely Professional University",
+  },
+  {
+    degree: "Bachelor's Degree in Computer Science (Specialization: Cybersecurity – Network Security and Digital Forensics)",
+    school: "Lovely Professional University (LPU)",
     location: "Punjab, India",
-    period: "2024 - Present",
+    period: "Jan 2024 - Dec 2026",
     gpa: "8",
     honors: [],
     highlights: [
-      "Core Computer Science Concepts",
-      "Electives in Network & Security with Business Courses",
-      "Under Distance Learning/Online Mode"
+      "Core studies in computer science, software engineering, and data structures.",
+      "Specialized in cybersecurity, focusing on network security and digital forensics.",
+      "Covered firewalls, cryptography, ethical hacking, malware analysis, and incident response.",
+      "Gained practical understanding of system defense, vulnerability assessment, and data recovery.",
+      "Additional coursework in artificial intelligence, databases, and computer networks.",
+      "Strengthened problem-solving, programming, and secure system design skills.",
+      "Completed under Distance Learning/Online Mode."
     ]
   }
 ];
+
 const projects = [
   {
     id:'screentime',
@@ -265,16 +311,35 @@ const additionalSkills = [
     skills: ["JWT", "Encryption", "OAuth", "Selenium"]
   },
   {
-    icon: <Palette className="w-5 h-5" />,
-    title: "Design & UI/UX",
-    skills: ["Figma", "Design Systems", "Prototyping", "Adobe XD"]
+    icon: <Brain className="w-5 h-5" />,
+    title: "Machine Learning & Data Analysis",
+    skills: [
+      "Scikit-learn",
+      "Pandas",
+      "NumPy",
+      "Matplotlib",
+      "Seaborn",
+      "Data Visualization",
+      "ML Algorithms (Regression, Clustering, Classification)"
+    ]
   },
   {
-    icon: <Brain className="w-5 h-5" />,
+    icon: <Code className="w-5 h-5" />,
     title: "Programming Languages",
-    skills: ["Javascript", "Typescript", "Python", "Dart", "C/C++","Bash/Shell","SQL","Go","Java"]
+    skills: [
+      "JavaScript",
+      "TypeScript",
+      "Python",
+      "Dart",
+      "C/C++",
+      "Bash/Shell",
+      "SQL",
+      "Go",
+      "Java"
+    ]
   }
 ];
+
 const calendlyLink="https://calendly.com/preetsinghharman27"
 const services = [
   {
