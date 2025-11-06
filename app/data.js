@@ -1,4 +1,4 @@
-import { Code2, Server, Database, Cpu, Palette, Lock, Brain, Cloud,Layout } from 'lucide-react';
+import { Code2, Server, Database, Cpu, Palette, Lock, Brain, Cloud,Layout,Code } from 'lucide-react';
 const experiences = [
   {
     title: "Participant – AI² (AI Squared) Hackathon",
@@ -319,8 +319,8 @@ const additionalSkills = [
       "NumPy",
       "Matplotlib",
       "Seaborn",
-      "Data Visualization",
-      "ML Algorithms (Regression, Clustering, Classification)"
+      "Tensorflow",
+      "Deep Learning"
     ]
   },
   {
