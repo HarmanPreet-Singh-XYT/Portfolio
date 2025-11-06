@@ -91,10 +91,10 @@ const education = [
     ]
   },
   {
-    degree: "Bachelor's Degree in Computer Science (Specialization: Cybersecurity – Network Security and Digital Forensics)",
+    degree: "Bachelor's Degree in Computer Science",
     school: "Lovely Professional University (LPU)",
     location: "Punjab, India",
-    period: "Jan 2024 - Dec 2026",
+    period: "Jan 2024 - Jan 2027",
     gpa: "3.2",
     honors: [],
     highlights: [
