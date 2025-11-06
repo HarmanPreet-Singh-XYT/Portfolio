@@ -93,7 +93,7 @@ const education = [
   {
     degree: "Bachelor's Degree in Computer Science",
     school: "Lovely Professional University (LPU)",
-    location: "Punjab, India",
+    location: "Remote - India",
     period: "Jan 2024 - Jan 2027",
     gpa: "3.2",
     honors: [],
