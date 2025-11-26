@@ -17,7 +17,7 @@ const validateForm = (form) => {
 export default function Contact({
   contactRef,
   showAddress = false,
-  id = 'contact',
+  id = 'contact-section',
   className = ''
 }:{contactRef?:any,showAddress?:boolean,id?:string,className?:string}) {
   // Form state management
