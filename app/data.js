@@ -303,7 +303,7 @@ const additionalSkills = [
   {
     icon: <Cpu className="w-5 h-5" />,
     title: "Operating Systems",
-    skills: ["Windows", "Linux"]
+    skills: ["Windows", "Linux","MacOS"]
   },
   {
     icon: <Lock className="w-5 h-5" />,

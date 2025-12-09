@@ -89,7 +89,7 @@ export default function Skills({ skillRef }) {
             >
               All Skills
             </button>
-            {['frontend', 'backend', 'devops', 'tools'].map((tab) => (
+            {['frontend', 'backend', 'tools'].map((tab) => (
               <button 
                 key={tab}
                 onClick={() => setActiveTab(tab)}
@@ -106,7 +106,7 @@ export default function Skills({ skillRef }) {
         </div>
 
         {/* Main skills grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16">
+        <div className="grid justify-center grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16">
           {filteredCategories.map((category, idx) => (
             <motion.div 
               key={category.title}
@@ -168,7 +168,7 @@ export default function Skills({ skillRef }) {
           </motion.h3>
           
           {/* First row as featured additional skills */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
+          <div className="grid justify-center grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
             {additionalSkills.slice(0, 2).map((category, idx) => (
               <motion.div 
                 key={category.title}
@@ -207,7 +207,7 @@ export default function Skills({ skillRef }) {
           </div>
           
           {/* Remaining additional skills */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid justify-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {additionalSkills.slice(2).map((category, idx) => (
               <motion.div 
                 key={category.title}
