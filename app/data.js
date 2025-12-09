@@ -285,18 +285,18 @@ const skillCategories = [
       // { name: "Prometheus", level: "Intermediate" }
     ]
   },
-  {
-    icon: <Cloud className="w-6 h-6" />,
-    title: "Cloud & DevOps",
-    description: "Implementing robust cloud infrastructure and CI/CD pipelines",
-    skills: [
-      { name: "Jenkins/ArgoCD", level: "Expert" },
-      { name: "Docker/Kubernetes", level: "Advanced" },
-      { name: "Terraform", level: "Advanced" },
-      { name: "CI/CD", level: "Expert" },
-      { name: "Prometheus/Grafana/Loki", level: "Expert" }
-    ]
-  }
+  // {
+  //   icon: <Cloud className="w-6 h-6" />,
+  //   title: "Cloud & DevOps",
+  //   description: "Implementing robust cloud infrastructure and CI/CD pipelines",
+  //   skills: [
+  //     { name: "Jenkins/ArgoCD", level: "Expert" },
+  //     { name: "Docker/Kubernetes", level: "Advanced" },
+  //     { name: "Terraform", level: "Advanced" },
+  //     { name: "CI/CD", level: "Expert" },
+  //     { name: "Prometheus/Grafana/Loki", level: "Expert" }
+  //   ]
+  // }
 ];
 
 const additionalSkills = [

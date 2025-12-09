@@ -135,7 +135,7 @@ export default function Hero({ aboutRef, sections = ['about', 'skills', 'experie
           </div>
           
           {/* Title with typewriter effect */}
-          <div className={`typewriter flex items-center mb-6 transition-all duration-700 delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <div className={`typewriter flex items-center mb-2 transition-all duration-700 delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <Terminal className="inline-block mr-2 text-emerald-400" size={20} aria-hidden="true" />
             <span className="text-emerald-400 font-mono">~/</span>
             <div className="typing-text-container overflow-hidden">
@@ -143,6 +143,15 @@ export default function Hero({ aboutRef, sections = ['about', 'skills', 'experie
                 {about.title}
               </span>
             </div>
+          </div>
+
+          {/* Location */}
+          <div className={`flex items-center gap-2 mb-6 transition-all duration-700 delay-400 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <span className="text-gray-400 text-sm">Oshawa, Ontario, Canada</span>
           </div>
 
           {/* Description */}
