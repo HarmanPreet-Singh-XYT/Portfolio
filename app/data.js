@@ -79,7 +79,7 @@ const education = [
     school: "Durham College of Applied Arts & Technology",
     location: "Ontario, Canada",
     period: "Sep 2025 - Apr 2027",
-    gpa: "-",
+    gpa: "4.6/5.0",
     honors: [],
     highlights: [
       "Focused on front-end development and interactive media design.",
@@ -95,14 +95,14 @@ const education = [
     school: "Lovely Professional University (LPU)",
     location: "Remote - India",
     period: "Jan 2024 - Jan 2027",
-    gpa: "3.2",
+    gpa: "8.0/10",
     honors: [],
     highlights: [
       "Core studies in computer science, software engineering, and data structures.",
-      "Specialized in cybersecurity, focusing on network security and digital forensics.",
+      "Cybersecurity, focusing on network security and digital forensics.",
       "Covered firewalls, cryptography, ethical hacking, malware analysis, and incident response.",
       "Gained practical understanding of system defense, vulnerability assessment, and data recovery.",
-      "Additional coursework in artificial intelligence, databases, and computer networks.",
+      "Coursework in artificial intelligence, databases, and computer networks.",
       "Strengthened problem-solving, programming, and secure system design skills.",
       "Completed under Distance Learning/Online Mode."
     ]
