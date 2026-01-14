@@ -269,7 +269,7 @@ const skillCategories = [
       { name: "Microservices", level: "Expert" },
       { name: "REST API", level: "Advanced" },
       { name: "WebSockets", level: "Advanced" },
-      { name: "Gin", level: "Advanced" }
+      { name: "Go/Gin", level: "Advanced" }
     ]
   },
   {
@@ -281,22 +281,22 @@ const skillCategories = [
       { name: "MySQL", level: "Advanced" },
       { name: "MongoDB", level: "Advanced" },
       { name: "Redis", level: "Advanced" },
-      { name: "DiceDB", level: "Advanced" },
+      { name: "Supabase", level: "Advanced" },
       // { name: "Prometheus", level: "Intermediate" }
     ]
   },
   // {
-  //   icon: <Cloud className="w-6 h-6" />,
-  //   title: "Cloud & DevOps",
-  //   description: "Implementing robust cloud infrastructure and CI/CD pipelines",
-  //   skills: [
-  //     { name: "Jenkins/ArgoCD", level: "Expert" },
-  //     { name: "Docker/Kubernetes", level: "Advanced" },
-  //     { name: "Terraform", level: "Advanced" },
-  //     { name: "CI/CD", level: "Expert" },
-  //     { name: "Prometheus/Grafana/Loki", level: "Expert" }
-  //   ]
-  // }
+    icon: <Cloud className="w-6 h-6" />,
+    title: "Cloud & DevOps",
+    description: "Implementing cloud infrastructure and CI/CD pipelines",
+    skills: [
+      { name: "Jenkins/ArgoCD", level: "Expert" },
+      { name: "Docker/Kubernetes", level: "Advanced" },
+      { name: "Terraform", level: "Advanced" },
+      { name: "CI/CD", level: "Expert" },
+      { name: "Prometheus/Grafana/Loki", level: "Expert" }
+    ]
+  }
 ];
 
 const additionalSkills = [
