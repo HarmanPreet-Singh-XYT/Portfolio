@@ -285,7 +285,7 @@ const skillCategories = [
       // { name: "Prometheus", level: "Intermediate" }
     ]
   },
-  // {
+  {
     icon: <Cloud className="w-6 h-6" />,
     title: "Cloud & DevOps",
     description: "Implementing cloud infrastructure and CI/CD pipelines",
