@@ -1,6 +1,8 @@
+import { redirect } from 'next/navigation'
 import React from 'react'
 
 const page = () => {
+  redirect('https://timemark.harmanita.com/privacy');
   return (
     <div className='bg-gray-100 text-gray-900'>
         <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg">
