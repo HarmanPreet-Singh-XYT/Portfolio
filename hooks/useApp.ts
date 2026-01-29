@@ -54,36 +54,54 @@ export const useApps = () => {
 }
 
 // Hook for fetching a single app
-export const useApp = (appId: string | undefined) => {
-  const [app, setApp] = useState<AppDetails | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+export const useApp = (appId: string | undefined, intent?: string) => {
+  const [app, setApp] = useState<AppDetails | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchApp = useCallback(async () => {
     if (!appId) {
-      setLoading(false)
-      return
+      setLoading(false);
+      return;
+    }
+
+    // 🚀 Manual redirect logic
+    if (appId === 'screentime') {
+      let target = 'https://timemark.harmanita.com';
+
+      const intentMap: Record<string, string> = {
+        contact: '/contact',
+        report: '/report-bug',
+        feedback: '/feedback',
+      };
+
+      if (intent && intentMap[intent]) {
+        target += intentMap[intent];
+      }
+
+      window.location.href = target;
+      return;
     }
 
     try {
-      setLoading(true)
-      setError(null)
-      const appData = await serviceGetApp(appId)
-      setApp(appData)
+      setLoading(true);
+      setError(null);
+      const appData = await serviceGetApp(appId);
+      setApp(appData);
     } catch (err) {
-      setError('Failed to fetch app details')
-      console.error('Error in useApp:', err)
+      setError('Failed to fetch app details');
+      console.error('Error in useApp:', err);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }, [appId])
+  }, [appId, intent]);
 
   useEffect(() => {
-    fetchApp()
-  }, [fetchApp])
+    fetchApp();
+  }, [fetchApp]);
 
-  return { app, loading, error, refetch: fetchApp }
-}
+  return { app, loading, error, refetch: fetchApp };
+};
 
 // Hook for creating an app
 export const useCreateApp = () => {

@@ -1,6 +1,6 @@
 'use client'
 import React, { useRef } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { 
   Star, 
@@ -42,20 +42,26 @@ interface FormData {
 
 export default function AppDetails() {
   const { id } = useParams();
+  const searchParams = useSearchParams();
+
+  const intent = searchParams.get('intent') ?? undefined;
   const appId = Array.isArray(id) ? id[0] : id;
-  
-  // Use the custom hook
-  const { app, loading, error, refetch } = useApp(appId);
-  
+
+  // Always call hook the same way
+  const { app, loading, error, refetch } = useApp(appId, intent);
+
   const [activeModal, setActiveModal] = React.useState<ModalType>(null);
   const [activeScreenshot, setActiveScreenshot] = React.useState<number>(0);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+
   const formDataRef = useRef<FormData>({
     email: '',
     name: '',
     rating: 5
   });
+
   const [render, setRender] = React.useState<boolean>(false);
+
 
   // Loading state
   if (loading) {
