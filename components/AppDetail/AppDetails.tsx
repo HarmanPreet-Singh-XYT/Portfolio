@@ -329,7 +329,12 @@ export default function AppDetails() {
                 </div>
                 <div className="aspect-video rounded-xl overflow-hidden">
                   <iframe
-                    src={app.trailerUrl}
+                    src={app.trailerUrl.includes('youtube.com/watch') 
+                      ? app.trailerUrl.replace('watch?v=', 'embed/')
+                      : app.trailerUrl.includes('youtu.be/')
+                      ? app.trailerUrl.replace('youtu.be/', 'youtube.com/embed/')
+                      : app.trailerUrl
+                    }
                     className="w-full h-full"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
