@@ -45,18 +45,18 @@ const experiences = [
       "Created an inventory management dashboard to track acquisition costs, current valuations, and profit/loss."
     ]
   },
-  {
-    title: "Frontend Developer – Outlier AI",
-    company: "Outlier AI (Hackathon Project)",
-    location: "Remote",
-    period: "Apr 2025",
-    description: [
-      "Developed a manga-anime news platform with Next.js, React, TypeScript, Tailwind CSS, and Framer Motion.",
-      "Implemented 7 dynamic sections including news feeds, featured articles, and series catalog.",
-      "Designed immersive Japanese manga-inspired UI with custom animations and responsive layouts.",
-      "Project: https://manga-news-beta.vercel.app"
-    ]
-  }
+  // {
+  //   title: "Frontend Developer – Outlier AI",
+  //   company: "Outlier AI (Hackathon Project)",
+  //   location: "Remote",
+  //   period: "Apr 2025",
+  //   description: [
+  //     "Developed a manga-anime news platform with Next.js, React, TypeScript, Tailwind CSS, and Framer Motion.",
+  //     "Implemented 7 dynamic sections including news feeds, featured articles, and series catalog.",
+  //     "Designed immersive Japanese manga-inspired UI with custom animations and responsive layouts.",
+  //     "Project: https://manga-news-beta.vercel.app"
+  //   ]
+  // }
 ];
 
 const about = {
