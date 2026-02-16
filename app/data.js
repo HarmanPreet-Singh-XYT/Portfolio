@@ -1,28 +1,38 @@
 import { Code2, Server, Database, Cpu, Palette, Lock, Brain, Cloud,Layout,Code } from 'lucide-react';
 const experiences = [
   {
-    title: "Participant – AI² (AI Squared) Hackathon",
-    company: "University of Toronto",
-    location: "Toronto, ON",
-    period: "Oct 2025 - Nov 2025",
+    title: "Production Operator",
+    company: "General Motors of Canada",
+    location: "Oshawa, ON, Canada",
+    period: "Oct 2025 - Present",
     description: [
-      "Built and optimized reinforcement learning agents with 3 teammates for a custom game environment.",
-      "Implemented Q-learning, DQN, and PPO algorithms with tuning and policy optimization.",
-      "Enhanced understanding of RL reward functions, state-action policies, and collaborative AI development."
+      "Operating assembly line equipment in automotive manufacturing environment while maintaining quality standards and safety protocols.",
+      "Collaborating with cross-functional teams to meet production targets and ensure efficient workflow across manufacturing processes",
     ]
   },
-  {
-    title: "Hackathon Winner – MUES Hackathon",
-    company: "Toronto Metropolitan University",
-    location: "Toronto, ON",
-    period: "Oct 2025",
-    description: [
-      "Built a real-time collaborative web app 'Magic Space Paint' within 7 hours using Next.js, React, and WebSockets.",
-      "Implemented multi-user drawing tools, undo/redo, PNG export, and a character interaction mode.",
-      "Collaborated with 2 teammates met on-site; won a 180Hz curved gaming monitor as one of the top prizes.",
-      "Project: https://lnkd.in/gMQF4Ubd"
-    ]
-  },
+  // {
+  //   title: "Participant – AI² (AI Squared) Hackathon",
+  //   company: "University of Toronto",
+  //   location: "Toronto, ON",
+  //   period: "Oct 2025 - Nov 2025",
+  //   description: [
+  //     "Built and optimized reinforcement learning agents with 3 teammates for a custom game environment.",
+  //     "Implemented Q-learning, DQN, and PPO algorithms with tuning and policy optimization.",
+  //     "Enhanced understanding of RL reward functions, state-action policies, and collaborative AI development."
+  //   ]
+  // },
+  // {
+  //   title: "Hackathon Winner – MUES Hackathon",
+  //   company: "Toronto Metropolitan University",
+  //   location: "Toronto, ON",
+  //   period: "Oct 2025",
+  //   description: [
+  //     "Built a real-time collaborative web app 'Magic Space Paint' within 7 hours using Next.js, React, and WebSockets.",
+  //     "Implemented multi-user drawing tools, undo/redo, PNG export, and a character interaction mode.",
+  //     "Collaborated with 2 teammates met on-site; won a 180Hz curved gaming monitor as one of the top prizes.",
+  //     "Project: https://lnkd.in/gMQF4Ubd"
+  //   ]
+  // },
   {
     title: "Software Developer",
     company: "Harry Trading",
