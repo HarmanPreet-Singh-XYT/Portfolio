@@ -110,11 +110,9 @@ const education = [
     highlights: [
       "Core studies in computer science, software engineering, and data structures.",
       "Cybersecurity, focusing on network security and digital forensics.",
-      "Covered firewalls, cryptography, ethical hacking, malware analysis, and incident response.",
-      "Gained practical understanding of system defense, vulnerability assessment, and data recovery.",
       "Coursework in artificial intelligence, databases, and computer networks.",
       "Strengthened problem-solving, programming, and secure system design skills.",
-      "Completed under Distance Learning/Online Mode."
+      "Completing under Distance Learning/Online Mode."
     ]
   }
 ];
