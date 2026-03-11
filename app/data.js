@@ -35,11 +35,11 @@ const experiences = [
   // },
   {
     title: "Software Developer",
-    company: "Harry Trading",
+    company: "Stealth Startup",
     location: "Remote",
-    period: "Jun 2025 - Aug 2025",
+    period: "May 2025 - Aug 2025",
     description: [
-      "Built a trading automation system for a client, integrating real-time price tracking, profit detection, inventory management, and trade offer automation via the Steam API.",
+      "Built a trading automation system for a client, integrating real-time price tracking, profit detection, inventory management, and trade offer automation.",
       "Reduced manual trading effort by 70% and increased profitability through faster decision-making.",
       "Implemented profit opportunity detection algorithms to identify arbitrage gaps across platforms.",
       "Created an inventory management dashboard to track acquisition costs, current valuations, and profit/loss."
