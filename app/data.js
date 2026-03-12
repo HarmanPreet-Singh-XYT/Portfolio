@@ -37,7 +37,7 @@ const experiences = [
     title: "Software Developer",
     company: "Stealth Startup",
     location: "Remote",
-    period: "May 2025 - Aug 2025",
+    period: "June 2025 - Aug 2025",
     description: [
       "Built a trading automation system for a client, integrating real-time price tracking, profit detection, inventory management, and trade offer automation.",
       "Reduced manual trading effort by 70% and increased profitability through faster decision-making.",
