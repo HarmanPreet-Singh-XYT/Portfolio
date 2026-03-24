@@ -4,6 +4,7 @@ import { Github, Linkedin, Mail, Terminal, ArrowRight, Download } from 'lucide-r
 import { about } from '@/app/data';
 import { SectionNavigation } from './SectionNavigation';
 import { AnimatedCounter } from './Hero/AnimatedCounter';
+import AsciiCanvas from './Hero/AsciiCanvas';
 
 // Types
 interface HeroProps {
@@ -11,16 +12,9 @@ interface HeroProps {
   sections?: string[];
 }
 
-interface Particle {
-  x: string;
-  y: string;
-  duration: string;
-}
-
 export default function Hero({ aboutRef, sections = ['about', 'skills', 'experience', 'projects', 'education', 'services', 'contact'] }: HeroProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const statsRef = useRef<HTMLDivElement>(null);
-  const [particles, setParticles] = useState<Particle[]>([]);
   
   // Optimize with useMemo for stats data
   const statsData = useMemo(() => [
@@ -56,16 +50,6 @@ export default function Hero({ aboutRef, sections = ['about', 'skills', 'experie
     },
   ], []);
 
-  // Generate particles on mount (from original code)
-  useEffect(() => {
-    setParticles(
-      Array.from({ length: 25 }, () => ({
-        x: `${Math.random() * 100}%`,
-        y: `${Math.random() * 100}%`,
-        duration: `${3 + Math.random() * 4}s`,
-      }))
-    );
-  }, []);
 
   // Handle animations on mount
   useEffect(() => {
@@ -111,26 +95,11 @@ export default function Hero({ aboutRef, sections = ['about', 'skills', 'experie
         </ul>
       </div>
 
-      {/* Background elements from original code */}
+      {/* Background */}
       <div aria-hidden="true">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(74,222,128,0.15),_transparent_50%)]"></div>
-        
-        {/* Floating particles from original code */}
-        <div className="particle-container absolute inset-0">
-          {particles.map((particle, i) => (
-            <div 
-              key={i} 
-              className="particle"
-              style={{
-                '--x': particle.x,
-                '--y': particle.y,
-                '--duration': particle.duration,
-              } as React.CSSProperties}
-            ></div>
-          ))}
-        </div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(74,222,128,0.08),_transparent_60%)]"></div>
       </div>
+      <AsciiCanvas />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-28 pb-16 md:pt-32 md:pb-24">
         <div className="max-w-4xl mx-auto">
@@ -288,41 +257,6 @@ export default function Hero({ aboutRef, sections = ['about', 'skills', 'experie
 
       {/* CSS animations */}
       <style jsx>{`
-        /* Particle animation from original code */
-        .particle-container {
-          pointer-events: none;
-          z-index: 1;
-        }
-        
-        .particle {
-          position: absolute;
-          width: 2px;
-          height: 2px;
-          background-color: rgba(255, 255, 255, 0.5);
-          border-radius: 50%;
-          transform: translate(-50%, -50%);
-          animation: float var(--duration) infinite ease-in-out;
-          left: var(--x);
-          top: var(--y);
-          opacity: 0.6;
-        }
-        
-        @keyframes float {
-          0%, 100% {
-            transform: translate(calc(var(--x) - 50%), calc(var(--y) - 50%));
-          }
-          25% {
-            transform: translate(calc(var(--x) - 50% + 30px), calc(var(--y) - 50% - 30px));
-          }
-          50% {
-            transform: translate(calc(var(--x) - 50% + 10px), calc(var(--y) - 50% + 40px));
-          }
-          75% {
-            transform: translate(calc(var(--x) - 50% - 20px), calc(var(--y) - 50% + 20px));
-          }
-        }
-        
-        /* Optimized animations */
         .typing-text-container {
           display: inline-block;
           max-width: 100%;
