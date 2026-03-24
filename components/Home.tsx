@@ -36,7 +36,7 @@ function Home() {
     });
     
     const { ref: experienceRef, inView: isExperienceInView } = useInView({
-        threshold: 0.6,
+        threshold: 0.2,
         onChange: (inView) => {
         if (inView) setActiveSection("experience");
         },

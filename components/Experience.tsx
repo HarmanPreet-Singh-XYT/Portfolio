@@ -1,31 +1,65 @@
 import React, { useState, useEffect, useCallback, memo } from 'react';
-import { Briefcase, Calendar, MapPin, ExternalLink, Award, ArrowDownCircle } from 'lucide-react';
+import { Briefcase, Calendar, MapPin, ExternalLink, Award, ArrowDownCircle, Trophy } from 'lucide-react';
 import { experiences } from '../app/data.js';
 
 // Memoized Card component for better performance
 const ExperienceCard = memo(({ experience, index, isVisible }:{experience:any,index:number,isVisible:boolean}) => {
+  const isNonTech = experience.category === 'non-tech';
+  const isAchievement = experience.category === 'achievement';
+
   return (
-    <div 
+    <div
       className={`relative pl-8 md:pl-24 transition-all duration-500 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-      }`}
+      } ${isNonTech ? 'opacity-70' : ''}`}
       style={{ transitionDelay: `${index * 0.15}s` }}
       data-testid="experience-card"
     >
-      {/* Timeline dot with animated pulse effect */}
-      <div className="absolute left-3 md:left-8 top-0 w-3 h-3 bg-emerald-400 rounded-full transform -translate-x-1/2 
-                   ring-4 ring-emerald-400/30 animate-pulse"></div>
+      {/* Timeline dot */}
+      <div className={`absolute left-3 md:left-8 top-0 w-3 h-3 rounded-full transform -translate-x-1/2 ring-4 animate-pulse ${
+        isAchievement
+          ? 'bg-yellow-400 ring-yellow-400/30'
+          : isNonTech
+          ? 'bg-gray-500 ring-gray-500/30'
+          : 'bg-emerald-400 ring-emerald-400/30'
+      }`}></div>
 
-      <div className="p-5 md:p-6 lg:p-8 rounded-xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 
-                   hover:border-emerald-500/50 transition-all duration-300 group hover:shadow-lg hover:shadow-emerald-500/10">
+      <div className={`p-5 md:p-6 lg:p-8 rounded-xl backdrop-blur-sm border transition-all duration-300 group hover:shadow-lg ${
+        isAchievement
+          ? 'bg-yellow-900/10 border-yellow-700/30 hover:border-yellow-500/50 hover:shadow-yellow-500/10'
+          : isNonTech
+          ? 'bg-gray-800/30 border-gray-700/30 hover:border-gray-500/50 hover:shadow-gray-500/5'
+          : 'bg-gray-800/50 border-gray-700/50 hover:border-emerald-500/50 hover:shadow-emerald-500/10'
+      }`}>
         <div className="flex flex-wrap gap-3 items-center mb-4">
-          <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-emerald-400 transition-colors duration-300">
+          <h3 className={`text-xl md:text-2xl font-bold text-white transition-colors duration-300 ${
+            isAchievement ? 'group-hover:text-yellow-400' : 'group-hover:text-emerald-400'
+          }`}>
             {experience.title}
           </h3>
-          <span className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-sm font-medium">
+          <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+            isAchievement
+              ? 'bg-yellow-500/10 text-yellow-400'
+              : isNonTech
+              ? 'bg-gray-500/10 text-gray-400'
+              : 'bg-emerald-500/10 text-emerald-400'
+          }`}>
             {experience.company}
           </span>
+          {isNonTech && (
+            <span className="px-2 py-0.5 rounded text-xs bg-gray-700/50 text-gray-500 border border-gray-600/50">
+              Non-Technical
+            </span>
+          )}
+          {isAchievement && (
+            <span className="flex items-center gap-1 px-2 py-0.5 rounded text-xs bg-yellow-900/30 text-yellow-400 border border-yellow-700/30">
+              <Trophy size={10} /> Achievement
+            </span>
+          )}
         </div>
+        {isNonTech && experience.note && (
+          <p className="text-xs text-gray-500 italic mb-3">{experience.note}</p>
+        )}
 
         <div className="flex flex-wrap gap-4 text-gray-400 mb-6">
           <div className="flex items-center gap-2" title="Duration">

@@ -1,4 +1,5 @@
 import { useRouter } from "next/navigation";
+import { about } from "@/app/data";
 
 
 
@@ -62,6 +63,16 @@ export default function Navbar({currentSection}:{currentSection:string}) {
           <button onClick={()=>router.push('/contact-us')} className={`hover:text-[#4ade80] transition ${currentSection === 'contact' ? 'text-emerald-400' : ''}`}>
             Contact
           </button>
+        </li>
+        <li>
+          <a
+            href={about.links.resume}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3 py-1 bg-emerald-500 hover:bg-emerald-400 text-black text-sm font-semibold rounded-full transition-colors duration-200"
+          >
+            Resume
+          </a>
         </li>
       </ul>
     </nav>

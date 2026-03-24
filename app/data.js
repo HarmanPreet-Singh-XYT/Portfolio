@@ -1,38 +1,31 @@
-import { Code2, Server, Database, Cpu, Palette, Lock, Brain, Cloud,Layout,Code } from 'lucide-react';
+import { Code2, Server, Database, Cpu, Palette, Lock, Brain, Cloud, Layout, Code, Zap } from 'lucide-react';
 const experiences = [
   {
     title: "Production Operator",
     company: "General Motors of Canada",
     location: "Oshawa, ON, Canada",
     period: "Oct 2025 - Present",
+    category: "non-tech",
+    note: "Part-time while completing CS education",
     description: [
       "Operating assembly line equipment in automotive manufacturing environment while maintaining quality standards and safety protocols.",
       "Collaborating with cross-functional teams to meet production targets and ensure efficient workflow across manufacturing processes",
     ]
   },
-  // {
-  //   title: "Participant – AI² (AI Squared) Hackathon",
-  //   company: "University of Toronto",
-  //   location: "Toronto, ON",
-  //   period: "Oct 2025 - Nov 2025",
-  //   description: [
-  //     "Built and optimized reinforcement learning agents with 3 teammates for a custom game environment.",
-  //     "Implemented Q-learning, DQN, and PPO algorithms with tuning and policy optimization.",
-  //     "Enhanced understanding of RL reward functions, state-action policies, and collaborative AI development."
-  //   ]
-  // },
-  // {
-  //   title: "Hackathon Winner – MUES Hackathon",
-  //   company: "Toronto Metropolitan University",
-  //   location: "Toronto, ON",
-  //   period: "Oct 2025",
-  //   description: [
-  //     "Built a real-time collaborative web app 'Magic Space Paint' within 7 hours using Next.js, React, and WebSockets.",
-  //     "Implemented multi-user drawing tools, undo/redo, PNG export, and a character interaction mode.",
-  //     "Collaborated with 2 teammates met on-site; won a 180Hz curved gaming monitor as one of the top prizes.",
-  //     "Project: https://lnkd.in/gMQF4Ubd"
-  //   ]
-  // },
+  {
+    title: "Hackathon Winner – MUES Hackathon",
+    company: "Toronto Metropolitan University",
+    location: "Toronto, ON",
+    period: "Oct 2025",
+    category: "achievement",
+    achievements: "1st Place — 180Hz Gaming Monitor Prize",
+    description: [
+      "Built a real-time collaborative web app 'Magic Space Paint' within 7 hours using Next.js, React, and WebSockets.",
+      "Implemented multi-user drawing tools, undo/redo, PNG export, and a character interaction mode.",
+      "Collaborated with 2 teammates met on-site; won a 180Hz curved gaming monitor as one of the top prizes.",
+    ],
+    skills: ["Next.js", "React", "WebSockets", "TypeScript"]
+  },
   {
     title: "Software Developer",
     company: "Stealth Startup",
@@ -62,7 +55,12 @@ const experiences = [
 const about = {
   name: "Harmanpreet Singh",
   title: "Software Engineer",
-  description: "Building scalable and responsive applications across web and mobile platforms with Full Stack expertise. Focused on delivering high-performance, reliable solutions, with a growing interest in integrating AI/ML to enhance functionality and user experience.",
+  description: "AI-native Full-Stack Engineer who ships under pressure. Won Google's 'Build with AI' track at Hack Canada 2026 (500+ hackers, 200+ submissions). Honoured at the Anthropic Hackathon at UofT. Production apps used by 1,000+ people.",
+  achievements: [
+    { icon: "🏆", text: "Google Winner", sub: "Hack Canada 2026" },
+    { icon: "🏅", text: "Honoured", sub: "Anthropic Hackathon · UofT" },
+    { icon: "🥇", text: "MUES Winner", sub: "Toronto Met University" },
+  ],
   links: {
     github: "https://github.com/HarmanPreet-Singh-XYT",
     linkedin: "https://www.linkedin.com/in/harman-developer/",
@@ -70,7 +68,7 @@ const about = {
   },
   email:'harman@harmanita.com',
   project: {
-    number:10,
+    number:15,
     plus:true
   },
   experience:{
@@ -256,41 +254,67 @@ const projects = [
 
 const skillCategories = [
   {
+    icon: <Zap className="w-6 h-6" />,
+    title: "AI & LLMs",
+    description: "Building agentic workflows and AI-powered applications",
+    domain: "ai",
+    skills: [
+      { name: "LangGraph" },
+      { name: "LangChain" },
+      { name: "RAG" },
+      { name: "LLM APIs" },
+      { name: "ChromaDB" },
+      { name: "NLP" },
+      { name: "CNN" },
+      { name: "Transformers" },
+      { name: "Deep Learning" },
+      { name: "Reinforcement Learning" },
+      { name: "Computer Vision" },
+      { name: "Scikit-Learn" },
+    ]
+  },
+  {
     icon: <Code2 className="w-6 h-6" />,
     title: "Frontend Development",
     description: "Building responsive, performant, and accessible web applications",
     skills: [
-      { name: "Next.js", level: "Advanced" },
-      { name: "React", level: "Expert" },
-      { name: "React Native", level: "Advanced" },
-      { name: "Tailwind CSS", level: "Expert" },
-      { name: "Flutter", level: "Advanced" }
+      { name: "React.js" },
+      { name: "Next.js" },
+      { name: "React Native" },
+      { name: "Flutter" },
+      { name: "HTML5" },
+      { name: "CSS3" },
+      { name: "SASS" },
+      { name: "Tailwind CSS" },
     ]
   },
   {
     icon: <Server className="w-6 h-6" />,
-    title: "Backend Development",
+    title: "Backend & APIs",
     description: "Designing scalable and maintainable server-side applications",
     skills: [
-      { name: "Node.js/Express", level: "Expert" },
-      { name: "Python/Django", level: "Advanced" },
-      { name: "Microservices", level: "Expert" },
-      { name: "REST API", level: "Advanced" },
-      { name: "WebSockets", level: "Advanced" },
-      { name: "Go/Gin", level: "Advanced" }
+      { name: "Node.js" },
+      { name: "Express" },
+      { name: "FastAPI" },
+      { name: "Flask" },
+      { name: "Django" },
+      { name: "Go/Gin" },
+      { name: "WebSockets" },
+      { name: "Microservices" },
+      { name: "REST API" },
     ]
   },
   {
     icon: <Database className="w-6 h-6" />,
-    title: "Database & Cache",
+    title: "Databases",
     description: "Managing and optimizing data storage solutions",
     skills: [
-      { name: "PostgreSQL", level: "Expert" },
-      { name: "MySQL", level: "Advanced" },
-      { name: "MongoDB", level: "Advanced" },
-      { name: "Redis", level: "Advanced" },
-      { name: "Supabase", level: "Advanced" },
-      // { name: "Prometheus", level: "Intermediate" }
+      { name: "PostgreSQL" },
+      { name: "PostGIS" },
+      { name: "MongoDB" },
+      { name: "MySQL" },
+      { name: "Redis" },
+      { name: "Supabase" },
     ]
   },
   {
@@ -298,39 +322,23 @@ const skillCategories = [
     title: "Cloud & DevOps",
     description: "Implementing cloud infrastructure and CI/CD pipelines",
     skills: [
-      { name: "Jenkins/ArgoCD", level: "Expert" },
-      { name: "Docker/Kubernetes", level: "Advanced" },
-      { name: "Terraform", level: "Advanced" },
-      { name: "CI/CD", level: "Expert" },
-      { name: "Prometheus/Grafana/Loki", level: "Expert" }
+      { name: "AWS (S3, EC2, Lambda)" },
+      { name: "GCP" },
+      { name: "Docker" },
+      { name: "Kubernetes" },
+      { name: "Terraform" },
+      { name: "Jenkins/ArgoCD" },
+      { name: "Git" },
+      { name: "CI/CD" },
+      { name: "Linux/Unix" },
+      { name: "Prometheus" },
+      { name: "Grafana" },
+      { name: "Loki" },
     ]
   }
 ];
 
 const additionalSkills = [
-  {
-    icon: <Cpu className="w-5 h-5" />,
-    title: "Operating Systems",
-    skills: ["Windows", "Linux","MacOS"]
-  },
-  {
-    icon: <Lock className="w-5 h-5" />,
-    title: "Security & Testing",
-    skills: ["JWT", "Encryption", "OAuth", "Selenium"]
-  },
-  {
-    icon: <Brain className="w-5 h-5" />,
-    title: "Machine Learning & Data Analysis",
-    skills: [
-      "Scikit-learn",
-      "Pandas",
-      "NumPy",
-      "Matplotlib",
-      "Seaborn",
-      "Tensorflow",
-      "Deep Learning"
-    ]
-  },
   {
     icon: <Code className="w-5 h-5" />,
     title: "Programming Languages",
@@ -338,14 +346,20 @@ const additionalSkills = [
       "JavaScript",
       "TypeScript",
       "Python",
-      "Dart",
       "C/C++",
-      "Bash/Shell",
-      "SQL",
       "Go",
-      "Java"
+      "SQL",
+      "Swift",
+      "Java",
+      "Dart",
+      "Bash/Shell",
     ]
-  }
+  },
+  {
+    icon: <Lock className="w-5 h-5" />,
+    title: "Security & Testing",
+    skills: ["JWT", "OAuth", "Encryption", "Selenium"]
+  },
 ];
 
 const calendlyLink="https://calendly.com/preetsinghharman27"

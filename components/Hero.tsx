@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState, useRef, useMemo } from 'react';
-import { Github, Linkedin, Mail, Terminal, ArrowRight, Download, ChevronDown } from 'lucide-react';
+import { Github, Linkedin, Mail, Terminal, ArrowRight, Download } from 'lucide-react';
 import { about } from '@/app/data';
 import { SectionNavigation } from './SectionNavigation';
 import { AnimatedCounter } from './Hero/AnimatedCounter';
@@ -26,38 +26,40 @@ export default function Hero({ aboutRef, sections = ['about', 'skills', 'experie
   const statsData = useMemo(() => [
     {
       value: 1000,
-      label: "Active App Users",
-      plus: about.experience.plus
+      label: "App Users",
+      plus: true,
+      suffix: ""
     },
     {
       value: about.project.number,
-      label: "Projects Completed",
-      plus: about.project.plus
+      label: "Projects Shipped",
+      plus: about.project.plus,
+      suffix: ""
     },
     {
-      value: about.experience.number,
-      label: "Years Experience",
-      plus: about.experience.plus
+      value: 3,
+      label: "Hackathon Awards",
+      plus: false,
+      suffix: ""
     },
     {
-      value: 5,
-      label: "Hackathons",
-      plus: about.experience.plus
+      value: 70,
+      label: "Efficiency Gain",
+      plus: false,
+      suffix: "%"
     },
     {
       value: 5,
       label: "Certifications",
-      plus: about.experience.plus
+      plus: true,
+      suffix: ""
     },
-
-
   ], []);
 
   // Generate particles on mount (from original code)
   useEffect(() => {
-    // Generate particle data only on the client side after mount
     setParticles(
-      Array.from({ length: 50 }, () => ({
+      Array.from({ length: 25 }, () => ({
         x: `${Math.random() * 100}%`,
         y: `${Math.random() * 100}%`,
         duration: `${3 + Math.random() * 4}s`,
@@ -67,11 +69,20 @@ export default function Hero({ aboutRef, sections = ['about', 'skills', 'experie
 
   // Handle animations on mount
   useEffect(() => {
-    // Stagger animations for visual appeal
     const animationTimer = setTimeout(() => setIsLoaded(true), 100);
-    
-    // Clean up timer
     return () => clearTimeout(animationTimer);
+  }, []);
+
+  // Easter egg for developer visitors
+  useEffect(() => {
+    console.log(
+      '%c\n  Hey developer 👋  You found the easter egg.\n',
+      'color: #4ade80; font-size: 14px; font-weight: bold; font-family: monospace;'
+    );
+    console.log(
+      '%c  I like how you think. Always curious about the implementation.\n  Let\'s build something together → harman@harmanita.com\n',
+      'color: #9ca3af; font-size: 12px; font-family: monospace;'
+    );
   }, []);
 
   // Navigation helper
@@ -121,10 +132,19 @@ export default function Hero({ aboutRef, sections = ['about', 'skills', 'experie
         </div>
       </div>
       
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-12 md:py-0">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-28 pb-16 md:pt-32 md:pb-24">
         <div className="max-w-4xl mx-auto">
+          {/* Open to Opportunities badge */}
+          <div className={`flex items-center gap-2 mb-7 transition-all duration-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span className="text-sm text-emerald-400 font-medium tracking-wide">Open to Internship</span>
+          </div>
+
           {/* Name with glitch effect */}
-          <div className={`glitch-container mb-6 transition-opacity duration-700 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+          <div className={`glitch-container mb-8 transition-opacity duration-700 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
             <h2 
               className="sm:text-7xl text-5xl font-bold glitch-text text-white" 
               data-text={about.name}
@@ -135,7 +155,7 @@ export default function Hero({ aboutRef, sections = ['about', 'skills', 'experie
           </div>
           
           {/* Title with typewriter effect */}
-          <div className={`typewriter flex items-center mb-2 transition-all duration-700 delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <div className={`typewriter flex items-center mb-4 transition-all duration-700 delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <Terminal className="inline-block mr-2 text-emerald-400" size={20} aria-hidden="true" />
             <span className="text-emerald-400 font-mono">~/</span>
             <div className="typing-text-container overflow-hidden">
@@ -146,7 +166,7 @@ export default function Hero({ aboutRef, sections = ['about', 'skills', 'experie
           </div>
 
           {/* Location */}
-          <div className={`flex items-center gap-2 mb-6 transition-all duration-700 delay-400 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <div className={`flex items-center gap-2 mb-8 transition-all duration-700 delay-400 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -155,12 +175,40 @@ export default function Hero({ aboutRef, sections = ['about', 'skills', 'experie
           </div>
 
           {/* Description */}
-          <p className={`text-lg sm:text-xl text-gray-300 mb-8 leading-relaxed max-w-3xl transition-all duration-700 delay-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <p className={`text-lg sm:text-xl text-gray-300 mb-10 leading-relaxed max-w-3xl transition-all duration-700 delay-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             {about.description}
           </p>
 
+          {/* Hackathon / recognition badges */}
+          <div className={`flex flex-wrap gap-3 mb-8 transition-all duration-700 delay-550 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            {about.achievements.map((a, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-900/60 border border-yellow-700/40 hover:border-yellow-500/60 transition-colors duration-200 group"
+              >
+                <span className="text-base">{a.icon}</span>
+                <div className="leading-tight">
+                  <div className="text-xs font-semibold text-yellow-300 group-hover:text-yellow-200 transition-colors">{a.text}</div>
+                  <div className="text-xs text-gray-500">{a.sub}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Tech stack badges */}
+          <div className={`flex flex-wrap gap-2 mb-10 transition-all duration-700 delay-600 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            {['React', 'Node.js', 'Flutter', 'TypeScript', 'DevOps', 'PostgreSQL'].map((tech) => (
+              <span
+                key={tech}
+                className="px-3 py-1 text-xs font-mono bg-gray-900/60 text-gray-300 rounded-full border border-gray-700 hover:border-emerald-500/50 hover:text-emerald-400 transition-colors duration-200"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+
           {/* Social links */}
-          <div className={`flex flex-wrap sm:flex-nowrap gap-5 sm:gap-6 mb-8 transition-all duration-700 delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <div className={`flex flex-wrap sm:flex-nowrap gap-5 sm:gap-6 mb-10 transition-all duration-700 delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <SocialLink 
               href={about.links.github}
               icon={<Github size={22} />}
@@ -182,7 +230,7 @@ export default function Hero({ aboutRef, sections = ['about', 'skills', 'experie
           </div>
 
           {/* CTA buttons */}
-          <div className={`flex flex-wrap gap-4 mb-12 transition-all duration-700 delay-900 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <div className={`flex flex-wrap gap-4 mb-16 transition-all duration-700 delay-900 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <button 
               onClick={() => scrollToSection('contact-section')} 
               className="btn-primary group flex items-center gap-2 px-5 py-3 bg-emerald-500 hover:bg-emerald-600 text-black font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2 focus:ring-offset-black active:translate-y-0.5"
@@ -211,11 +259,12 @@ export default function Hero({ aboutRef, sections = ['about', 'skills', 'experie
             aria-label="Professional statistics"
           >
             {statsData.map((stat, index) => (
-              <StatCard 
+              <StatCard
                 key={index}
                 value={stat.value}
                 label={stat.label}
                 plus={stat.plus}
+                suffix={stat.suffix}
               />
             ))}
             
@@ -236,14 +285,6 @@ export default function Hero({ aboutRef, sections = ['about', 'skills', 'experie
       </div>
       {/* <SectionNavigation sections={sections}/> */}
       {/* Scroll indicator */}
-      <button 
-        onClick={() => scrollToSection('skills')}
-        className="hidden md:flex absolute bottom-8 left-1/2 transform -translate-x-1/2 flex-col items-center animate-bounce text-gray-400 hover:text-emerald-400 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2 focus:ring-offset-black rounded-full p-1"
-        aria-label="Scroll to skills section"
-      >
-        <span className="text-sm mb-2">Scroll Down</span>
-        <ChevronDown size={20} />
-      </button>
 
       {/* CSS animations */}
       <style jsx>{`
@@ -380,17 +421,19 @@ type StatCardProps = {
   value: number;
   label: string;
   plus?: boolean;
+  suffix?: string;
 }
 
-function StatCard({ value, label, plus = false }: StatCardProps) {
+function StatCard({ value, label, plus = false, suffix = "" }: StatCardProps) {
   return (
     <div className="stat-card bg-gray-900/40 backdrop-blur-sm p-6 rounded-lg border border-gray-800 hover:border-emerald-500/50 transition-all duration-300 shadow-lg hover:shadow-emerald-500/10 hover:scale-105">
-      <div className="flex justify-center">
-        <AnimatedCounter 
-          targetValue={value} 
-          className="text-4xl font-bold text-emerald-400 mb-2" 
+      <div className="flex justify-center items-end">
+        <AnimatedCounter
+          targetValue={value}
+          className="text-4xl font-bold text-emerald-400 mb-2"
         />
-        {plus && <div className="text-4xl font-bold text-emerald-400 mb-2">+</div>}
+        {suffix && <div className="text-4xl font-bold text-emerald-400 mb-2">{suffix}</div>}
+        {plus && !suffix && <div className="text-4xl font-bold text-emerald-400 mb-2">+</div>}
       </div>
       <div className="text-gray-300 text-center font-medium">{label}</div>
     </div>
