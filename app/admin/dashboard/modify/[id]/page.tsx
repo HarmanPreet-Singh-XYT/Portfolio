@@ -6,18 +6,22 @@ import { AppDetails } from '@/types/app';
 import { AppFormBasic } from '@/components/Dashboard/Modify/Basic';
 import { MediaAssetsSection } from '@/components/Dashboard/Modify/Media';
 import { TechnicalDetailsSection } from '@/components/Dashboard/Modify/Technical';
-import { 
-  Trash2, 
-  Plus, 
-  Save, 
-  Loader2, 
+import {
+  Trash2,
+  Plus,
+  Save,
+  Loader2,
   ChevronRight,
   Store,
   HelpCircle,
   HeadphonesIcon,
   Shield,
-  Globe
+  Globe,
+  ArrowLeft,
+  CheckCircle2,
+  AlertCircle,
 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 const emptyAppDetails: AppDetails = {
   id: '',
@@ -76,6 +80,7 @@ const emptyAppDetails: AppDetails = {
 };
 
 const AppUpdateComponent = () => {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
@@ -158,12 +163,9 @@ const AppUpdateComponent = () => {
 
     try {
       await updateApp(appData.id, appData);
-      if (updateSuccess) {
-        setSuccess(true);
-        setTimeout(() => setSuccess(false), 5000);
-      }
+      setSuccess(true);
     } catch (err) {
-      setError(updateError || 'An error occurred');
+      setError(updateError || 'An error occurred while updating the app');
     } finally {
       setLoading(false);
     }
@@ -272,45 +274,71 @@ const AppUpdateComponent = () => {
     <div className="min-h-screen bg-black text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl py-8">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-emerald-400 to-emerald-600 bg-clip-text text-transparent">
-              Update App
-            </h1>
-            <p className="text-gray-400">Modify your app details and settings</p>
-          </div>
+        <div className="mb-8">
           <button
-            onClick={handleSubmit}
-            disabled={loading || fetchLoading}
-            className="group relative px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-black font-medium rounded-lg 
-                     transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/25
-                     disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            type="button"
+            onClick={() => router.push('/admin/dashboard')}
+            className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors mb-4"
           >
-            {(loading || fetchLoading) ? (
-              <>
-                <Loader2 className="w-4 h-4 animate-spin" />
-                {fetchLoading ? "Fetching..." : "Updating..."}
-              </>
-            ) : (
-              <>
-                <Save className="w-4 h-4" />
-                Update App
-                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </>
-            )}
+            <ArrowLeft className="h-4 w-4" />
+            Back to Dashboard
           </button>
+
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-4xl font-bold mb-1 text-white">
+                Update App
+              </h1>
+              <p className="text-gray-400 text-sm">
+                {fetchLoading ? 'Loading app data...' : appData.name ? `Editing: ${appData.name}` : 'Modify your app details and settings'}
+              </p>
+            </div>
+            <button
+              onClick={handleSubmit}
+              disabled={loading || fetchLoading}
+              className="group relative px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-black font-medium rounded-lg
+                       transition-all duration-200 hover:shadow-lg hover:shadow-emerald-500/25
+                       disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            >
+              {(loading || fetchLoading) ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  {fetchLoading ? 'Loading...' : 'Saving...'}
+                </>
+              ) : (
+                <>
+                  <Save className="w-4 h-4" />
+                  Save Changes
+                </>
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Alerts */}
         {error && (
-          <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-lg">
-            <p className="text-red-400">{error}</p>
+          <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg flex items-start gap-3">
+            <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="text-red-400 font-medium">Update failed</p>
+              <p className="text-red-400/80 text-sm mt-0.5">{error}</p>
+            </div>
           </div>
         )}
 
         {success && (
-          <div className="mb-6 p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-lg">
-            <p className="text-emerald-400">App updated successfully!</p>
+          <div className="mb-6 p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-lg flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <CheckCircle2 className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+              <p className="text-emerald-400 font-medium">App updated successfully!</p>
+            </div>
+            <button
+              type="button"
+              onClick={() => router.push('/admin/dashboard')}
+              className="text-sm text-emerald-400 hover:text-emerald-300 underline transition-colors"
+            >
+              Back to Dashboard
+            </button>
           </div>
         )}
 

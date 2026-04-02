@@ -11,12 +11,14 @@ import { Switch } from '@/components/ui/switch';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Plus, X, Save, Loader2 } from 'lucide-react';
+import { Plus, X, Save, Loader2, ArrowLeft, LayoutDashboard } from 'lucide-react';
 import { EnhancedCyberpunkEditor } from '@/components/Lexical';
 import { useCreateApp } from '@/hooks/useApp';
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { useRouter } from 'next/navigation';
 
 export default function AppCreator() {
+  const router = useRouter();
   const { createApp, loading, error, createdAppId, reset } = useCreateApp();
   
   // Form state
@@ -268,17 +270,27 @@ if (createdAppId) {
   return (
     <div className="min-h-screen bg-black p-6">
       <div className="max-w-2xl mx-auto">
-        <Alert className="bg-gray-900/40 backdrop-blur-sm border-emerald-500/30">
-          <AlertDescription className="text-emerald-400">
-            <span className="font-mono">[SUCCESS]</span> App created successfully! ID: <span className="text-white">{createdAppId}</span>
+        <Alert className="bg-gray-900/40 backdrop-blur-sm border-emerald-500/30 mb-6">
+          <AlertDescription className="text-emerald-400 text-base">
+            App created successfully! ID: <span className="font-mono text-white">{createdAppId}</span>
           </AlertDescription>
         </Alert>
-        <Button 
-          onClick={reset} 
-          className="mt-4 bg-emerald-600 hover:bg-emerald-500 text-white hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-emerald-500/25"
-        >
-          Create Another App
-        </Button>
+        <div className="flex gap-3">
+          <Button
+            onClick={() => router.push('/admin/dashboard')}
+            className="bg-zinc-700 hover:bg-zinc-600 text-white transition-all duration-200"
+          >
+            <LayoutDashboard className="mr-2 h-4 w-4" />
+            Back to Dashboard
+          </Button>
+          <Button
+            onClick={reset}
+            className="bg-emerald-600 hover:bg-emerald-500 text-white transition-all duration-200 shadow-lg hover:shadow-emerald-500/25"
+          >
+            <Plus className="mr-2 h-4 w-4" />
+            Create Another App
+          </Button>
+        </div>
       </div>
     </div>
   );
@@ -288,10 +300,16 @@ return (
   <div className="min-h-screen bg-black p-6">
     <div className="max-w-4xl mx-auto">
       <div className="mb-8">
-        <h1 className="text-5xl font-bold text-white mb-2">
-          <span className="text-emerald-400">&gt;</span> Create New App
-        </h1>
-        <p className="text-gray-300 text-lg">Configure all aspects of your new application</p>
+        <button
+          type="button"
+          onClick={() => router.push('/admin/dashboard')}
+          className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors mb-4"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back to Dashboard
+        </button>
+        <h1 className="text-4xl font-bold text-white mb-2">Create New App</h1>
+        <p className="text-gray-400 text-base">Configure all aspects of your new application</p>
       </div>
 
       {error && (
@@ -959,29 +977,29 @@ return (
         </Tabs>
 
         <div className="flex justify-end space-x-4 mt-8">
-          <Button 
-            type="button" 
-            variant="outline" 
+          <Button
+            type="button"
+            variant="outline"
             onClick={reset}
-            className="bg-transparent border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white hover:border-emerald-500 transition-all duration-200"
+            className="bg-transparent border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white hover:border-gray-500 transition-all duration-200"
           >
-            <span className="text-red-400">[</span>RESET<span className="text-red-400">]</span>
+            Reset Form
           </Button>
-          <Button 
-            type="button" 
-            disabled={loading} 
+          <Button
+            type="button"
+            disabled={loading}
             onClick={handleSubmit}
-            className="bg-emerald-600 hover:bg-emerald-500 text-white hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-emerald-500/25"
+            className="bg-emerald-600 hover:bg-emerald-500 text-white transition-all duration-200 shadow-lg hover:shadow-emerald-500/25"
           >
             {loading ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                <span className="text-emerald-200">[</span>CREATING<span className="text-emerald-200">]</span>
+                Creating...
               </>
             ) : (
               <>
                 <Save className="mr-2 h-4 w-4" />
-                <span className="text-emerald-200">[</span>CREATE APP<span className="text-emerald-200">]</span>
+                Create App
               </>
             )}
           </Button>

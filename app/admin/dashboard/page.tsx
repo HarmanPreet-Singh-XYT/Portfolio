@@ -58,7 +58,14 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuLabel,
 } from '@/components/ui/dropdown-menu';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -517,23 +524,37 @@ export default function AppDashboard() {
             </p>
           </div>
           <div className="flex items-center gap-2">
-            <Button
-              onClick={handleRefresh}
-              variant="outline"
-              size="icon"
-              className="bg-zinc-900 border-zinc-700 text-white hover:bg-zinc-800"
-              disabled={isRefreshing}
-            >
-              <RefreshCw className={cn("h-4 w-4", isRefreshing && "animate-spin")} />
-            </Button>
-            <Button
-              onClick={exportData}
-              variant="outline"
-              size="icon"
-              className="bg-zinc-900 border-zinc-700 text-white hover:bg-zinc-800"
-            >
-              <Download className="h-4 w-4" />
-            </Button>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    onClick={handleRefresh}
+                    variant="outline"
+                    size="icon"
+                    className="bg-zinc-900 border-zinc-700 text-white hover:bg-zinc-800"
+                    disabled={isRefreshing}
+                  >
+                    <RefreshCw className={cn("h-4 w-4", isRefreshing && "animate-spin")} />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>Refresh (⌘R)</TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    onClick={exportData}
+                    variant="outline"
+                    size="icon"
+                    className="bg-zinc-900 border-zinc-700 text-white hover:bg-zinc-800"
+                  >
+                    <Download className="h-4 w-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>Export CSV (⌘E)</TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
             <Button
               onClick={handleCreate}
               className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 h-auto"
@@ -570,36 +591,54 @@ export default function AppDashboard() {
                 </div>
                 
                 {/* Column visibility dropdown */}
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      className="bg-zinc-800 border-zinc-700 text-white hover:bg-zinc-700"
-                    >
-                      <Settings2 className="h-4 w-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="bg-zinc-900 border-zinc-700">
-                    {table
-                      .getAllColumns()
-                      .filter((column) => column.getCanHide())
-                      .map((column) => {
-                        return (
-                          <DropdownMenuCheckboxItem
-                            key={column.id}
-                            className="capitalize text-zinc-200 hover:bg-zinc-800"
-                            checked={column.getIsVisible()}
-                            onCheckedChange={(value) =>
-                              column.toggleVisibility(!!value)
-                            }
+                <TooltipProvider>
+                  <Tooltip>
+                    <DropdownMenu>
+                      <TooltipTrigger asChild>
+                        <DropdownMenuTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="bg-zinc-800 border-zinc-700 text-white hover:bg-zinc-700"
                           >
-                            {column.id}
-                          </DropdownMenuCheckboxItem>
-                        );
-                      })}
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                            <Settings2 className="h-4 w-4" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                      </TooltipTrigger>
+                      <TooltipContent>Toggle columns</TooltipContent>
+                      <DropdownMenuContent align="end" className="bg-zinc-900 border-zinc-700">
+                        <DropdownMenuLabel className="text-zinc-400 text-xs font-normal">Toggle columns</DropdownMenuLabel>
+                        <DropdownMenuSeparator className="bg-zinc-700" />
+                        {table
+                          .getAllColumns()
+                          .filter((column) => column.getCanHide())
+                          .map((column) => {
+                            const columnLabels: Record<string, string> = {
+                              name: 'Application',
+                              shortDescription: 'Description',
+                              'additionalInfo.version': 'Version',
+                              'additionalInfo.size': 'Size',
+                              techStack: 'Tech Stack',
+                              'additionalInfo.releaseDate': 'Release Date',
+                            };
+                            const label = columnLabels[column.id] || column.id.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+                            return (
+                              <DropdownMenuCheckboxItem
+                                key={column.id}
+                                className="text-zinc-200 hover:bg-zinc-800"
+                                checked={column.getIsVisible()}
+                                onCheckedChange={(value) =>
+                                  column.toggleVisibility(!!value)
+                                }
+                              >
+                                {label}
+                              </DropdownMenuCheckboxItem>
+                            );
+                          })}
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </Tooltip>
+                </TooltipProvider>
               </div>
             </div>
           </CardHeader>
