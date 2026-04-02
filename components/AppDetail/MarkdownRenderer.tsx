@@ -13,7 +13,7 @@ const MarkdownRenderer = ({ content }) => {
       components={{
         code({ node, className, children, ...props }) {
           const match = /language-(\w+)/.exec(className || '');
-          return !match ? (
+          return match ? (
             <SyntaxHighlighter
               style={tomorrow}
               language={match[1]}

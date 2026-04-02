@@ -1,3 +1,4 @@
+import React, { useState } from "react"
 import {
   Card,
   CardHeader,
@@ -17,8 +18,10 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Trash2, Plus, Sparkles, Info, Settings } from "lucide-react"
 import { AppDetails } from "@/types/app"
+import { EnhancedCyberpunkEditor } from "@/components/Lexical"
 
 interface AppFormBasicProps {
   appData: AppDetails
@@ -33,6 +36,8 @@ export const AppFormBasic: React.FC<AppFormBasicProps> = ({
   handleArrayAdd,
   handleArrayRemove,
 }) => {
+  const [descriptionMode, setDescriptionMode] = useState('raw');
+
   return (
     <div className="space-y-6">
       {/* Basic Information */}
@@ -87,19 +92,48 @@ export const AppFormBasic: React.FC<AppFormBasicProps> = ({
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="description" className="text-gray-300 font-medium">
-              Full Description
-            </Label>
-            <Textarea
-              id="description"
-              value={appData.description}
-              onChange={(e) =>
-                handleInputChange("description", e.target.value)
-              }
-              placeholder="Detailed app description"
-              rows={6}
-              className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 focus:border-emerald-400 focus:ring-emerald-400/20 transition-colors resize-none"
-            />
+            <div className="flex items-center justify-between">
+              <Label htmlFor="description" className="text-gray-300 font-medium">
+                Full Description
+              </Label>
+              <RadioGroup
+                value={descriptionMode}
+                onValueChange={setDescriptionMode}
+                className="flex items-center gap-4"
+              >
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="raw" id="desc-raw" className="border-gray-600 text-emerald-500" />
+                  <Label htmlFor="desc-raw" className="text-sm text-gray-300 cursor-pointer">
+                    Raw Markdown
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="formatted" id="desc-formatted" className="border-gray-600 text-emerald-500" />
+                  <Label htmlFor="desc-formatted" className="text-sm text-gray-300 cursor-pointer">
+                    Formatted Markdown
+                  </Label>
+                </div>
+              </RadioGroup>
+            </div>
+            {descriptionMode === 'raw' ? (
+              <Textarea
+                id="description"
+                value={appData.description}
+                onChange={(e) =>
+                  handleInputChange("description", e.target.value)
+                }
+                placeholder="Detailed app description"
+                rows={6}
+                className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 focus:border-emerald-400 focus:ring-emerald-400/20 transition-colors resize-none"
+              />
+            ) : (
+              <EnhancedCyberpunkEditor
+                value={appData.description}
+                onChange={(content) => handleInputChange("description", content)}
+                placeholder="Detailed app description"
+                className=""
+              />
+            )}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
