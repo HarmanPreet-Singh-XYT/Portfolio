@@ -11,19 +11,42 @@ const MarkdownRenderer = ({ content }) => {
       rehypePlugins={[rehypeRaw]}
     //   className="prose prose-gray max-w-none dark:prose-invert"
       components={{
+        pre({ children }) {
+          return (
+            <pre className="rounded-lg overflow-auto my-4">
+              {children}
+            </pre>
+          );
+        },
         code({ node, className, children, ...props }) {
           const match = /language-(\w+)/.exec(className || '');
-          return match ? (
-            <SyntaxHighlighter
-              style={tomorrow}
-              language={match[1]}
-              PreTag="div"
-              {...props}
-            >
-              {String(children).replace(/\n$/, '')}
-            </SyntaxHighlighter>
-          ) : (
-            <code className={className} {...props}>
+          const isBlock = String(children).includes('\n');
+          if (match) {
+            return (
+              <SyntaxHighlighter
+                style={tomorrow}
+                language={match[1]}
+                PreTag="div"
+                {...props}
+              >
+                {String(children).replace(/\n$/, '')}
+              </SyntaxHighlighter>
+            );
+          }
+          if (isBlock) {
+            return (
+              <SyntaxHighlighter
+                style={tomorrow}
+                language="text"
+                PreTag="div"
+                {...props}
+              >
+                {String(children).replace(/\n$/, '')}
+              </SyntaxHighlighter>
+            );
+          }
+          return (
+            <code className="bg-gray-800 text-emerald-300 px-1.5 py-0.5 rounded text-sm font-mono" {...props}>
               {children}
             </code>
           );
