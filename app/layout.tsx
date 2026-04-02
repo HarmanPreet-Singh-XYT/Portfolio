@@ -4,25 +4,30 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/react"
 
 const seoData = {
-  title: "Harmanpreet Singh - Full Stack Developer",
+  title: "Harmanpreet Singh | Full Stack Developer",
   absoluteTitle: "Harmanpreet Singh | Full Stack Developer & Software Engineer",
-  ogTitle: "Harmanpreet Singh - Full Stack Developer Portfolio",
-  description: "Full Stack Developer specializing in React, Node.js, Flutter, and cloud technologies. Building scalable web and mobile applications with modern tech stacks.",
+  ogTitle: "Harmanpreet Singh | Full Stack Developer & Software Engineer",
+  description: "AI-native Full-Stack Engineer based in Canada. Google Winner at Hack Canada 2026 (500+ hackers). Production apps used by 1,000+ people. Specializing in React, Next.js, Node.js, Flutter, and TypeScript.",
   keywords: [
     "Harmanpreet Singh",
     "Full Stack Developer",
+    "Software Engineer",
     "React Developer",
+    "Next.js Developer",
     "Node.js",
     "Flutter",
     "JavaScript",
     "TypeScript",
     "Python",
-    "Software Engineer",
     "Web Development",
     "Mobile Development",
-    "Cloud Computing",
+    "AI Developer",
+    "Hackathon Winner",
+    "Hack Canada",
+    "Google Winner",
     "Portfolio",
-    "Programmer"
+    "Canada",
+    "Punjab India",
   ],
   author: {
     name: "Harmanpreet Singh",
@@ -77,9 +82,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   robots: {
-    index: true, // Changed to true for personal website visibility
+    index: true,
     follow: true,
-    nocache: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
@@ -118,13 +123,21 @@ export const metadata: Metadata = {
     title: seoData.ogTitle,
     description: seoData.description,
     siteName: seoData.title,
-
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Harmanpreet Singh - Full Stack Developer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: seoData.ogTitle,
     description: seoData.description,
     creator: seoData.author.twitterAddress,
+    images: ["/og-image.png"],
   },
   appleWebApp: {
     capable: true,
@@ -141,6 +154,31 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Harmanpreet Singh",
+  url: "https://harmanita.com",
+  image: "https://harmanita.com/og-image.png",
+  jobTitle: "Full Stack Developer",
+  description: "AI-native Full-Stack Engineer based in Canada. Google Winner at Hack Canada 2026. Production apps used by 1,000+ people.",
+  email: "harman@harmanita.com",
+  sameAs: [
+    "https://github.com/HarmanPreet-Singh-XYT",
+    "https://www.linkedin.com/in/harman-developer/",
+    "https://x.com/harmanpreet277",
+  ],
+  knowsAbout: [
+    "React", "Next.js", "Node.js", "TypeScript", "Flutter",
+    "Python", "Full Stack Development", "Mobile Development", "AI Development",
+  ],
+  award: [
+    "Google Winner - Hack Canada 2026",
+    "Honoured - Anthropic Hackathon at UofT",
+    "1st Place - MUES Hackathon at Toronto Metropolitan University",
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -152,6 +190,10 @@ export default function RootLayout({
         id="__next"
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {children}
         <Analytics />
       </body>
