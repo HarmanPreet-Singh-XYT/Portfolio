@@ -5,6 +5,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 const MarkdownRenderer = ({ content }) => {
+  const processedContent = content?.replace(/\\([*_`#\[\]()!>~|])/g, '$1') ?? '';
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
@@ -115,7 +116,7 @@ const MarkdownRenderer = ({ content }) => {
         ),
       }}
     >
-      {content}
+      {processedContent}
     </ReactMarkdown>
   );
 };
