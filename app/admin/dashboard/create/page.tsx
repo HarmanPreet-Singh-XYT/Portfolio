@@ -17,6 +17,50 @@ import { useCreateApp } from '@/hooks/useApp';
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { useRouter } from 'next/navigation';
 
+const ArrayInput = ({ label, items, onAdd, onRemove, newValue, setNewValue, placeholder }) => (
+  <div className="space-y-2">
+    <Label className="text-emerald-400 font-medium">{label}</Label>
+    <div className="flex gap-2">
+      <Input
+        value={newValue}
+        onChange={(e) => setNewValue(e.target.value)}
+        placeholder={placeholder}
+        className="flex-1 bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-emerald-500 focus:ring-emerald-500"
+      />
+      <Button
+        type="button"
+        variant="outline"
+        size="sm"
+        onClick={() => {
+          if (newValue.trim()) {
+            onAdd(newValue.trim());
+            setNewValue('');
+          }
+        }}
+        className="bg-emerald-600 hover:bg-emerald-500 border-emerald-500 text-white hover:scale-105 transition-all duration-200"
+      >
+        <Plus className="h-4 w-4" />
+      </Button>
+    </div>
+    <div className="flex flex-wrap gap-2">
+      {items.map((item, index) => (
+        <Badge key={index} variant="secondary" className="bg-gray-800 text-emerald-400 border-emerald-500/30 flex items-center gap-1">
+          {item}
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            className="h-auto p-0 text-gray-400 hover:text-emerald-400 hover:scale-110 transition-all duration-200"
+            onClick={() => onRemove(index)}
+          >
+            <X className="h-3 w-3" />
+          </Button>
+        </Badge>
+      ))}
+    </div>
+  </div>
+);
+
 export default function AppCreator() {
   const router = useRouter();
   const { createApp, loading, error, createdAppId, reset } = useCreateApp();
@@ -221,50 +265,6 @@ export default function AppCreator() {
       console.log('App created successfully:', result);
     }
   };
-
-  const ArrayInput = ({ label, items, onAdd, onRemove, newValue, setNewValue, placeholder }) => (
-  <div className="space-y-2">
-    <Label className="text-emerald-400 font-medium">{label}</Label>
-    <div className="flex gap-2">
-      <Input
-        value={newValue}
-        onChange={(e) => setNewValue(e.target.value)}
-        placeholder={placeholder}
-        className="flex-1 bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-emerald-500 focus:ring-emerald-500"
-      />
-      <Button
-        type="button"
-        variant="outline"
-        size="sm"
-        onClick={() => {
-          if (newValue.trim()) {
-            onAdd(newValue.trim());
-            setNewValue('');
-          }
-        }}
-        className="bg-emerald-600 hover:bg-emerald-500 border-emerald-500 text-white hover:scale-105 transition-all duration-200"
-      >
-        <Plus className="h-4 w-4" />
-      </Button>
-    </div>
-    <div className="flex flex-wrap gap-2">
-      {items.map((item, index) => (
-        <Badge key={index} variant="secondary" className="bg-gray-800 text-emerald-400 border-emerald-500/30 flex items-center gap-1">
-          {item}
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            className="h-auto p-0 text-gray-400 hover:text-emerald-400 hover:scale-110 transition-all duration-200"
-            onClick={() => onRemove(index)}
-          >
-            <X className="h-3 w-3" />
-          </Button>
-        </Badge>
-      ))}
-    </div>
-  </div>
-);
 
 if (createdAppId) {
   return (

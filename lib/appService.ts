@@ -326,7 +326,7 @@ export async function createApp(appData: Partial<AppDetails>): Promise<string | 
       }),
 
       // Card tech
-      appData.cardDetails?.tech && supabaseServer.from('card_tech').insert(
+      appData.cardDetails?.tech && appData.cardDetails.tech.length > 0 && supabaseServer.from('card_tech').insert(
         appData.cardDetails.tech.map(tech => ({ app_id: appId, tech }))
       ),
 
@@ -339,7 +339,7 @@ export async function createApp(appData: Partial<AppDetails>): Promise<string | 
       }),
 
       // Screenshots
-      appData.screenshots && supabaseServer.from('screenshots').insert(
+      appData.screenshots && appData.screenshots.length > 0 && supabaseServer.from('screenshots').insert(
         appData.screenshots.map((url, index) => ({
           app_id: appId,
           url,
@@ -348,12 +348,12 @@ export async function createApp(appData: Partial<AppDetails>): Promise<string | 
       ),
 
       // Tech stack
-      appData.techStack && supabaseServer.from('tech_stack').insert(
+      appData.techStack && appData.techStack.length > 0 && supabaseServer.from('tech_stack').insert(
         appData.techStack.map(tech => ({ app_id: appId, technology: tech }))
       ),
 
       // Store links
-      appData.storeLinks && supabaseServer.from('store_links').insert(
+      appData.storeLinks && appData.storeLinks.length > 0 && supabaseServer.from('store_links').insert(
         appData.storeLinks.map(link => ({
           app_id: appId,
           platform: link.platform,
@@ -381,7 +381,7 @@ export async function createApp(appData: Partial<AppDetails>): Promise<string | 
       }),
 
       // Supported languages
-      appData.additionalInfo?.supportedLanguages && supabaseServer.from('supported_languages').insert(
+      appData.additionalInfo?.supportedLanguages && appData.additionalInfo.supportedLanguages.length > 0 && supabaseServer.from('supported_languages').insert(
         appData.additionalInfo.supportedLanguages.map(lang => ({
           app_id: appId,
           language: lang
@@ -396,7 +396,7 @@ export async function createApp(appData: Partial<AppDetails>): Promise<string | 
       }),
 
       // Permissions
-      appData.permissions && supabaseServer.from('permissions').insert(
+      appData.permissions && appData.permissions.length > 0 && supabaseServer.from('permissions').insert(
         appData.permissions.map(permission => ({
           app_id: appId,
           permission
@@ -404,7 +404,7 @@ export async function createApp(appData: Partial<AppDetails>): Promise<string | 
       ),
 
       // FAQs
-      appData.faq && supabaseServer.from('faqs').insert(
+      appData.faq && appData.faq.length > 0 && supabaseServer.from('faqs').insert(
         appData.faq.map((faq, index) => ({
           app_id: appId,
           question: faq.question,
