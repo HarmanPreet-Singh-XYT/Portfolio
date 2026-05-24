@@ -1,12 +1,37 @@
 import { Code2, Server, Database, Cpu, Palette, Lock, Brain, Cloud, Layout, Code, Zap } from 'lucide-react';
 const experiences = [
   {
+    title: "Full Stack AI Developer Intern",
+    company: "Revvity",
+    location: "Toronto, ON",
+    period: "May 2026 - Present",
+    description: [
+      "Improve workflows with the Integration of AI while Collaborating with Different region teams and working under leadership."
+    ],
+    skills: ["AI Integration", "Full-Stack Development", "Collaboration"]
+  },
+  {
+    title: "Founding Engineer",
+    company: "Stealth AI Startup",
+    location: "Remote",
+    period: "Feb 2026 - April 2026",
+    description: [
+      "Drove 0→1 product development, owning architecture, feature design, and deployment lifecycle.",
+      "Architected and deployed cloud-native infrastructure (GCP) ensuring scalability and high availability.",
+      "Partnered with founders to shape product strategy, aligning technical decisions with business and user impact.",
+      "Engineered user-centric workflows by combining product thinking with full-stack execution.",
+      "Leveraged analytics to inform product iterations and optimize user engagement.",
+      "Led end-to-end system optimization, improving performance, reliability, and cost efficiency.",
+      "Operated with a founder mindset, taking full ownership of product, infrastructure, and technical direction."
+    ],
+    skills: ["GCP", "Cloud Architecture", "Product Strategy", "Full-Stack Development", "Analytics", "System Optimization"]
+  },
+  {
     title: "Production Operator",
     company: "General Motors of Canada",
     location: "Oshawa, ON, Canada",
-    period: "Oct 2025 - Present",
+    period: "Oct 2025 - April 2026",
     category: "non-tech",
-    note: "Part-time while completing CS education",
     description: [
       "Operating assembly line equipment in automotive manufacturing environment while maintaining quality standards and safety protocols.",
       "Collaborating with cross-functional teams to meet production targets and ensure efficient workflow across manufacturing processes",
