@@ -2,10 +2,10 @@
 import { createClient } from './supabase/server'
 import { AppDetails, Review, StoreLink, SystemRequirement, Developer, FAQ, VersionHistory, ProjectCardData } from '../types/app'
 
-const supabaseServer = await createClient();
 // Get single app with all related data
 export async function getApp(appId: string): Promise<AppDetails | null> {
   try {
+    const supabaseServer = await createClient();
     // Get main app details
     const { data: appData, error: appError } = await supabaseServer
       .from('app_details')
@@ -171,6 +171,7 @@ export async function getApp(appId: string): Promise<AppDetails | null> {
 export async function getAllApps(): Promise<AppDetails[]> {
   
   try {
+    const supabaseServer = await createClient();
     const { data: apps, error } = await supabaseServer
       .from('app_details')
       .select('id')
@@ -196,6 +197,7 @@ export async function getAllApps(): Promise<AppDetails[]> {
 export async function getAppCard(appId: string): Promise<ProjectCardData | null> {
   
   try {
+    const supabaseServer = await createClient();
     const [
       { data: appData, error: appError },
       { data: cardData, error: cardError },
@@ -263,6 +265,7 @@ export async function getAppCard(appId: string): Promise<ProjectCardData | null>
 
 export async function getAllAppCards(): Promise<ProjectCardData[]> {
   try {
+    const supabaseServer = await createClient();
     const { data: apps, error } = await supabaseServer
       .from('app_details')
       .select('id')
@@ -293,6 +296,7 @@ export async function getAllAppCards(): Promise<ProjectCardData[]> {
 export async function createApp(appData: Partial<AppDetails>): Promise<string | null> {
   
   try {
+    const supabaseServer = await createClient();
     const { data: app, error: appError } = await supabaseServer
       .from('app_details')
       .insert({
@@ -425,6 +429,7 @@ export async function createApp(appData: Partial<AppDetails>): Promise<string | 
 export async function updateApp(appId: string, updates: Partial<AppDetails>): Promise<boolean> {
   
   try {
+    const supabaseServer = await createClient();
     // Update main app details
     const { error: appError } = await supabaseServer
       .from('app_details')
@@ -593,6 +598,7 @@ export async function updateApp(appId: string, updates: Partial<AppDetails>): Pr
 export async function deleteApp(appId: string): Promise<boolean> {
   
   try {
+    const supabaseServer = await createClient();
     const { error } = await supabaseServer
       .from('app_details')
       .delete()
@@ -610,6 +616,7 @@ export async function deleteApp(appId: string): Promise<boolean> {
 export async function addReview(appId: string, review: Omit<Review, 'id'>): Promise<boolean> {
   
   try {
+    const supabaseServer = await createClient();
     const { error } = await supabaseServer
       .from('reviews')
       .insert({
@@ -634,6 +641,7 @@ export async function addReview(appId: string, review: Omit<Review, 'id'>): Prom
 export async function addVersion(appId: string, version: VersionHistory): Promise<boolean> {
   
   try {
+    const supabaseServer = await createClient();
     const { data, error } = await supabaseServer
       .from('version_history')
       .insert({
@@ -667,6 +675,7 @@ export async function addVersion(appId: string, version: VersionHistory): Promis
 export async function updateDownloadStats(appId: string, stats: { total: string | number; lastMonth: string | number }): Promise<boolean> {
   
   try {
+    const supabaseServer = await createClient();
     const { error } = await supabaseServer
       .from('download_stats')
       .upsert({

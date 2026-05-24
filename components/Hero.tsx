@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useState, useRef, useMemo } from 'react';
-import { Github, Linkedin, Mail, Terminal, ArrowRight, Download } from 'lucide-react';
+import { Mail, Terminal, ArrowRight, Download } from 'lucide-react';
+import { Github, Linkedin } from '@/components/icons/BrandIcons';
 import { about } from '@/app/data';
 import { SectionNavigation } from './SectionNavigation';
 import { AnimatedCounter } from './Hero/AnimatedCounter';
@@ -104,13 +105,13 @@ export default function Hero({ aboutRef, sections = ['about', 'skills', 'experie
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-28 pb-16 md:pt-32 md:pb-24">
         <div className="max-w-4xl mx-auto">
           {/* Open to Opportunities badge */}
-          <div className={`flex items-center gap-2 mb-7 transition-all duration-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          {/* <div className={`flex items-center gap-2 mb-7 transition-all duration-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
             <span className="text-sm text-emerald-400 font-medium tracking-wide">Open to Internship</span>
-          </div>
+          </div> */}
 
           {/* Name with glitch effect */}
           <div className={`glitch-container mb-8 transition-opacity duration-700 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>

@@ -8,8 +8,8 @@ type AnimatedCounterProps = {
 
 export function AnimatedCounter({ targetValue, duration = 2000, className = '' }: AnimatedCounterProps) {
   const [count, setCount] = useState(0);
-  const requestRef = useRef<number>();
-  const startTimeRef = useRef<number>();
+  const requestRef = useRef<number | undefined>(undefined);
+  const startTimeRef = useRef<number | undefined>(undefined);
   
   useEffect(() => {
     startTimeRef.current = undefined;

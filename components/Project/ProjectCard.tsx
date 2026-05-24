@@ -1,5 +1,6 @@
 import React from 'react';
-import { Code, Palette, ExternalLink, Github, MonitorSmartphone, Brush, Calendar, Download, Eye, Layers, Star, Users } from 'lucide-react';
+import { Code, Palette, ExternalLink, MonitorSmartphone, Brush, Calendar, Download, Eye, Layers, Star, Users } from 'lucide-react';
+import { Github } from '@/components/icons/BrandIcons';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';

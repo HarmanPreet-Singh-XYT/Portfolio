@@ -9,14 +9,12 @@ import {
   MapPin, 
   Clock, 
   Calendar,
-  Github,
-  Linkedin,
-  Twitter,
   Globe,
   CheckCircle,
   ArrowRight,
   Sparkles
 } from 'lucide-react';
+import { Github, Linkedin, Twitter } from '@/components/icons/BrandIcons';
 import sendMail, { sendContactMail } from '@/app/api/Nodemailer';
 import { about, calendlyLink } from '@/app/data';
 import Navbar from '@/components/Navbar';

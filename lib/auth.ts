@@ -3,8 +3,8 @@
 import { setCookies } from '@/app/api/set-tokens/cookies'
 import { createClient } from './supabase/server'
 import { User } from '@supabase/supabase-js'
-const supabase = await createClient();
 export async function signInWithOTP(email: string) {
+  const supabase = await createClient();
   const { data, error } = await supabase.auth.signInWithOtp({
     email,
     options: {
@@ -17,6 +17,7 @@ export async function signInWithOTP(email: string) {
 }
 
 export async function verifyOTP(email: string, token: string) {
+  const supabase = await createClient();
   const { data, error } = await supabase.auth.verifyOtp({
     email,
     token,
@@ -28,16 +29,19 @@ export async function verifyOTP(email: string, token: string) {
 }
 
 export async function signOut() {
+  const supabase = await createClient();
   const { error } = await supabase.auth.signOut()
   if (error) throw error
 }
 
 export async function getCurrentUser(): Promise<User | null> {
+  const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser()
   return user
 }
 
 export async function getUserRole(userId: string): Promise<string | null> {
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from('user_roles')
     .select('role')

@@ -208,7 +208,7 @@ export default function Education({educationRef}) {
           <ul className="flex gap-6 bg-gray-800/50 rounded-full px-6 py-2 backdrop-blur-sm border border-gray-700/30">
             <li><a href="#experience" className="text-gray-400 hover:text-white transition-colors">Previous: Experience</a></li>
             <li><a href="#projects" className="text-gray-400 hover:text-white transition-colors">Previous: Projects</a></li>
-            <li><a href="#services" className="text-emerald-400 hover:text-emerald-300 transition-colors">Next: Services</a></li>
+            {/* <li><a href="#services" className="text-emerald-400 hover:text-emerald-300 transition-colors">Next: Services</a></li> */}
           </ul>
         </nav>
 

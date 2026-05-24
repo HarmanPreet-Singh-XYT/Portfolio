@@ -1,4 +1,5 @@
-import { CupSoda, Github, Heart } from 'lucide-react';
+import { CupSoda, Heart } from 'lucide-react';
+import { Github } from '@/components/icons/BrandIcons';
 import React, { useState, useRef, useEffect } from 'react';
 
 const SponsorButton = () => {
