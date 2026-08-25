@@ -4,11 +4,15 @@ const experiences = [
     title: "Full Stack AI Developer Intern",
     company: "Revvity",
     location: "Toronto, ON",
-    period: "May 2026 - Present",
+    period: "May 2026 - August 2026",
     description: [
-      "Improve workflows with the Integration of AI while Collaborating with Different region teams and working under leadership."
+      "Architected a 3-stage AI extraction pipeline (AWS Bedrock, Claude Sonnet/Haiku) with parallel Y-axis processing and gap detection, delivering a ≥75% accuracy guarantee, 3x faster processing, and reducing manual data entry by 80%.",
+      "Built and deployed the RFQ Procurement Optimization platform to production, implementing multi-material analytics, real-time interactive spreadsheets, and a Serverless AWS Lambda & DynamoDB backend.",
+      "Engineered a 2-tier partitioned caching architecture (in-memory L1 + Redis L2 with LRU eviction), reducing memory usage by 60–80%, preventing OOM crashes, and optimizing pivot aggregation from O(n²) to O(n) across 6.7M+ records.",
+      "Hardened security and reliability across 30+ vulnerabilities, implementing multi-tenant isolation, prompt injection sanitization for RAG endpoints, Redis distributed locking, and fail-closed RBAC.",
+      "Automated cloud infrastructure and deployments using Terraform and Serverless Framework v3, provisioning 8+ Lambda microservices with scoped IAM policies and CI/CD pipelines."
     ],
-    skills: ["AI Integration", "Full-Stack Development", "Collaboration"]
+    skills: ["AWS Bedrock", "AWS Lambda", "DynamoDB", "Redis", "TypeScript", "Terraform", "Claude LLMs", "Serverless"]
   },
   {
     title: "Founding Engineer",
