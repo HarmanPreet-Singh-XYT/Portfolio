@@ -15,7 +15,7 @@ const experiences = [
     skills: ["AWS Bedrock", "AWS Lambda", "DynamoDB", "Redis", "TypeScript", "Terraform", "Claude LLMs", "Serverless"]
   },
   {
-    title: "Founding Engineer",
+    title: "Software Engineer",
     company: "Stealth AI Startup",
     location: "Remote",
     period: "Feb 2026 - April 2026",
